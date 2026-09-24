@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#04080c">
 <meta property="og:type" content="website">
 <meta property="og:title" content="J.A.R.V.I.S. — o assistente que age no seu PC e no seu celular">
-<meta property="og:description" content="206 funções por voz, duas personalidades e um elo entre o computador e o Android. Assinatura de R$ 39,99 por mês.">
+<meta property="og:description" content="206 funções por voz, duas personalidades e um elo entre o computador e o Android. Planos a partir de R$ 39,99 por mês e teste grátis de 7 dias.">
 <meta property="og:image" content="og.png">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
@@ -460,6 +460,18 @@ footer{padding:34px 20px 44px; border-top:1px solid var(--line); color:var(--mis
 .assine-passos li{display:flex;gap:10px;font-size:15.5px;line-height:1.55;color:var(--text)}
 .assine-passos b{color:var(--accent);font-family:var(--display);font-size:12px;letter-spacing:.1em;flex:none;padding-top:3px}
 .plan .btn{width:100%;margin-top:18px}
+@media (min-width:820px){.plans.plans4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1180px){.plans.plans4{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+ .plans4 .plan .price{font-size:36px;flex-wrap:wrap}.plans4 .plan{padding:24px 18px}}
+.plans4 .plan{display:flex;flex-direction:column;padding:26px 22px}
+.plans4 .plan .btn{margin-top:auto}
+.plans4 .plan ul{margin-bottom:20px}
+.plans4 .plan .price{font-size:clamp(34px,4.2vw,46px)}
+.teste-gratis{margin-top:18px;display:grid;gap:16px;align-items:center;border:1px dashed rgba(var(--accent-rgb),.55);border-radius:20px;padding:24px 26px;background:rgba(var(--accent-rgb),.06)}
+.teste-gratis .tag{font-family:var(--display);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent)}
+.teste-gratis h3{margin:8px 0 6px;font-size:clamp(20px,2.6vw,26px);color:var(--ice)}
+.teste-gratis p{margin:0;color:var(--mist)}
+@media (min-width:820px){.teste-gratis{grid-template-columns:1fr auto}.teste-gratis .btn{white-space:nowrap}}
 .girinho{display:inline-block;width:14px;height:14px;border:2px solid rgba(4,8,12,.3);border-top-color:currentColor;border-radius:50%;animation:girinho .7s linear infinite}
 @keyframes girinho{to{transform:rotate(360deg)}}
 </style>
@@ -743,34 +755,67 @@ footer{padding:34px 20px 44px; border-top:1px solid var(--line); color:var(--mis
   <div class="wrap">
     <div class="head" data-reveal>
       <h2>Planos</h2>
-      <p class="lead">Uma assinatura para o assistente no computador e o app no celular, com todas as <span data-count="total">206</span> funções.</p>
+      <p class="lead">Escolha pelo tamanho: de uma pessoa até uma empresa inteira, com todas as <span data-count="total">206</span> funções em qualquer plano.</p>
     </div>
-    <div class="plans">
-      <div class="plan main" data-reveal style="--i:0">
-        <span class="tag">Assinatura</span>
+    <div class="plans plans4">
+      <div class="plan" data-reveal style="--i:0">
+        <span class="tag">Singular</span>
         <div class="price"><span class="rs">R$</span>39,99<small>por mês</small></div>
-        <p>App no celular incluso.</p>
+        <p>Até 1 pessoa.</p>
         <ul>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Até 3 equipamentos liberados.</span></li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>App móvel e assistente no PC, ligados pelo Elo.</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Todas as <span data-count="total">206</span> funções, em <span data-count="cats">18</span> áreas.</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Memória, base de conhecimento e ferramentas criadas por você.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Todas as <span data-count="total">206</span> funções.</span></li>
         </ul>
 
-        <a class="btn btn-main" href="#assinar" data-assinar="0">Solicitar compra</a>
+        <a class="btn btn-ghost" href="#assinar" data-plano="singular">Escolher Singular</a>
       </div>
-      <div class="plan" data-reveal style="--i:1">
-        <span class="tag">Dispositivo adicional</span>
-        <div class="price"><span class="rs">R$</span>10<small>por mês, por aparelho</small></div>
-        <p>Para usar a mesma conta em mais de um aparelho.</p>
+      <div class="plan main" data-reveal style="--i:1">
+        <span class="tag">Business</span>
+        <div class="price"><span class="rs">R$</span>179,99<small>por mês</small></div>
+        <p>Até 5 pessoas.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Cada aparelho a mais é liberado na própria assinatura.</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Mesma memória e as mesmas funções em todos eles.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Até 15 equipamentos liberados.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>App móvel e assistente no PC, ligados pelo Elo.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Todas as <span data-count="total">206</span> funções.</span></li>
         </ul>
 
-        <a class="btn btn-ghost" href="#assinar" data-assinar="1">Solicitar com adicional</a>
+        <a class="btn btn-main" href="#assinar" data-plano="business">Escolher Business</a>
+      </div>
+      <div class="plan" data-reveal style="--i:2">
+        <span class="tag">Executive</span>
+        <div class="price"><span class="rs">R$</span>349,99<small>por mês</small></div>
+        <p>Até 10 pessoas.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Até 30 equipamentos liberados.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>App móvel e assistente no PC, ligados pelo Elo.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Todas as <span data-count="total">206</span> funções.</span></li>
+        </ul>
+
+        <a class="btn btn-ghost" href="#assinar" data-plano="executive">Escolher Executive</a>
+      </div>
+      <div class="plan" data-reveal style="--i:3">
+        <span class="tag">Supreme</span>
+        <div class="price"><span class="rs">R$</span>699,99<small>por mês</small></div>
+        <p>Sem limite de pessoas.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Até 100 equipamentos liberados.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>App móvel e assistente no PC, ligados pelo Elo.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Todas as <span data-count="total">206</span> funções.</span></li>
+        </ul>
+
+        <a class="btn btn-ghost" href="#assinar" data-plano="supreme">Escolher Supreme</a>
       </div>
     </div>
-    <p class="plan-note" data-reveal style="--i:2">Valores em reais. A conta é pessoal: aparelhos que não estiverem liberados na assinatura não conseguem entrar.</p>
+    <div class="teste-gratis" data-reveal style="--i:4">
+      <div>
+        <span class="tag">Teste grátis</span>
+        <h3>Use o JARVIS por 7 dias sem pagar nada</h3>
+        <p>Crie a sua conta e peça o teste. Eu libero 7 dias com tudo funcionando; depois disso, o JARVIS só volta a abrir quando um plano for ativado.</p>
+      </div>
+      <a class="btn btn-main" href="#assinar" data-plano="teste">Testar 7 dias grátis</a>
+    </div>
+    <p class="plan-note" data-reveal style="--i:5">Valores em reais, por mês. Na hora de pedir, você escolhe quantos equipamentos (computadores e celulares) quer liberados: equipamento que não estiver liberado na assinatura não consegue entrar.</p>
   </div>
 </section>
 
@@ -778,7 +823,7 @@ footer{padding:34px 20px 44px; border-top:1px solid var(--line); color:var(--mis
   <div class="wrap">
     <div class="head" data-reveal>
       <h2>Criar conta e assinar</h2>
-      <p class="lead">Crie a sua conta agora e me mande o pedido. Assim que o pagamento for confirmado, eu libero e o JARVIS abre no seu computador e no celular.</p>
+      <p class="lead">Crie a sua conta, escolha o plano e quantos equipamentos quer liberados, e me mande o pedido. Assim que o pagamento for confirmado, eu libero e o JARVIS abre no seu computador e no celular. Quer conhecer antes? Escolha o teste grátis de 7 dias.</p>
     </div>
     <div class="assine" data-reveal style="--i:1">
       <form id="formAssinar" novalidate>
@@ -787,20 +832,21 @@ footer{padding:34px 20px 44px; border-top:1px solid var(--line); color:var(--mis
           <div><label for="asEmail">E-mail</label><input id="asEmail" name="email" type="email" autocomplete="email" placeholder="voce@exemplo.com" required></div>
           <div><label for="asSenha">Senha do JARVIS</label><input id="asSenha" name="new-password" type="password" autocomplete="new-password" placeholder="pelo menos 8 caracteres" required></div>
           <div><label for="asFone">WhatsApp (opcional)</label><input id="asFone" type="tel" autocomplete="tel" placeholder="(19) 90000-0000"></div>
-          <div><label for="asExtras">Aparelhos adicionais</label><select id="asExtras">
-            <option value="0">nenhum — 1 aparelho</option>
-            <option value="1">+1 aparelho (R$ 10)</option>
-            <option value="2">+2 aparelhos (R$ 20)</option>
-            <option value="3">+3 aparelhos (R$ 30)</option>
-            <option value="4">+4 aparelhos (R$ 40)</option>
+          <div><label for="asPlano">Plano</label><select id="asPlano">
+            <option value="teste">Teste grátis — 7 dias</option>
+            <option value="singular" selected>Singular — R$ 39,99 (até 1 pessoa)</option>
+            <option value="business">Business — R$ 179,99 (até 5 pessoas)</option>
+            <option value="executive">Executive — R$ 349,99 (até 10 pessoas)</option>
+            <option value="supreme">Supreme — R$ 699,99 (sem limite de pessoas)</option>
           </select></div>
+          <div><label for="asEquip">Equipamentos a liberar</label><select id="asEquip"></select></div>
           <div><label for="asPag">Como pretende pagar</label><select id="asPag">
             <option value="pix">Pix</option>
             <option value="outro">Combinar com você</option>
           </select></div>
         </div>
         <div class="largo"><label for="asObs">Quer dizer alguma coisa? (opcional)</label><textarea id="asObs" placeholder="Ex.: vou usar no PC e no celular, pago hoje à tarde."></textarea></div>
-        <div class="total">Total <b id="asTotal">R$ 39,99</b> por mês</div>
+        <div class="total">Total <b id="asTotal">R$ 39,99</b> <span id="asPeriodo">por mês</span></div>
         <button class="btn btn-main" id="asEnviar" type="submit">Criar conta e solicitar</button>
         <p class="assine-nota">Nenhum pagamento acontece aqui. A sua senha é guardada cifrada e serve para entrar no JARVIS depois.</p>
         <div id="asErro" class="assine-erro" hidden></div>
@@ -1764,18 +1810,41 @@ requestAnimationFrame(frame);
   var meta = document.querySelector('meta[name="jarvis-api"]');
   var API = (meta && meta.content || "").replace(/\/+$/, "");
   var CONTATO = "pedroflazzarini@gmail.com";
-  var MENSAL = 39.99, POR_APARELHO = 10;
+  /* espelho de servidor/planos.py: mudou la, muda aqui */
+  var PLANOS = {
+    teste:     { nome: "Teste gratis", preco: 0,      pessoas: "1 pessoa",               max: 2 },
+    singular:  { nome: "Singular",     preco: 39.99,  pessoas: "ate 1 pessoa",           max: 3 },
+    business:  { nome: "Business",     preco: 179.99, pessoas: "ate 5 pessoas",          max: 15 },
+    executive: { nome: "Executive",    preco: 349.99, pessoas: "ate 10 pessoas",         max: 30 },
+    supreme:   { nome: "Supreme",      preco: 699.99, pessoas: "sem limite de pessoas",  max: 100 }
+  };
 
   function moeda(v) {
     return "R$ " + v.toFixed(2).replace(".", ",");
   }
 
-  function total() {
-    return MENSAL + Number($("asExtras").value || 0) * POR_APARELHO;
+  function plano() { return PLANOS[$("asPlano").value] || PLANOS.singular; }
+  function eTeste() { return $("asPlano").value === "teste"; }
+  function total() { return plano().preco; }
+  function totalTxt() { return eTeste() ? "gratis por 7 dias" : moeda(total()) + " por mes"; }
+
+  /* a lista de equipamentos acompanha o plano: cada um tem o seu maximo */
+  function montarEquipamentos() {
+    var sel = $("asEquip"), antes = Number(sel.value || 1), max = plano().max, html = "";
+    for (var n = 1; n <= max; n++) {
+      html += "<option value='" + n + "'>" + n + " equipamento" + (n > 1 ? "s" : "") + "</option>";
+    }
+    sel.innerHTML = html;
+    sel.value = String(Math.min(Math.max(antes, 1), max));
   }
 
-  function atualizarTotal() { $("asTotal").textContent = moeda(total()); }
-  $("asExtras").addEventListener("change", atualizarTotal);
+  function atualizarTotal() {
+    $("asTotal").textContent = eTeste() ? "R$ 0,00" : moeda(total());
+    $("asPeriodo").textContent = eTeste() ? "por 7 dias (teste gratis)" : "por mes";
+    $("asEnviar").textContent = eTeste() ? "Criar conta e pedir o teste" : "Criar conta e solicitar";
+  }
+  $("asPlano").addEventListener("change", function () { montarEquipamentos(); atualizarTotal(); });
+  montarEquipamentos();
 
   function erro(texto) {
     var el = $("asErro");
@@ -1786,16 +1855,18 @@ requestAnimationFrame(frame);
 
   function pedirPorEmail(dados) {
     var corpo =
-      "Quero assinar o JARVIS.\n\n" +
+      (eTeste() ? "Quero testar o JARVIS por 7 dias.\n\n" : "Quero assinar o JARVIS.\n\n") +
       "Nome: " + dados.nome + "\n" +
       "E-mail: " + dados.email + "\n" +
       "WhatsApp: " + (dados.telefone || "-") + "\n" +
-      "Aparelhos adicionais: " + dados.aparelhos + "\n" +
-      "Total: " + moeda(total()) + " por mes\n" +
+      "Plano: " + plano().nome + " (" + plano().pessoas + ")\n" +
+      "Equipamentos a liberar: " + dados.aparelhos + "\n" +
+      "Total: " + totalTxt() + "\n" +
       "Pagamento: " + dados.pagamento + "\n\n" +
       (dados.observacao || "");
     location.href = "mailto:" + CONTATO +
-      "?subject=" + encodeURIComponent("JARVIS: quero assinar") +
+      "?subject=" + encodeURIComponent(eTeste() ? "JARVIS: quero o teste gratis"
+                                                : "JARVIS: quero assinar o " + plano().nome) +
       "&body=" + encodeURIComponent(corpo);
   }
 
@@ -1809,15 +1880,34 @@ requestAnimationFrame(frame);
     });
   }
 
+  function concluirTeste(dados, resposta) {
+    var contato = (resposta && resposta.contato) || CONTATO;
+    $("asPronto").hidden = false;
+    $("asPronto").className = "assine-ok";
+    $("asPronto").innerHTML =
+      "<h3>Pedido de teste recebido</h3>" +
+      "<p>Conta criada para <b>" + dados.email + "</b>, com <b>" + dados.aparelhos +
+      " equipamento" + (dados.aparelhos > 1 ? "s" : "") + "</b>. Nada a pagar agora.</p>" +
+      "<ul class='assine-passos'>" +
+      "<li><b>1</b><span>Eu libero o seu teste gratis de 7 dias. Se quiser agilizar, me chame em <a href='mailto:" + contato + "'>" + contato + "</a>.</span></li>" +
+      "<li><b>2</b><span>Voce entra no JARVIS com esse e-mail e a senha que acabou de criar.</span></li>" +
+      "<li><b>3</b><span>Depois de 7 dias o JARVIS para de abrir. Para continuar, e so escolher um plano aqui mesmo.</span></li>" +
+      "</ul>";
+    form.hidden = true;
+    $("asPronto").scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
   function concluir(dados, resposta) {
+    if (dados.plano === "teste") { concluirTeste(dados, resposta); return; }
     var pix = resposta && resposta.pix;
     var contato = (resposta && resposta.contato) || CONTATO;
     $("asPronto").hidden = false;
     $("asPronto").className = "assine-ok";
     $("asPronto").innerHTML =
       "<h3>Pedido recebido</h3>" +
-      "<p>Conta criada para <b>" + dados.email + "</b>. Agora falta o pagamento de <b>" +
-      moeda(total()) + " por mes</b>.</p>" +
+      "<p>Conta criada para <b>" + dados.email + "</b>. Plano <b>" + plano().nome + "</b> (" +
+      plano().pessoas + "), com <b>" + dados.aparelhos + " equipamento" + (dados.aparelhos > 1 ? "s" : "") +
+      "</b>. Agora falta o pagamento de <b>" + moeda(total()) + " por mes</b>.</p>" +
       (pix ? "<p>Chave Pix:</p><div class='pix'>" + pix + "</div>" : "") +
       "<ul class='assine-passos'>" +
       "<li><b>1</b><span>Faca o pagamento" + (pix ? " na chave acima" : ", combinando por e-mail") + ".</span></li>" +
@@ -1837,7 +1927,8 @@ requestAnimationFrame(frame);
       email: $("asEmail").value.trim(),
       senha: $("asSenha").value,
       telefone: $("asFone").value.trim(),
-      aparelhos: Number($("asExtras").value || 0),
+      plano: $("asPlano").value,
+      aparelhos: Number($("asEquip").value || 1),
       pagamento: $("asPag").value,
       observacao: $("asObs").value.trim()
     };
@@ -1859,7 +1950,7 @@ requestAnimationFrame(frame);
         if (r.status >= 400 && r.status !== 409) throw new Error(r.corpo.erro || "nao consegui criar a conta");
         return chamar("/site/pedido", {
           email: dados.email, nome: dados.nome, telefone: dados.telefone,
-          plano: "base", aparelhos: dados.aparelhos,
+          plano: dados.plano, aparelhos: dados.aparelhos,
           observacao: (dados.pagamento === "pix" ? "" : "Prefere combinar o pagamento. ") + dados.observacao
         });
       })
@@ -1876,11 +1967,11 @@ requestAnimationFrame(frame);
   });
 
   /* os botoes dos planos trazem para ca com a escolha ja feita */
-  document.querySelectorAll("[data-assinar]").forEach(function (b) {
+  document.querySelectorAll("[data-plano]").forEach(function (b) {
     b.addEventListener("click", function (e) {
       e.preventDefault();
-      var extras = b.getAttribute("data-assinar");
-      if (extras) { $("asExtras").value = extras; atualizarTotal(); }
+      var escolhido = b.getAttribute("data-plano");
+      if (PLANOS[escolhido]) { $("asPlano").value = escolhido; montarEquipamentos(); atualizarTotal(); }
       document.getElementById("assinar").scrollIntoView({ behavior: "smooth" });
       setTimeout(function () { $("asEmail").focus({ preventScroll: true }); }, 600);
     });
