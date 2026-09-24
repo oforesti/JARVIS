@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <!-- Endereco do servidor de licencas. Enquanto estiver vazio, o
      formulario de assinatura manda o pedido por e-mail. -->
-<meta name="jarvis-api" content="">
+<meta name="jarvis-api" content="https://jarvis-servidor-one.vercel.app">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>J.A.R.V.I.S. | Assistente pessoal para PC e Android</title>
 <meta name="description" content="Assistente pessoal por voz que controla o celular Android e o computador, com 206 funções, duas personalidades e ferramentas que ele mesmo cria.">
@@ -467,6 +467,23 @@ footer{padding:34px 20px 44px; border-top:1px solid var(--line); color:var(--mis
 .plans4 .plan .btn{margin-top:auto}
 .plans4 .plan ul{margin-bottom:20px}
 .plans4 .plan .price{font-size:clamp(34px,4.2vw,46px)}
+/* quanto mais caro o plano, mais o cartao e o botao chamam a atencao */
+.plans4 .plan.t3{border-color:rgba(var(--accent-rgb),.45); box-shadow:0 0 44px -24px rgba(var(--accent-rgb),.8)}
+.plans4 .plan.t4{border-color:rgba(245,196,81,.6); box-shadow:0 0 64px -22px rgba(245,196,81,.6)}
+.plans4 .plan.t4 .tag{color:#f5c451}
+.btn-t1{background:transparent; color:var(--mist); border-color:var(--line-hi)}
+.btn-t1:hover{color:var(--ice); border-color:rgba(var(--accent-rgb),.45)}
+.btn-t2{background:rgba(var(--accent-rgb),.08); color:var(--accent); border-color:rgba(var(--accent-rgb),.75); box-shadow:0 0 18px -4px rgba(var(--accent-rgb),.5)}
+.btn-t2:hover{background:rgba(var(--accent-rgb),.18); box-shadow:0 0 30px -2px rgba(var(--accent-rgb),.7)}
+.btn-t3{background:linear-gradient(135deg,var(--accent),var(--orb-mid)); color:var(--accent-ink); box-shadow:0 0 32px rgba(var(--accent-rgb),.55); transition:transform .25s var(--ease),box-shadow .25s}
+.btn-t3:hover{transform:translateY(-2px); box-shadow:0 0 54px rgba(var(--accent-rgb),.85)}
+.btn-t4{position:relative; overflow:hidden; isolation:isolate; min-height:58px; padding:0 18px; white-space:nowrap; color:#211500; font-weight:900; border-color:rgba(255,228,150,.95); background:linear-gradient(110deg,#a86f14 0%,#f5c451 28%,#fff4c8 50%,#f5c451 72%,#a86f14 100%); background-size:220% 100%; animation:planoOuro 4s linear infinite,planoPulso 2.4s ease-in-out infinite; transition:transform .25s var(--ease)}
+.btn-t4::after{content:""; position:absolute; z-index:-1; top:0; bottom:0; left:-60%; width:40%; background:linear-gradient(100deg,transparent,rgba(255,255,255,.8),transparent); transform:skewX(-20deg); animation:planoBrilho 2.8s ease-in-out infinite}
+.btn-t4 svg{width:18px; height:18px; fill:currentColor; flex:none}
+.btn-t4:hover{transform:translateY(-2px) scale(1.03)}
+@keyframes planoOuro{to{background-position:-220% 0}}
+@keyframes planoPulso{0%,100%{box-shadow:0 0 26px rgba(245,196,81,.45)}50%{box-shadow:0 0 58px rgba(245,196,81,.9)}}
+@keyframes planoBrilho{0%{left:-60%}55%,100%{left:130%}}
 .teste-gratis{margin-top:18px;display:grid;gap:16px;align-items:center;border:1px dashed rgba(var(--accent-rgb),.55);border-radius:20px;padding:24px 26px;background:rgba(var(--accent-rgb),.06)}
 .teste-gratis .tag{font-family:var(--display);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent)}
 .teste-gratis h3{margin:8px 0 6px;font-size:clamp(20px,2.6vw,26px);color:var(--ice)}
@@ -758,64 +775,64 @@ footer{padding:34px 20px 44px; border-top:1px solid var(--line); color:var(--mis
       <p class="lead">Escolha pelo tamanho: de uma pessoa até uma empresa inteira, com todas as <span data-count="total">206</span> funções em qualquer plano.</p>
     </div>
     <div class="plans plans4">
-      <div class="plan" data-reveal style="--i:0">
+      <div class="plan t1" data-reveal style="--i:0">
         <span class="tag">Singular</span>
         <div class="price"><span class="rs">R$</span>39,99<small>por mês</small></div>
         <p>Até 1 pessoa.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Até 3 equipamentos liberados.</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>App móvel e assistente no PC, ligados pelo Elo.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>1 equipamento liberado: computador ou celular.</span></li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Todas as <span data-count="total">206</span> funções.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Memória e ferramentas criadas por você.</span></li>
         </ul>
 
-        <a class="btn btn-ghost" href="#assinar" data-plano="singular">Escolher Singular</a>
+        <a class="btn btn-t1" href="#assinar" data-plano="singular">Escolher Singular</a>
       </div>
-      <div class="plan main" data-reveal style="--i:1">
+      <div class="plan t2" data-reveal style="--i:1">
         <span class="tag">Business</span>
         <div class="price"><span class="rs">R$</span>179,99<small>por mês</small></div>
         <p>Até 5 pessoas.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Até 15 equipamentos liberados.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Até 5 equipamentos liberados.</span></li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>App móvel e assistente no PC, ligados pelo Elo.</span></li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Todas as <span data-count="total">206</span> funções.</span></li>
         </ul>
 
-        <a class="btn btn-main" href="#assinar" data-plano="business">Escolher Business</a>
+        <a class="btn btn-t2" href="#assinar" data-plano="business">Escolher Business</a>
       </div>
-      <div class="plan" data-reveal style="--i:2">
+      <div class="plan t3" data-reveal style="--i:2">
         <span class="tag">Executive</span>
         <div class="price"><span class="rs">R$</span>349,99<small>por mês</small></div>
         <p>Até 10 pessoas.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Até 30 equipamentos liberados.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Até 10 equipamentos liberados.</span></li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>App móvel e assistente no PC, ligados pelo Elo.</span></li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Todas as <span data-count="total">206</span> funções.</span></li>
         </ul>
 
-        <a class="btn btn-ghost" href="#assinar" data-plano="executive">Escolher Executive</a>
+        <a class="btn btn-t3" href="#assinar" data-plano="executive">Escolher Executive</a>
       </div>
-      <div class="plan" data-reveal style="--i:3">
+      <div class="plan t4" data-reveal style="--i:3">
         <span class="tag">Supreme</span>
         <div class="price"><span class="rs">R$</span>699,99<small>por mês</small></div>
         <p>Sem limite de pessoas.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Até 100 equipamentos liberados.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Equipamentos sem limite.</span></li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>App móvel e assistente no PC, ligados pelo Elo.</span></li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span>Todas as <span data-count="total">206</span> funções.</span></li>
         </ul>
 
-        <a class="btn btn-ghost" href="#assinar" data-plano="supreme">Escolher Supreme</a>
+        <a class="btn btn-t4" href="#assinar" data-plano="supreme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l4.5 4L12 4l4.5 7L21 7l-2 12H5z"/></svg>Escolher Supreme</a>
       </div>
     </div>
     <div class="teste-gratis" data-reveal style="--i:4">
       <div>
         <span class="tag">Teste grátis</span>
         <h3>Use o JARVIS por 7 dias sem pagar nada</h3>
-        <p>Crie a sua conta e peça o teste. Eu libero 7 dias com tudo funcionando; depois disso, o JARVIS só volta a abrir quando um plano for ativado.</p>
+        <p>Crie a sua conta e peça o teste. Eu libero 7 dias com tudo funcionando, em 1 equipamento; depois disso, o JARVIS só volta a abrir quando um plano for ativado.</p>
       </div>
       <a class="btn btn-main" href="#assinar" data-plano="teste">Testar 7 dias grátis</a>
     </div>
-    <p class="plan-note" data-reveal style="--i:5">Valores em reais, por mês. Na hora de pedir, você escolhe quantos equipamentos (computadores e celulares) quer liberados: equipamento que não estiver liberado na assinatura não consegue entrar.</p>
+    <p class="plan-note" data-reveal style="--i:5">Valores em reais, por mês. Na hora de pedir, você escolhe quantos equipamentos (computadores e celulares) quer liberados, até o limite do plano. O limite vale à risca: equipamento além dele não consegue entrar.</p>
   </div>
 </section>
 
@@ -1812,12 +1829,17 @@ requestAnimationFrame(frame);
   var CONTATO = "pedroflazzarini@gmail.com";
   /* espelho de servidor/planos.py: mudou la, muda aqui */
   var PLANOS = {
-    teste:     { nome: "Teste gratis", preco: 0,      pessoas: "1 pessoa",               max: 2 },
-    singular:  { nome: "Singular",     preco: 39.99,  pessoas: "ate 1 pessoa",           max: 3 },
-    business:  { nome: "Business",     preco: 179.99, pessoas: "ate 5 pessoas",          max: 15 },
-    executive: { nome: "Executive",    preco: 349.99, pessoas: "ate 10 pessoas",         max: 30 },
-    supreme:   { nome: "Supreme",      preco: 699.99, pessoas: "sem limite de pessoas",  max: 100 }
+    teste:     { nome: "Teste gratis", preco: 0,      pessoas: "1 pessoa",               max: 1 },
+    singular:  { nome: "Singular",     preco: 39.99,  pessoas: "ate 1 pessoa",           max: 1 },
+    business:  { nome: "Business",     preco: 179.99, pessoas: "ate 5 pessoas",          max: 5 },
+    executive: { nome: "Executive",    preco: 349.99, pessoas: "ate 10 pessoas",         max: 10 },
+    supreme:   { nome: "Supreme",      preco: 699.99, pessoas: "sem limite de pessoas",  max: null }
   };
+
+  /* max null = sem limite; o pedido manda 0 e o servidor entende */
+  function equipTxt(n) {
+    return n ? n + " equipamento" + (n > 1 ? "s" : "") : "equipamentos sem limite";
+  }
 
   function moeda(v) {
     return "R$ " + v.toFixed(2).replace(".", ",");
@@ -1828,14 +1850,16 @@ requestAnimationFrame(frame);
   function total() { return plano().preco; }
   function totalTxt() { return eTeste() ? "gratis por 7 dias" : moeda(total()) + " por mes"; }
 
-  /* a lista de equipamentos acompanha o plano: cada um tem o seu maximo */
+  /* a lista de equipamentos acompanha o plano: vai de 1 ao teto dele, e ja
+     vem no teto, que e o que a pessoa esta pagando */
   function montarEquipamentos() {
-    var sel = $("asEquip"), antes = Number(sel.value || 1), max = plano().max, html = "";
+    var sel = $("asEquip"), max = plano().max, html = "";
+    if (!max) { sel.innerHTML = "<option value='0'>Sem limite de equipamentos</option>"; return; }
     for (var n = 1; n <= max; n++) {
-      html += "<option value='" + n + "'>" + n + " equipamento" + (n > 1 ? "s" : "") + "</option>";
+      html += "<option value='" + n + "'>" + equipTxt(n) + "</option>";
     }
     sel.innerHTML = html;
-    sel.value = String(Math.min(Math.max(antes, 1), max));
+    sel.value = String(max);
   }
 
   function atualizarTotal() {
@@ -1860,7 +1884,7 @@ requestAnimationFrame(frame);
       "E-mail: " + dados.email + "\n" +
       "WhatsApp: " + (dados.telefone || "-") + "\n" +
       "Plano: " + plano().nome + " (" + plano().pessoas + ")\n" +
-      "Equipamentos a liberar: " + dados.aparelhos + "\n" +
+      "Equipamentos a liberar: " + equipTxt(dados.aparelhos) + "\n" +
       "Total: " + totalTxt() + "\n" +
       "Pagamento: " + dados.pagamento + "\n\n" +
       (dados.observacao || "");
@@ -1886,8 +1910,8 @@ requestAnimationFrame(frame);
     $("asPronto").className = "assine-ok";
     $("asPronto").innerHTML =
       "<h3>Pedido de teste recebido</h3>" +
-      "<p>Conta criada para <b>" + dados.email + "</b>, com <b>" + dados.aparelhos +
-      " equipamento" + (dados.aparelhos > 1 ? "s" : "") + "</b>. Nada a pagar agora.</p>" +
+      "<p>Conta criada para <b>" + dados.email + "</b>, com <b>" + equipTxt(dados.aparelhos) +
+      "</b>. Nada a pagar agora.</p>" +
       "<ul class='assine-passos'>" +
       "<li><b>1</b><span>Eu libero o seu teste gratis de 7 dias. Se quiser agilizar, me chame em <a href='mailto:" + contato + "'>" + contato + "</a>.</span></li>" +
       "<li><b>2</b><span>Voce entra no JARVIS com esse e-mail e a senha que acabou de criar.</span></li>" +
@@ -1906,7 +1930,7 @@ requestAnimationFrame(frame);
     $("asPronto").innerHTML =
       "<h3>Pedido recebido</h3>" +
       "<p>Conta criada para <b>" + dados.email + "</b>. Plano <b>" + plano().nome + "</b> (" +
-      plano().pessoas + "), com <b>" + dados.aparelhos + " equipamento" + (dados.aparelhos > 1 ? "s" : "") +
+      plano().pessoas + "), com <b>" + equipTxt(dados.aparelhos) +
       "</b>. Agora falta o pagamento de <b>" + moeda(total()) + " por mes</b>.</p>" +
       (pix ? "<p>Chave Pix:</p><div class='pix'>" + pix + "</div>" : "") +
       "<ul class='assine-passos'>" +
@@ -1928,7 +1952,7 @@ requestAnimationFrame(frame);
       senha: $("asSenha").value,
       telefone: $("asFone").value.trim(),
       plano: $("asPlano").value,
-      aparelhos: Number($("asEquip").value || 1),
+      aparelhos: Number($("asEquip").value || 0),
       pagamento: $("asPag").value,
       observacao: $("asObs").value.trim()
     };
