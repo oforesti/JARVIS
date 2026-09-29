@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/vendor/gsap/gsap.min.js"></script>
+    <script src="assets/vendor/gsap/DrawSVGPlugin.min.js"></script>
+    <script src="assets/js/jarvis-motion.js"></script>
+    <style>
+      @font-face { font-family: "Mona Sans"; src: url("assets/fonts/MonaSans-Variable.woff2") format("woff2"); font-weight: 200 900; font-stretch: 75% 125%; }
+      @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; }
+      @font-face { font-family: "Orbitron"; src: url("assets/fonts/Orbitron-Variable.woff2") format("woff2"); font-weight: 400 900; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #04080c; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #04080c; }
+      #root > div[data-composition-src] { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="18.45" data-width="1920" data-height="1080">
+      <div id="el-opening" data-composition-id="opening" data-composition-src="compositions/opening.html"
+        data-start="0" data-duration="9.45" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="el-ui-hero-mc" data-composition-id="ui-hero-mc" data-composition-src="compositions/ui-hero-mc.html"
+        data-start="9.45" data-duration="9.0" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+
+      <audio id="music" src="assets/music/music.flac" data-start="0" data-duration="18.45" data-track-index="10" data-volume="0.85"></audio>
+
+      <audio id="sfx-electric" src="assets/sfx/electric.flac" data-start="0.2" data-track-index="20" data-volume="0.35"></audio>
+      <audio id="sfx-scan-0" src="assets/sfx/scan.flac" data-start="0.33" data-track-index="21" data-volume="0.22"></audio>
+      <audio id="sfx-boot" src="assets/sfx/boot.flac" data-start="0.5" data-track-index="22" data-volume="0.45"></audio>
+      <audio id="sfx-f1" src="assets/sfx/ui-click-1.flac" data-start="1.10" data-track-index="23" data-volume="0.55"></audio>
+      <audio id="sfx-f2" src="assets/sfx/pulse-c.flac" data-start="1.70" data-track-index="24" data-volume="0.32"></audio>
+      <audio id="sfx-f3" src="assets/sfx/ui-click-2.flac" data-start="2.20" data-track-index="25" data-volume="0.5"></audio>
+      <audio id="sfx-data" src="assets/sfx/data-stream-1.flac" data-start="2.55" data-track-index="26" data-volume="0.22"></audio>
+      <audio id="sfx-f4" src="assets/sfx/ui-click-3.flac" data-start="2.66" data-track-index="27" data-volume="0.5"></audio>
+      <audio id="sfx-f5" src="assets/sfx/tick.flac" data-start="3.06" data-track-index="28" data-volume="0.6"></audio>
+      <audio id="sfx-f6" src="assets/sfx/ui-click-1.flac" data-start="3.42" data-track-index="29" data-volume="0.45"></audio>
+      <audio id="sfx-f7" src="assets/sfx/tick.flac" data-start="3.74" data-track-index="30" data-volume="0.55"></audio>
+      <audio id="sfx-f8" src="assets/sfx/pulse-b.flac" data-start="4.00" data-track-index="31" data-volume="0.3"></audio>
+      <audio id="sfx-f9" src="assets/sfx/tick.flac" data-start="4.20" data-track-index="32" data-volume="0.5"></audio>
+      <audio id="sfx-f10" src="assets/sfx/glitch-1.flac" data-start="4.34" data-track-index="33" data-volume="0.28"></audio>
+      <audio id="sfx-ok" src="assets/sfx/confirm-low.flac" data-start="4.40" data-track-index="34" data-volume="0.3"></audio>
+      <audio id="sfx-riser" src="assets/sfx/riser-long.flac" data-start="2.0" data-track-index="35" data-volume="0.55"></audio>
+      <audio id="sfx-hit" src="assets/sfx/hit-sub-2.flac" data-start="5.6" data-track-index="36" data-volume="0.9"></audio>
+      <audio id="sfx-drop" src="assets/sfx/sub-drop.flac" data-start="5.6" data-track-index="37" data-volume="0.45"></audio>
+      <audio id="sfx-wm" src="assets/sfx/whoosh-soft-3.flac" data-start="6.5" data-track-index="38" data-volume="0.35"></audio>
+      <audio id="sfx-dive" src="assets/sfx/sweep-up.flac" data-start="8.55" data-track-index="39" data-volume="0.45"></audio>
+      <audio id="sfx-whoosh" src="assets/sfx/whoosh-deep.flac" data-start="9.2" data-track-index="40" data-volume="0.5"></audio>
+      <audio id="sfx-land" src="assets/sfx/hit-soft.flac" data-start="9.45" data-track-index="41" data-volume="0.45"></audio>
+      <audio id="sfx-lock" src="assets/sfx/lock-in.flac" data-start="11.3" data-track-index="42" data-volume="0.4"></audio>
+      <audio id="sfx-spot" src="assets/sfx/scan.flac" data-start="12.45" data-track-index="43" data-volume="0.28"></audio>
+      <audio id="sfx-node" src="assets/sfx/ui-click-1.flac" data-start="14.45" data-track-index="44" data-volume="0.55"></audio>
+      <audio id="sfx-label" src="assets/sfx/pulse-a.flac" data-start="15.0" data-track-index="45" data-volume="0.3"></audio>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

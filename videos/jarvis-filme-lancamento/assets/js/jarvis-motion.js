@@ -174,6 +174,117 @@
     tl.to(el, to, at);
   }
 
+  // ---------------------------------------------------------------- o núcleo (orb)
+  // Desenhado em canvas a cada atualização: nítido em qualquer tamanho (sem emendas de tile).
+  // Estado: {x, y, r, alpha, halo, bloom, spec, ring, ringDraw, ringRot, flash}
+  function drawOrb(ctx, s) {
+    const W = ctx.canvas.width, H = ctx.canvas.height;
+    ctx.clearRect(0, 0, W, H);
+    const a = s.alpha == null ? 1 : s.alpha;
+    if (a <= 0.001) return;
+    const { x, y, r } = s;
+    const k = r / 110;
+    ctx.save();
+    ctx.globalAlpha = a;
+    // halo externo (azul elétrico no limite, ciano perto do núcleo)
+    if (s.halo > 0) {
+      const g = ctx.createRadialGradient(x, y, 0, x, y, r * 3.6);
+      g.addColorStop(0, `rgba(92,214,245,${0.30 * s.halo})`);
+      g.addColorStop(0.55, `rgba(47,123,255,${0.10 * s.halo})`);
+      g.addColorStop(1, "rgba(47,123,255,0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(x - r * 3.6, y - r * 3.6, r * 7.2, r * 7.2);
+    }
+    if (s.bloom > 0) {
+      const g = ctx.createRadialGradient(x, y, r * 0.6, x, y, r * 1.85);
+      g.addColorStop(0, `rgba(168,236,251,${0.55 * s.bloom})`);
+      g.addColorStop(0.6, `rgba(92,214,245,${0.14 * s.bloom})`);
+      g.addColorStop(1, "rgba(92,214,245,0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(x - r * 1.85, y - r * 1.85, r * 3.7, r * 3.7);
+    }
+    // anel orbital tracejado (o do favicon), desenhado progressivamente
+    if (s.ring > 0 && s.ringDraw > 0) {
+      const R = r * 1.87;
+      const start = -Math.PI / 2 + (s.ringRot || 0) * Math.PI / 180;
+      const end = start + Math.PI * 2 * Math.min(1, s.ringDraw);
+      ctx.save();
+      ctx.strokeStyle = `rgba(92,214,245,${0.55 * s.ring})`;
+      ctx.lineWidth = Math.max(1, 1.5 * Math.min(k, 3));
+      ctx.setLineDash([3 * Math.min(k, 4), 7 * Math.min(k, 4)]);
+      ctx.beginPath();
+      ctx.arc(x, y, R, start, end);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = `rgba(168,236,251,${0.95 * s.ring})`;
+      ctx.beginPath();
+      ctx.arc(x + Math.cos(end) * R, y + Math.sin(end) * R, 3.5 * Math.min(k, 3), 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+    // esfera
+    ctx.save();
+    ctx.shadowColor = "rgba(92,214,245,0.5)";
+    ctx.shadowBlur = 50 * Math.min(k, 6);
+    const sg = ctx.createRadialGradient(x - r * 0.28, y - r * 0.40, 0, x, y, r * 1.02);
+    sg.addColorStop(0, "#f4fdff");
+    sg.addColorStop(0.26, "#a8ecfb");
+    sg.addColorStop(0.58, "#5cd6f5");
+    sg.addColorStop(1, "#16607c");
+    ctx.fillStyle = sg;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+    // terminador (sombra interna suave embaixo-direita)
+    const tg = ctx.createRadialGradient(x - r * 0.22, y - r * 0.28, r * 0.35, x, y, r);
+    tg.addColorStop(0, "rgba(8,40,60,0)");
+    tg.addColorStop(0.78, "rgba(8,40,60,0)");
+    tg.addColorStop(1, "rgba(8,40,60,0.42)");
+    ctx.fillStyle = tg;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+    // brilho especular
+    if (s.spec > 0) {
+      const hg = ctx.createRadialGradient(x - r * 0.34, y - r * 0.46, 0, x - r * 0.34, y - r * 0.46, r * 0.5);
+      hg.addColorStop(0, `rgba(255,255,255,${0.85 * s.spec})`);
+      hg.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.fillStyle = hg;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+    // clarão de ignição (luz aditiva, nunca névoa cinza)
+    if (s.flash > 0) {
+      ctx.save();
+      ctx.globalCompositeOperation = "lighter";
+      const fg = ctx.createRadialGradient(x, y, 0, x, y, Math.max(W, H) * 0.55);
+      fg.addColorStop(0, `rgba(168,236,251,${0.55 * s.flash})`);
+      fg.addColorStop(0.25, `rgba(92,214,245,${0.22 * s.flash})`);
+      fg.addColorStop(1, "rgba(47,123,255,0)");
+      ctx.fillStyle = fg;
+      ctx.fillRect(0, 0, W, H);
+      ctx.restore();
+    }
+  }
+
+  // Cria o estado do orb ligado a um canvas; os tweens mexem no estado e redesenham.
+  function orbRig(canvas, init) {
+    const ctx = canvas.getContext("2d");
+    const s = Object.assign({ x: 960, y: 540, r: 110, alpha: 1, halo: 1, bloom: 1, spec: 1, ring: 1, ringDraw: 1, ringRot: 0, flash: 0 }, init || {});
+    const draw = () => drawOrb(ctx, s);
+    draw();
+    return {
+      s, draw,
+      // tween seguro para seek: fromTo explícito no estado + redesenho
+      to(tl, from, to, at, dur, ease) {
+        tl.fromTo(s, from, Object.assign({}, to, { duration: dur, ease, onUpdate: draw, immediateRender: false }), at);
+      },
+    };
+  }
+
   window.JM = { E, rng, splitChars, splitWords, maskReveal, trackIn, trackOut, focusIn, focusOut,
-    wordsIn, shine, drawLine, countUp, hudIn, fadeOut, breathe };
+    wordsIn, shine, drawLine, countUp, hudIn, fadeOut, breathe, drawOrb, orbRig };
 })();
