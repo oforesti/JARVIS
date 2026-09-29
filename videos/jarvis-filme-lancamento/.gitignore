@@ -1,0 +1,8 @@
+renders/
+snapshots/
+.hyperframes/
+node_modules/
+analysis/frames/
+analysis/asr/
+*.tmp
+__pycache__/

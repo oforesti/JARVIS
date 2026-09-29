@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template id="captions-template">
+      <style>
+        @font-face { font-family: "Mona Sans"; src: url("assets/fonts/MonaSans-Variable.woff2") format("woff2"); font-weight: 200 900; font-stretch: 75% 125%; }
+        #root { position: absolute; inset: 0; pointer-events: none; }
+        #captions-shade { position: absolute; left: 0; right: 0; bottom: 0; height: 260px; opacity: 0;
+          background: linear-gradient(180deg, rgba(4,8,12,0) 0%, rgba(4,8,12,0.42) 55%, rgba(4,8,12,0.62) 100%); }
+        .caption-layer { position: absolute; inset: 0; }
+        .caption-group { position: absolute; left: 192px; right: 192px; bottom: 128px; text-align: center;
+          font-family: "Mona Sans", sans-serif; font-stretch: 100%; font-weight: 500; font-size: 46px; line-height: 1.22;
+          letter-spacing: -0.004em; color: #e6f7fd; opacity: 0; max-width: 1536px; }
+        .caption-word { display: inline-block; white-space: pre; will-change: transform, opacity;
+          text-shadow: 0 2px 3px rgba(0,0,0,0.55), 0 0 26px rgba(0,0,0,0.55); }
+        .caption-word.is-key { font-weight: 600; }
+      </style>
+      <div id="root" data-composition-id="captions" data-width="1920" data-height="1080">
+        <div id="captions-shade" data-layout-ignore></div>
+        <div class="caption-layer" id="captions-layer"></div>
+      </div>
+      <script>
+        // Transcrição palavra a palavra (editável no Studio). Tempos em segundos do FILME.
+        var TRANSCRIPT = [];
+        // Palavras que podem receber o destaque ciano (no máximo uma por frase).
+        var KEYWORDS = [];
+        // Quebras e frases ocultas (onde a tipografia cinética já diz a mesma coisa).
+        var BREAK_AFTER = [];
+        var HIDDEN_GROUPS = [];
+
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          const layer = document.getElementById("captions-layer");
+          const MAX_CHARS = 40, MAX_WORDS = 8, PAUSE = 0.42;
+          const norm = (w) => w.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+          const keyset = new Set(KEYWORDS.map(norm));
+
+          // 1) agrupa por pausa, pontuação e tamanho
+          const groups = [];
+          let cur = [];
+          TRANSCRIPT.forEach((w, i) => {
+            cur.push(i);
+            const next = TRANSCRIPT[i + 1];
+            const text = cur.map((k) => TRANSCRIPT[k].text).join(" ");
+            const punct = /[.!?…:;]$/.test(w.text) || (/,$/.test(w.text) && cur.length >= 3);
+            const gap = next ? next.start - w.end : 99;
+            const nextLen = next ? text.length + 1 + next.text.length : 0;
+            if (!next || punct || gap > PAUSE || nextLen > MAX_CHARS || cur.length >= MAX_WORDS || BREAK_AFTER.includes(i)) {
+              groups.push(cur);
+              cur = [];
+            }
+          });
+
+          // 2) monta DOM + timeline
+          let shadeOn = false, lastEnd = -99;
+          groups.forEach((idx, g) => {
+            const words = idx.map((k) => TRANSCRIPT[k]);
+            const start = words[0].start, end = words[words.length - 1].end;
+            const next = groups[g + 1] ? TRANSCRIPT[groups[g + 1][0]].start : end + 2;
+            const tIn = Math.max(0, start - 0.08);
+            const nextIn = next - 0.08;
+            // frases coladas trocam seco (sem duas legendas sobrepostas); com pausa, saem em fade
+            const hardSwitch = nextIn - (end + 0.06) < 0.32;
+            const tOut = hardSwitch ? nextIn : Math.min(end + 0.32, nextIn - 0.22);
+            if (HIDDEN_GROUPS.includes(g)) return;
+
+            const el = document.createElement("div");
+            el.className = "caption-group";
+            el.id = "cg-" + g;
+            let keyUsed = false;
+            const spans = words.map((w, j) => {
+              const s = document.createElement("span");
+              s.className = "caption-word";
+              s.textContent = w.text + (j < words.length - 1 ? " " : "");
+              if (!keyUsed && keyset.has(norm(w.text))) { s.classList.add("is-key"); keyUsed = true; s.dataset.t = w.start; }
+              el.appendChild(s);
+              return s;
+            });
+            layer.appendChild(el);
+
+            // sombra de leitura: acende no primeiro grupo de uma sequência, apaga em pausas longas
+            if (!shadeOn || start - lastEnd > 1.6) {
+              tl.fromTo("#captions-shade", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "sine.out" }, tIn - 0.1);
+              shadeOn = true;
+            }
+            lastEnd = tOut;
+            const gapAfter = groups[g + 1] ? next - tOut : 99;
+            if (gapAfter > 1.6) {
+              tl.to("#captions-shade", { opacity: 0, duration: 0.6, ease: "sine.in" }, tOut + 0.1);
+              shadeOn = false;
+            }
+
+            tl.set(el, { opacity: 1, visibility: "visible" }, tIn);
+            spans.forEach((s, j) => {
+              tl.fromTo(s, { y: 12, opacity: 0, filter: "blur(5px)" },
+                { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.36, ease: "power3.out" }, tIn + j * 0.024);
+            });
+            spans.filter((s) => s.classList.contains("is-key")).forEach((s) => {
+              const t = parseFloat(s.dataset.t);
+              tl.fromTo(s, { color: "#e6f7fd" }, { color: "#5cd6f5", duration: 0.28, ease: "power2.out" }, Math.max(tIn + 0.1, t - 0.04));
+            });
+            if (hardSwitch) {
+              tl.set(el, { opacity: 0, visibility: "hidden" }, tOut);
+            } else {
+              tl.to(el, { opacity: 0, y: -6, duration: 0.2, ease: "power2.in" }, tOut);
+              tl.set(el, { opacity: 0, visibility: "hidden" }, tOut + 0.2);
+            }
+          });
+
+          window.__timelines["captions"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
