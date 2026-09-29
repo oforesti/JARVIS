@@ -1,0 +1,105 @@
+NARRAÇÃO — J.A.R.V.I.S. · filme de apresentação
+Duração do filme: 01:39,0 (99,0 s) · 24 falas
+
+Como ler: cada fala tem o momento em que começa e termina no filme (minutos:segundos)
+e quanto tempo dura. Entre uma fala e outra está a PAUSA: o tempo de espera, em
+silêncio de voz, até a próxima fala começar.
+
+==============================================================================
+Antes da primeira fala: pausa de 0,8 s
+
+— Cena 1: Abertura —
+01. 00:00,8 → 00:02,4  (dura 1,6 s)
+    E se bastasse falar?
+    ··· pausa de 8,6 s
+
+— Cena 2: Fale. O JARVIS faz. —
+02. 00:11,0 → 00:13,1  (dura 2,1 s)
+    Fale. O JARVIS faz.
+    ··· pausa de 0,6 s
+03. 00:13,7 → 00:18,5  (dura 4,8 s)
+    Um assistente pessoal por voz, que controla o seu celular Android e o seu computador.
+    ··· pausa de 0,6 s
+
+— Cena 3: Ele age —
+04. 00:19,1 → 00:20,7  (dura 1,6 s)
+    Ele não só responde.
+    ··· pausa de 0,5 s
+05. 00:21,2 → 00:22,5  (dura 1,3 s)
+    Ele toca na tela.
+    ··· pausa de 0,2 s
+06. 00:22,7 → 00:23,5  (dura 0,8 s)
+    Digita.
+    ··· emenda quase direto (pausa de 0,06 s)
+07. 00:23,6 → 00:24,9  (dura 1,3 s)
+    Abre aplicativos.
+    ··· pausa de 0,2 s
+08. 00:25,1 → 00:26,4  (dura 1,3 s)
+    Liga o computador.
+    ··· pausa de 0,2 s
+09. 00:26,6 → 00:27,8  (dura 1,2 s)
+    Acende a luz.
+    ··· emenda quase direto (pausa de 0,05 s)
+10. 00:27,8 → 00:28,9  (dura 1,1 s)
+    Grava as aulas.
+    ··· emenda quase direto (pausa de 0,08 s)
+11. 00:29,0 → 00:30,4  (dura 1,4 s)
+    E lê o que a câmera vê.
+    ··· pausa de 1,3 s
+
+— Cena 4: 206 funções —
+12. 00:31,7 → 00:35,1  (dura 3,4 s)
+    São duzentas e seis funções prontas, em dezoito áreas.
+    ··· pausa de 0,5 s
+13. 00:35,6 → 00:40,3  (dura 4,7 s)
+    Do controle do celular à casa inteligente, cada uma com um nível de risco definido.
+    ··· pausa de 1,3 s
+
+— Cena 5: Encadeia —
+14. 00:41,6 → 00:44,5  (dura 2,9 s)
+    Você pede. Ele encadeia as ações.
+    ··· pausa de 3,1 s
+15. 00:47,6 → 00:52,0  (dura 4,4 s)
+    Uma frase, e ele cria a rotina que acende a luz quando você chegar em casa.
+    ··· pausa de 2,2 s
+
+— Cena 6: Elo —
+16. 00:54,2 → 00:57,6  (dura 3,4 s)
+    Com o Elo, o celular e o computador funcionam como um só.
+    ··· pausa de 0,5 s
+17. 00:58,1 → 01:03,1  (dura 5,0 s)
+    Ligue a máquina de longe, use a tela dela no celular, e compartilhe arquivos e memória.
+    ··· pausa de 1,3 s
+
+— Cena 7: Ele escreve a ferramenta —
+18. 01:04,4 → 01:07,8  (dura 3,4 s)
+    E quando falta uma função, ele escreve a própria ferramenta.
+    ··· pausa de 0,8 s
+19. 01:08,6 → 01:14,0  (dura 5,4 s)
+    Em Python. Mas ela só passa a funcionar depois que você revisa o código e aprova.
+    ··· pausa de 1,8 s
+
+— Cena 8: Duas personalidades —
+20. 01:15,8 → 01:18,9  (dura 3,1 s)
+    Duas personalidades. Uma só memória.
+    ··· pausa de 0,5 s
+21. 01:19,4 → 01:22,8  (dura 3,4 s)
+    JARVIS ou ULTRON: mesma memória, mesmas ferramentas.
+    ··· pausa de 1,7 s
+
+— Cena 9: Assinatura —
+22. 01:24,5 → 01:28,2  (dura 3,7 s)
+    Feito em português. No seu celular e no seu computador.
+    ··· pausa de 2,6 s
+23. 01:30,8 → 01:32,9  (dura 2,1 s)
+    Fale. O JARVIS faz.
+    ··· pausa de 0,6 s
+24. 01:33,5 → 01:35,6  (dura 2,1 s)
+    Teste grátis por sete dias.
+
+==============================================================================
+Depois da última fala: 3,4 s até o fim do filme (assinatura e fade).
+
+Texto corrido:
+
+E se bastasse falar? Fale. O JARVIS faz. Um assistente pessoal por voz, que controla o seu celular Android e o seu computador. Ele não só responde. Ele toca na tela. Digita. Abre aplicativos. Liga o computador. Acende a luz. Grava as aulas. E lê o que a câmera vê. São duzentas e seis funções prontas, em dezoito áreas. Do controle do celular à casa inteligente, cada uma com um nível de risco definido. Você pede. Ele encadeia as ações. Uma frase, e ele cria a rotina que acende a luz quando você chegar em casa. Com o Elo, o celular e o computador funcionam como um só. Ligue a máquina de longe, use a tela dela no celular, e compartilhe arquivos e memória. E quando falta uma função, ele escreve a própria ferramenta. Em Python. Mas ela só passa a funcionar depois que você revisa o código e aprova. Duas personalidades. Uma só memória. JARVIS ou ULTRON: mesma memória, mesmas ferramentas. Feito em português. No seu celular e no seu computador. Fale. O JARVIS faz. Teste grátis por sete dias.
