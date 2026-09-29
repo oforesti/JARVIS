@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template id="f01-abertura-template">
+      <style>
+        @font-face { font-family: "Mona Sans"; src: url("assets/fonts/MonaSans-Variable.woff2") format("woff2"); font-weight: 200 900; font-stretch: 75% 125%; }
+        @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; }
+        @font-face { font-family: "Orbitron"; src: url("assets/fonts/Orbitron-Variable.woff2") format("woff2"); font-weight: 400 900; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #04080c; }
+        #op-world { position: absolute; inset: 0; }
+        #op-vig { position: absolute; inset: 0; background: radial-gradient(1300px 820px at 50% 48%, rgba(4,8,12,0) 50%, rgba(0,0,0,0.7) 100%); }
+        #op-scan { position: absolute; left: 0; top: 539px; width: 1920px; height: 2px; opacity: 0;
+          background: linear-gradient(90deg, rgba(92,214,245,0) 0%, rgba(92,214,245,0.55) 50%, rgba(92,214,245,0) 100%); }
+
+        .op-frag { position: absolute; overflow: hidden; opacity: 0; border-radius: 6px; }
+        .op-frag img { position: absolute; display: block; }
+        .op-frag.round::after { box-shadow: none; }
+        .op-frag::after { content: ""; position: absolute; inset: 0; border-radius: 6px;
+          box-shadow: inset 0 0 0 1px rgba(92,214,245,0.22), inset 0 0 60px rgba(4,8,12,0.55); }
+        .op-br { position: absolute; width: 18px; height: 18px; border-color: rgba(142,167,178,0.75); border-style: solid; border-width: 0; }
+        .op-br.tl { left: -10px; top: -10px; border-left-width: 1.5px; border-top-width: 1.5px; }
+        .op-br.tr { right: -10px; top: -10px; border-right-width: 1.5px; border-top-width: 1.5px; }
+        .op-br.bl { left: -10px; bottom: -10px; border-left-width: 1.5px; border-bottom-width: 1.5px; }
+        .op-br.br { right: -10px; bottom: -10px; border-right-width: 1.5px; border-bottom-width: 1.5px; }
+        .op-fwrap { position: absolute; opacity: 0; }
+
+        #op-log { position: absolute; left: 96px; top: 72px; font-family: "Geist Mono", monospace; font-weight: 500;
+          font-size: 22px; letter-spacing: 0.14em; color: #8ea7b2; }
+        #op-log .ln { display: flex; align-items: center; gap: 14px; height: 34px; opacity: 0; }
+        #op-log .dot { width: 8px; height: 8px; border-radius: 50%; background: #5cd6f5; box-shadow: 0 0 10px rgba(92,214,245,0.8); }
+        #op-log .ok { color: #5cd6f5; }
+
+        #op-orb { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+        #op-wm { position: absolute; left: 0; right: 0; top: 700px; display: flex; justify-content: center; }
+        #op-wm span { display: block; font-family: "Orbitron"; font-weight: 500; font-size: 96px; color: #e6f7fd; margin: 0 0.1em;
+          text-shadow: 0 0 30px rgba(92,214,245,0.3); }
+        #op-fill { position: absolute; inset: 0; opacity: 0; background: radial-gradient(circle at 50% 44%, #f4fdff 0%, #a8ecfb 40%, #5cd6f5 100%); }
+      </style>
+      <div id="root" data-composition-id="f01-abertura" data-width="1920" data-height="1080">
+        <div id="op-world">
+          <div id="op-frags"></div>
+          <div id="op-scan" data-layout-ignore></div>
+          <canvas id="op-orb" width="1920" height="1080" data-layout-ignore></canvas>
+          <div id="op-wm">
+            <span>J</span><span>.</span><span>A</span><span>.</span><span>R</span><span>.</span><span>V</span><span>.</span><span>I</span><span>.</span><span>S</span><span>.</span>
+          </div>
+        </div>
+        <div id="op-vig" data-layout-ignore></div>
+        <div id="op-log">
+          <div class="ln" id="lg0"><i class="dot"></i><span class="tx" data-t="INICIALIZANDO NÚCLEO"></span></div>
+          <div class="ln" id="lg1"><i class="dot"></i><span class="tx" data-t="CARREGANDO 206 FUNÇÕES"></span></div>
+          <div class="ln" id="lg2"><i class="dot"></i><span class="tx" data-t="CONECTANDO ELO · CELULAR ↔ PC"></span></div>
+          <div class="ln" id="lg3"><i class="dot"></i><span class="tx" data-t="CALIBRANDO VOZ EM PORTUGUÊS"></span></div>
+          <div class="ln" id="lg4"><i class="dot"></i><span class="tx ok" data-t="PRONTO"></span></div>
+        </div>
+        <div id="op-fill" data-layout-ignore></div>
+      </div>
+      <script>
+        (function () {
+          gsap.registerPlugin(DrawSVGPlugin);
+          const tl = gsap.timeline({ paused: true });
+          const J = window.JM;
+          const IMG = { home: "assets/app/app-home.jpg", cel: "assets/app/app-celular.jpg", elo: "assets/app/app-elo.jpg" };
+          // [t, dur, src, crop x,y,w,h, escala, centro x,y]
+          const FR = [
+            [1.20, 0.46, "home", 190, 150, 160, 160, 2.6, 560, 470, "round"],
+            [1.85, 0.40, "home", 150, 452, 236, 30, 2.4, 1300, 330],
+            [2.40, 0.36, "home", 95, 408, 350, 24, 2.2, 640, 700],
+            [2.90, 0.32, "cel", 44, 254, 340, 52, 2.0, 1270, 640],
+            [3.30, 0.28, "home", 186, 18, 158, 36, 3.0, 470, 300],
+            [3.66, 0.24, "home", 30, 935, 440, 44, 1.9, 1060, 560],
+            [3.98, 0.20, "cel", 26, 212, 184, 26, 3.0, 1400, 250],
+            [4.24, 0.15, "home", 200, 160, 140, 140, 4.0, 960, 540, "round"],
+            [4.44, 0.10, "elo", 26, 293, 110, 24, 3.0, 720, 360],
+            [4.58, 0.08, "home", 22, 20, 166, 32, 3.0, 960, 540],
+          ];
+          const host = document.getElementById("op-frags");
+          FR.forEach((f, i) => {
+            const [t, d, src, cx, cy, cw, ch, s, px, py, shape] = f;
+            const w = Math.round(cw * s), h = Math.round(ch * s);
+            const wrap = document.createElement("div");
+            wrap.className = "op-fwrap";
+            wrap.style.left = (px - w / 2) + "px"; wrap.style.top = (py - h / 2) + "px";
+            wrap.style.width = w + "px"; wrap.style.height = h + "px";
+            const box = document.createElement("div");
+            box.className = "op-frag";
+            box.style.left = "0px"; box.style.top = "0px"; box.style.width = w + "px"; box.style.height = h + "px";
+            const img = document.createElement("img");
+            img.src = IMG[src]; img.alt = "";
+            img.style.width = (540 * s) + "px"; img.style.left = (-cx * s) + "px"; img.style.top = (-cy * s) + "px";
+            if (shape === "round") {
+              box.style.borderRadius = "50%";
+              box.style.webkitMaskImage = "radial-gradient(closest-side, #000 62%, transparent 100%)";
+              box.style.maskImage = "radial-gradient(closest-side, #000 62%, transparent 100%)";
+              box.classList.add("round");
+            }
+            box.appendChild(img);
+            wrap.appendChild(box);
+            if (shape !== "round") ["tl", "tr", "bl", "br"].forEach((k) => { const b = document.createElement("i"); b.className = "op-br " + k; wrap.appendChild(b); });
+            host.appendChild(wrap);
+            // entra por fenda horizontal, deriva levemente, sai em corte seco
+            tl.set(wrap, { opacity: 1 }, t);
+            tl.fromTo(box, { opacity: 1, clipPath: "inset(0% 50% 0% 50%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: Math.min(0.14, d * 0.5), ease: "power3.out" }, t);
+            tl.fromTo(img, { x: 0, filter: "brightness(1.6) blur(3px)" }, { x: -0.03 * w, filter: "brightness(1) blur(0px)", duration: d, ease: "none" }, t);
+            tl.set(wrap, { opacity: 0, visibility: "hidden" }, t + d);
+          });
+
+          // linha de varredura inicial (acorda o sistema)
+          tl.fromTo("#op-scan", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.7, ease: "expo.out" }, 0.3);
+          tl.to("#op-scan", { opacity: 0, duration: 0.4, ease: "power2.in" }, 1.06);
+
+          // log de inicialização (digitado, sem piscar)
+          const LOG = [[2.2, "lg0"], [2.9, "lg1"], [3.5, "lg2"], [4.05, "lg3"], [4.6, "lg4"]];
+          LOG.forEach(([t, id]) => {
+            const ln = document.getElementById(id);
+            const tx = ln.querySelector(".tx");
+            const full = tx.dataset.t;
+            tl.set(ln, { opacity: 1 }, t);
+            const proxy = { n: 0 };
+            tl.fromTo(proxy, { n: 0 }, { n: full.length, duration: Math.min(0.45, full.length * 0.022), ease: "none",
+              onUpdate: () => { tx.textContent = full.slice(0, Math.round(proxy.n)); } }, t);
+          });
+          tl.to("#op-log", { opacity: 0, duration: 0.18, ease: "power2.in" }, 4.8);
+
+          // ignição do núcleo — a revelação (orb em canvas: nítido em qualquer escala)
+          const T = 5.6;
+          const orb = J.orbRig(document.getElementById("op-orb"), { x: 960, y: 470, r: 2, alpha: 0, halo: 0, bloom: 0, spec: 0, ring: 0, ringDraw: 0, ringRot: -50, flash: 0 });
+          orb.to(tl, { alpha: 0 }, { alpha: 1 }, T, 0.05, "none");
+          orb.to(tl, { r: 2 }, { r: 110 }, T, 1.0, "expo.out");
+          orb.to(tl, { bloom: 0 }, { bloom: 1 }, T, 1.2, "expo.out");
+          orb.to(tl, { halo: 0 }, { halo: 1 }, T + 0.05, 1.8, "power3.out");
+          orb.to(tl, { spec: 0 }, { spec: 1 }, T, 1.0, "expo.out");
+          orb.to(tl, { flash: 0 }, { flash: 1 }, T, 0.08, "none");
+          orb.to(tl, { flash: 1 }, { flash: 0 }, T + 0.08, 1.1, "power2.out");
+          orb.to(tl, { ring: 0 }, { ring: 1 }, T + 0.35, 0.3, "none");
+          orb.to(tl, { ringDraw: 0 }, { ringDraw: 1 }, T + 0.35, 1.3, "power2.inOut");
+          orb.to(tl, { ringRot: -50 }, { ringRot: 30 }, T + 0.35, 4.0, "sine.out");
+          orb.to(tl, { y: 470, r: 110 }, { y: 410, r: 88 }, T + 1.05, 1.3, "power4.inOut");
+          J.trackIn(tl, document.getElementById("op-wm"), T + 0.95, { fontPx: 96, spread: 0.3, dur: 1.2 });
+
+          // mergulho no núcleo → corte casado com o orb do app
+          const Z = 9.25;
+          J.focusOut(tl, "#op-wm", Z - 0.35, { dur: 0.35 });
+          orb.to(tl, { ring: 1 }, { ring: 0 }, Z, 0.35, "power2.in");
+          orb.to(tl, { r: 88, y: 410 }, { r: 1500, y: 450 }, Z, 1.0, "power3.in");
+          tl.fromTo("#op-fill", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.in" }, Z + 0.72);
+          tl.eventCallback("onUpdate", orb.draw);
+          window.__timelines["f01-abertura"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

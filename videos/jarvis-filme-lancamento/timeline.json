@@ -1,0 +1,1340 @@
+{
+ "bpm": 100.0,
+ "beat": 0.6,
+ "bar": 2.4,
+ "anchor": 5.6,
+ "duration": 98.202,
+ "frames": [
+  {
+   "id": "f01-abertura",
+   "start": 0.0,
+   "end": 10.399999999999999,
+   "duration": 10.4,
+   "file": "compositions/frames/01-abertura.html",
+   "comp": "f01-abertura"
+  },
+  {
+   "id": "f02-promessa",
+   "start": 10.399999999999999,
+   "end": 18.8,
+   "duration": 8.4,
+   "file": "compositions/frames/02-promessa.html",
+   "comp": "f02-promessa"
+  },
+  {
+   "id": "f03-acoes",
+   "start": 18.8,
+   "end": 31.1,
+   "duration": 12.3,
+   "file": "compositions/frames/03-acoes.html",
+   "comp": "f03-acoes"
+  },
+  {
+   "id": "f04-funcoes",
+   "start": 31.1,
+   "end": 41.0,
+   "duration": 9.9,
+   "file": "compositions/frames/04-funcoes.html",
+   "comp": "f04-funcoes"
+  },
+  {
+   "id": "f05-encadeia",
+   "start": 41.0,
+   "end": 53.6,
+   "duration": 12.6,
+   "file": "compositions/frames/05-encadeia.html",
+   "comp": "f05-encadeia"
+  },
+  {
+   "id": "f06-elo",
+   "start": 53.6,
+   "end": 63.8,
+   "duration": 10.2,
+   "file": "compositions/frames/06-elo.html",
+   "comp": "f06-elo"
+  },
+  {
+   "id": "f07-ferramenta",
+   "start": 63.8,
+   "end": 75.2,
+   "duration": 11.4,
+   "file": "compositions/frames/07-ferramenta.html",
+   "comp": "f07-ferramenta"
+  },
+  {
+   "id": "f08-personas",
+   "start": 75.2,
+   "end": 83.6,
+   "duration": 8.4,
+   "file": "compositions/frames/08-personas.html",
+   "comp": "f08-personas"
+  },
+  {
+   "id": "f09-final",
+   "start": 83.6,
+   "end": 98.202,
+   "duration": 14.602,
+   "file": "compositions/frames/09-final.html",
+   "comp": "f09-final"
+  }
+ ],
+ "vo": [
+  {
+   "id": "L01",
+   "file": "assets/voice/line-01.flac",
+   "start": 0.8,
+   "duration": 1.643,
+   "end": 2.443,
+   "frame": "f01",
+   "text": "E se bastasse falar?",
+   "caption": true,
+   "words": [
+    {
+     "text": "E",
+     "start": 0.88,
+     "end": 1.04
+    },
+    {
+     "text": "se",
+     "start": 1.04,
+     "end": 1.2
+    },
+    {
+     "text": "bastasse",
+     "start": 1.2,
+     "end": 1.84
+    },
+    {
+     "text": "falar?",
+     "start": 1.84,
+     "end": 2.443
+    }
+   ]
+  },
+  {
+   "id": "L02",
+   "file": "assets/voice/line-02.flac",
+   "start": 11.0,
+   "duration": 2.148,
+   "end": 13.148,
+   "frame": "f02",
+   "text": "Fale. O JARVIS faz.",
+   "caption": false,
+   "words": [
+    {
+     "text": "Fale.",
+     "start": 11.08,
+     "end": 11.72
+    },
+    {
+     "text": "O",
+     "start": 11.72,
+     "end": 11.96
+    },
+    {
+     "text": "JARVIS",
+     "start": 11.96,
+     "end": 12.6
+    },
+    {
+     "text": "faz.",
+     "start": 12.6,
+     "end": 13.148
+    }
+   ]
+  },
+  {
+   "id": "L03",
+   "file": "assets/voice/line-03.flac",
+   "start": 13.7,
+   "duration": 4.754,
+   "end": 18.454,
+   "frame": "f02",
+   "text": "Um assistente pessoal por voz, que controla o seu celular Android e o seu computador.",
+   "caption": true,
+   "words": [
+    {
+     "text": "Um",
+     "start": 13.7,
+     "end": 13.94
+    },
+    {
+     "text": "assistente",
+     "start": 13.94,
+     "end": 14.5
+    },
+    {
+     "text": "pessoal",
+     "start": 14.5,
+     "end": 14.98
+    },
+    {
+     "text": "por",
+     "start": 14.98,
+     "end": 15.14
+    },
+    {
+     "text": "voz,",
+     "start": 15.14,
+     "end": 15.62
+    },
+    {
+     "text": "que",
+     "start": 15.62,
+     "end": 15.78
+    },
+    {
+     "text": "controla",
+     "start": 15.78,
+     "end": 16.18
+    },
+    {
+     "text": "o",
+     "start": 16.18,
+     "end": 16.26
+    },
+    {
+     "text": "seu",
+     "start": 16.26,
+     "end": 16.42
+    },
+    {
+     "text": "celular",
+     "start": 16.42,
+     "end": 16.9
+    },
+    {
+     "text": "Android",
+     "start": 16.9,
+     "end": 17.38
+    },
+    {
+     "text": "e",
+     "start": 17.38,
+     "end": 17.54
+    },
+    {
+     "text": "o",
+     "start": 17.54,
+     "end": 17.62
+    },
+    {
+     "text": "seu",
+     "start": 17.62,
+     "end": 17.78
+    },
+    {
+     "text": "computador.",
+     "start": 17.78,
+     "end": 18.454
+    }
+   ]
+  },
+  {
+   "id": "L04",
+   "file": "assets/voice/line-04.flac",
+   "start": 19.1,
+   "duration": 1.608,
+   "end": 20.708,
+   "frame": "f03",
+   "text": "Ele não só responde.",
+   "caption": false,
+   "words": [
+    {
+     "text": "Ele",
+     "start": 19.1,
+     "end": 19.42
+    },
+    {
+     "text": "não",
+     "start": 19.42,
+     "end": 19.58
+    },
+    {
+     "text": "só",
+     "start": 19.58,
+     "end": 19.82
+    },
+    {
+     "text": "responde.",
+     "start": 19.82,
+     "end": 20.708
+    }
+   ]
+  },
+  {
+   "id": "L05a",
+   "file": "assets/voice/line-05a.flac",
+   "start": 21.2,
+   "duration": 1.312,
+   "end": 22.512,
+   "frame": "f03",
+   "text": "Ele toca na tela.",
+   "caption": false,
+   "words": [
+    {
+     "text": "Ele",
+     "start": 21.23,
+     "end": 21.535
+    },
+    {
+     "text": "toca",
+     "start": 21.535,
+     "end": 21.841
+    },
+    {
+     "text": "na",
+     "start": 21.841,
+     "end": 22.146
+    },
+    {
+     "text": "tela.",
+     "start": 22.146,
+     "end": 22.452
+    }
+   ]
+  },
+  {
+   "id": "L05b",
+   "file": "assets/voice/line-05b.flac",
+   "start": 22.7,
+   "duration": 0.84,
+   "end": 23.54,
+   "frame": "f03",
+   "text": "Digita.",
+   "caption": false,
+   "words": [
+    {
+     "text": "Digita.",
+     "start": 22.73,
+     "end": 23.48
+    }
+   ]
+  },
+  {
+   "id": "L05c",
+   "file": "assets/voice/line-05c.flac",
+   "start": 23.6,
+   "duration": 1.318,
+   "end": 24.918,
+   "frame": "f03",
+   "text": "Abre aplicativos.",
+   "caption": false,
+   "words": [
+    {
+     "text": "Abre",
+     "start": 23.63,
+     "end": 24.244
+    },
+    {
+     "text": "aplicativos.",
+     "start": 24.244,
+     "end": 24.858
+    }
+   ]
+  },
+  {
+   "id": "L05d",
+   "file": "assets/voice/line-05d.flac",
+   "start": 25.1,
+   "duration": 1.269,
+   "end": 26.369,
+   "frame": "f03",
+   "text": "Liga o computador.",
+   "caption": false,
+   "words": [
+    {
+     "text": "Liga",
+     "start": 25.13,
+     "end": 25.523
+    },
+    {
+     "text": "o",
+     "start": 25.523,
+     "end": 25.916
+    },
+    {
+     "text": "computador.",
+     "start": 25.916,
+     "end": 26.309
+    }
+   ]
+  },
+  {
+   "id": "L05e",
+   "file": "assets/voice/line-05e.flac",
+   "start": 26.6,
+   "duration": 1.152,
+   "end": 27.752,
+   "frame": "f03",
+   "text": "Acende a luz.",
+   "caption": false,
+   "words": [
+    {
+     "text": "Acende",
+     "start": 26.63,
+     "end": 26.984
+    },
+    {
+     "text": "a",
+     "start": 26.984,
+     "end": 27.338
+    },
+    {
+     "text": "luz.",
+     "start": 27.338,
+     "end": 27.692
+    }
+   ]
+  },
+  {
+   "id": "L05f",
+   "file": "assets/voice/line-05f.flac",
+   "start": 27.8,
+   "duration": 1.121,
+   "end": 28.921,
+   "frame": "f03",
+   "text": "Grava as aulas.",
+   "caption": false,
+   "words": [
+    {
+     "text": "Grava",
+     "start": 27.83,
+     "end": 28.174
+    },
+    {
+     "text": "as",
+     "start": 28.174,
+     "end": 28.517
+    },
+    {
+     "text": "aulas.",
+     "start": 28.517,
+     "end": 28.861
+    }
+   ]
+  },
+  {
+   "id": "L05g",
+   "file": "assets/voice/line-05g.flac",
+   "start": 29.0,
+   "duration": 1.381,
+   "end": 30.381,
+   "frame": "f03",
+   "text": "E lê o que a câmera vê.",
+   "caption": false,
+   "words": [
+    {
+     "text": "E",
+     "start": 29.03,
+     "end": 29.214
+    },
+    {
+     "text": "lê",
+     "start": 29.214,
+     "end": 29.399
+    },
+    {
+     "text": "o",
+     "start": 29.399,
+     "end": 29.583
+    },
+    {
+     "text": "que",
+     "start": 29.583,
+     "end": 29.768
+    },
+    {
+     "text": "a",
+     "start": 29.768,
+     "end": 29.952
+    },
+    {
+     "text": "câmera",
+     "start": 29.952,
+     "end": 30.137
+    },
+    {
+     "text": "vê.",
+     "start": 30.137,
+     "end": 30.321
+    }
+   ]
+  },
+  {
+   "id": "L06",
+   "file": "assets/voice/line-06.flac",
+   "start": 31.7,
+   "duration": 3.381,
+   "end": 35.081,
+   "frame": "f04",
+   "text": "São duzentas e seis funções prontas, em dezoito áreas.",
+   "caption": true,
+   "words": [
+    {
+     "text": "São",
+     "start": 31.78,
+     "end": 32.02
+    },
+    {
+     "text": "duzentas",
+     "start": 32.02,
+     "end": 32.56
+    },
+    {
+     "text": "e",
+     "start": 32.56,
+     "end": 32.68
+    },
+    {
+     "text": "seis",
+     "start": 32.68,
+     "end": 32.98
+    },
+    {
+     "text": "funções",
+     "start": 32.98,
+     "end": 33.461
+    },
+    {
+     "text": "prontas,",
+     "start": 33.461,
+     "end": 34.001
+    },
+    {
+     "text": "em",
+     "start": 34.001,
+     "end": 34.181
+    },
+    {
+     "text": "dezoito",
+     "start": 34.181,
+     "end": 34.661
+    },
+    {
+     "text": "áreas.",
+     "start": 34.661,
+     "end": 35.081
+    }
+   ]
+  },
+  {
+   "id": "L07",
+   "file": "assets/voice/line-07.flac",
+   "start": 35.6,
+   "duration": 4.698,
+   "end": 40.298,
+   "frame": "f04",
+   "text": "Do controle do celular à casa inteligente, cada uma com um nível de risco definido.",
+   "caption": true,
+   "words": [
+    {
+     "text": "Do",
+     "start": 35.6,
+     "end": 35.92
+    },
+    {
+     "text": "controle",
+     "start": 35.92,
+     "end": 36.24
+    },
+    {
+     "text": "do",
+     "start": 36.24,
+     "end": 36.4
+    },
+    {
+     "text": "celular",
+     "start": 36.4,
+     "end": 36.8
+    },
+    {
+     "text": "à",
+     "start": 36.8,
+     "end": 36.96
+    },
+    {
+     "text": "casa",
+     "start": 36.96,
+     "end": 37.36
+    },
+    {
+     "text": "inteligente,",
+     "start": 37.36,
+     "end": 38.08
+    },
+    {
+     "text": "cada",
+     "start": 38.08,
+     "end": 38.32
+    },
+    {
+     "text": "uma",
+     "start": 38.32,
+     "end": 38.56
+    },
+    {
+     "text": "com",
+     "start": 38.56,
+     "end": 38.72
+    },
+    {
+     "text": "um",
+     "start": 38.72,
+     "end": 38.88
+    },
+    {
+     "text": "nível",
+     "start": 38.88,
+     "end": 39.12
+    },
+    {
+     "text": "de",
+     "start": 39.12,
+     "end": 39.28
+    },
+    {
+     "text": "risco",
+     "start": 39.28,
+     "end": 39.68
+    },
+    {
+     "text": "definido.",
+     "start": 39.68,
+     "end": 40.298
+    }
+   ]
+  },
+  {
+   "id": "L08",
+   "file": "assets/voice/line-08.flac",
+   "start": 41.6,
+   "duration": 2.893,
+   "end": 44.493,
+   "frame": "f05",
+   "text": "Você pede. Ele encadeia as ações.",
+   "caption": false,
+   "words": [
+    {
+     "text": "Você",
+     "start": 41.6,
+     "end": 42.0
+    },
+    {
+     "text": "pede.",
+     "start": 42.0,
+     "end": 42.8
+    },
+    {
+     "text": "Ele",
+     "start": 42.8,
+     "end": 43.04
+    },
+    {
+     "text": "encadeia",
+     "start": 43.04,
+     "end": 43.76
+    },
+    {
+     "text": "as",
+     "start": 43.76,
+     "end": 43.92
+    },
+    {
+     "text": "ações.",
+     "start": 43.92,
+     "end": 44.493
+    }
+   ]
+  },
+  {
+   "id": "L09",
+   "file": "assets/voice/line-09.flac",
+   "start": 47.6,
+   "duration": 4.43,
+   "end": 52.03,
+   "frame": "f05",
+   "text": "Uma frase, e ele cria a rotina que acende a luz quando você chegar em casa.",
+   "caption": true,
+   "words": [
+    {
+     "text": "Uma",
+     "start": 47.68,
+     "end": 47.92
+    },
+    {
+     "text": "frase,",
+     "start": 47.92,
+     "end": 48.32
+    },
+    {
+     "text": "e",
+     "start": 48.32,
+     "end": 48.48
+    },
+    {
+     "text": "ele",
+     "start": 48.48,
+     "end": 48.64
+    },
+    {
+     "text": "cria",
+     "start": 48.64,
+     "end": 48.96
+    },
+    {
+     "text": "a",
+     "start": 48.96,
+     "end": 49.04
+    },
+    {
+     "text": "rotina",
+     "start": 49.04,
+     "end": 49.52
+    },
+    {
+     "text": "que",
+     "start": 49.52,
+     "end": 49.76
+    },
+    {
+     "text": "acende",
+     "start": 49.76,
+     "end": 50.24
+    },
+    {
+     "text": "a",
+     "start": 50.24,
+     "end": 50.4
+    },
+    {
+     "text": "luz",
+     "start": 50.4,
+     "end": 50.72
+    },
+    {
+     "text": "quando",
+     "start": 50.72,
+     "end": 50.88
+    },
+    {
+     "text": "você",
+     "start": 50.88,
+     "end": 51.12
+    },
+    {
+     "text": "chegar",
+     "start": 51.12,
+     "end": 51.6
+    },
+    {
+     "text": "em",
+     "start": 51.6,
+     "end": 51.68
+    },
+    {
+     "text": "casa.",
+     "start": 51.68,
+     "end": 52.03
+    }
+   ]
+  },
+  {
+   "id": "L10",
+   "file": "assets/voice/line-10.flac",
+   "start": 54.2,
+   "duration": 3.387,
+   "end": 57.587,
+   "frame": "f06",
+   "text": "Com o Elo, o celular e o computador funcionam como um só.",
+   "caption": true,
+   "words": [
+    {
+     "text": "Com",
+     "start": 54.2,
+     "end": 54.36
+    },
+    {
+     "text": "o",
+     "start": 54.36,
+     "end": 54.52
+    },
+    {
+     "text": "Elo,",
+     "start": 54.52,
+     "end": 54.92
+    },
+    {
+     "text": "o",
+     "start": 54.92,
+     "end": 55.0
+    },
+    {
+     "text": "celular",
+     "start": 55.0,
+     "end": 55.56
+    },
+    {
+     "text": "e",
+     "start": 55.56,
+     "end": 55.72
+    },
+    {
+     "text": "o",
+     "start": 55.72,
+     "end": 55.8
+    },
+    {
+     "text": "computador",
+     "start": 55.8,
+     "end": 56.36
+    },
+    {
+     "text": "funcionam",
+     "start": 56.36,
+     "end": 56.92
+    },
+    {
+     "text": "como",
+     "start": 56.92,
+     "end": 57.08
+    },
+    {
+     "text": "um",
+     "start": 57.08,
+     "end": 57.24
+    },
+    {
+     "text": "só.",
+     "start": 57.24,
+     "end": 57.587
+    }
+   ]
+  },
+  {
+   "id": "L11",
+   "file": "assets/voice/line-11.flac",
+   "start": 58.1,
+   "duration": 4.991,
+   "end": 63.091,
+   "frame": "f06",
+   "text": "Ligue a máquina de longe, use a tela dela no celular, e compartilhe arquivos e memória.",
+   "caption": true,
+   "words": [
+    {
+     "text": "Ligue",
+     "start": 58.1,
+     "end": 58.5
+    },
+    {
+     "text": "a",
+     "start": 58.5,
+     "end": 58.58
+    },
+    {
+     "text": "máquina",
+     "start": 58.58,
+     "end": 58.9
+    },
+    {
+     "text": "de",
+     "start": 58.9,
+     "end": 59.06
+    },
+    {
+     "text": "longe,",
+     "start": 59.06,
+     "end": 59.54
+    },
+    {
+     "text": "use",
+     "start": 59.54,
+     "end": 59.94
+    },
+    {
+     "text": "a",
+     "start": 59.94,
+     "end": 60.02
+    },
+    {
+     "text": "tela",
+     "start": 60.02,
+     "end": 60.26
+    },
+    {
+     "text": "dela",
+     "start": 60.26,
+     "end": 60.5
+    },
+    {
+     "text": "no",
+     "start": 60.5,
+     "end": 60.66
+    },
+    {
+     "text": "celular,",
+     "start": 60.66,
+     "end": 61.14
+    },
+    {
+     "text": "e",
+     "start": 61.14,
+     "end": 61.38
+    },
+    {
+     "text": "compartilhe",
+     "start": 61.38,
+     "end": 62.02
+    },
+    {
+     "text": "arquivos",
+     "start": 62.02,
+     "end": 62.42
+    },
+    {
+     "text": "e",
+     "start": 62.42,
+     "end": 62.58
+    },
+    {
+     "text": "memória.",
+     "start": 62.58,
+     "end": 63.091
+    }
+   ]
+  },
+  {
+   "id": "L12",
+   "file": "assets/voice/line-12.flac",
+   "start": 64.4,
+   "duration": 3.4,
+   "end": 67.8,
+   "frame": "f07",
+   "text": "E quando falta uma função, ele escreve a própria ferramenta.",
+   "caption": true,
+   "words": [
+    {
+     "text": "E",
+     "start": 64.4,
+     "end": 64.64
+    },
+    {
+     "text": "quando",
+     "start": 64.64,
+     "end": 64.88
+    },
+    {
+     "text": "falta",
+     "start": 64.88,
+     "end": 65.28
+    },
+    {
+     "text": "uma",
+     "start": 65.28,
+     "end": 65.44
+    },
+    {
+     "text": "função,",
+     "start": 65.44,
+     "end": 66.0
+    },
+    {
+     "text": "ele",
+     "start": 66.0,
+     "end": 66.16
+    },
+    {
+     "text": "escreve",
+     "start": 66.16,
+     "end": 66.72
+    },
+    {
+     "text": "a",
+     "start": 66.72,
+     "end": 66.8
+    },
+    {
+     "text": "própria",
+     "start": 66.8,
+     "end": 67.12
+    },
+    {
+     "text": "ferramenta.",
+     "start": 67.12,
+     "end": 67.8
+    }
+   ]
+  },
+  {
+   "id": "L13",
+   "file": "assets/voice/line-13.flac",
+   "start": 68.6,
+   "duration": 5.402,
+   "end": 74.002,
+   "frame": "f07",
+   "text": "Em Python. Mas ela só passa a funcionar depois que você revisa o código e aprova.",
+   "caption": true,
+   "words": [
+    {
+     "text": "Em",
+     "start": 68.6,
+     "end": 68.798
+    },
+    {
+     "text": "Python.",
+     "start": 68.798,
+     "end": 69.325
+    },
+    {
+     "text": "Mas",
+     "start": 69.325,
+     "end": 69.588
+    },
+    {
+     "text": "ela",
+     "start": 69.588,
+     "end": 69.852
+    },
+    {
+     "text": "só",
+     "start": 69.852,
+     "end": 70.049
+    },
+    {
+     "text": "passa",
+     "start": 70.049,
+     "end": 70.445
+    },
+    {
+     "text": "a",
+     "start": 70.445,
+     "end": 70.576
+    },
+    {
+     "text": "funcionar",
+     "start": 70.576,
+     "end": 71.235
+    },
+    {
+     "text": "depois",
+     "start": 71.235,
+     "end": 71.696
+    },
+    {
+     "text": "que",
+     "start": 71.696,
+     "end": 71.96
+    },
+    {
+     "text": "você",
+     "start": 71.96,
+     "end": 72.289
+    },
+    {
+     "text": "revisa",
+     "start": 72.289,
+     "end": 72.75
+    },
+    {
+     "text": "o",
+     "start": 72.75,
+     "end": 72.882
+    },
+    {
+     "text": "código",
+     "start": 72.882,
+     "end": 73.343
+    },
+    {
+     "text": "e",
+     "start": 73.343,
+     "end": 73.475
+    },
+    {
+     "text": "aprova.",
+     "start": 73.475,
+     "end": 74.002
+    }
+   ]
+  },
+  {
+   "id": "L14",
+   "file": "assets/voice/line-14.flac",
+   "start": 75.8,
+   "duration": 3.123,
+   "end": 78.923,
+   "frame": "f08",
+   "text": "Duas personalidades. Uma só memória.",
+   "caption": false,
+   "words": [
+    {
+     "text": "Duas",
+     "start": 75.8,
+     "end": 76.36
+    },
+    {
+     "text": "personalidades.",
+     "start": 76.36,
+     "end": 77.64
+    },
+    {
+     "text": "Uma",
+     "start": 77.64,
+     "end": 77.96
+    },
+    {
+     "text": "só",
+     "start": 77.96,
+     "end": 78.28
+    },
+    {
+     "text": "memória.",
+     "start": 78.28,
+     "end": 78.923
+    }
+   ]
+  },
+  {
+   "id": "L15",
+   "file": "assets/voice/line-15.flac",
+   "start": 79.4,
+   "duration": 3.438,
+   "end": 82.838,
+   "frame": "f08",
+   "text": "JARVIS ou ULTRON: mesma memória, mesmas ferramentas.",
+   "caption": true,
+   "words": [
+    {
+     "text": "JARVIS",
+     "start": 79.4,
+     "end": 79.96
+    },
+    {
+     "text": "ou",
+     "start": 79.96,
+     "end": 80.12
+    },
+    {
+     "text": "ULTRON:",
+     "start": 80.12,
+     "end": 80.76
+    },
+    {
+     "text": "mesma",
+     "start": 80.76,
+     "end": 81.08
+    },
+    {
+     "text": "memória,",
+     "start": 81.08,
+     "end": 81.56
+    },
+    {
+     "text": "mesmas",
+     "start": 81.56,
+     "end": 81.96
+    },
+    {
+     "text": "ferramentas.",
+     "start": 81.96,
+     "end": 82.838
+    }
+   ]
+  },
+  {
+   "id": "L16",
+   "file": "assets/voice/line-16.flac",
+   "start": 84.5,
+   "duration": 3.666,
+   "end": 88.166,
+   "frame": "f09",
+   "text": "Feito em português. No seu celular e no seu computador.",
+   "caption": false,
+   "words": [
+    {
+     "text": "Feito",
+     "start": 84.5,
+     "end": 85.06
+    },
+    {
+     "text": "em",
+     "start": 85.06,
+     "end": 85.22
+    },
+    {
+     "text": "português.",
+     "start": 85.22,
+     "end": 86.02
+    },
+    {
+     "text": "No",
+     "start": 86.02,
+     "end": 86.18
+    },
+    {
+     "text": "seu",
+     "start": 86.18,
+     "end": 86.42
+    },
+    {
+     "text": "celular",
+     "start": 86.42,
+     "end": 86.98
+    },
+    {
+     "text": "e",
+     "start": 86.98,
+     "end": 87.14
+    },
+    {
+     "text": "no",
+     "start": 87.14,
+     "end": 87.3
+    },
+    {
+     "text": "seu",
+     "start": 87.3,
+     "end": 87.46
+    },
+    {
+     "text": "computador.",
+     "start": 87.46,
+     "end": 88.166
+    }
+   ]
+  },
+  {
+   "id": "L17",
+   "file": "assets/voice/line-17.flac",
+   "start": 90.8,
+   "duration": 2.149,
+   "end": 92.949,
+   "frame": "f09",
+   "text": "Fale. O JARVIS faz.",
+   "caption": false,
+   "words": [
+    {
+     "text": "Fale.",
+     "start": 90.88,
+     "end": 91.52
+    },
+    {
+     "text": "O",
+     "start": 91.52,
+     "end": 91.76
+    },
+    {
+     "text": "JARVIS",
+     "start": 91.76,
+     "end": 92.4
+    },
+    {
+     "text": "faz.",
+     "start": 92.4,
+     "end": 92.949
+    }
+   ]
+  },
+  {
+   "id": "L18",
+   "file": "assets/voice/line-18.flac",
+   "start": 93.5,
+   "duration": 2.102,
+   "end": 95.602,
+   "frame": "f09",
+   "text": "Teste grátis por sete dias.",
+   "caption": false,
+   "words": [
+    {
+     "text": "Teste",
+     "start": 93.58,
+     "end": 94.06
+    },
+    {
+     "text": "grátis",
+     "start": 94.06,
+     "end": 94.54
+    },
+    {
+     "text": "por",
+     "start": 94.54,
+     "end": 94.78
+    },
+    {
+     "text": "sete",
+     "start": 94.78,
+     "end": 95.1
+    },
+    {
+     "text": "dias.",
+     "start": 95.1,
+     "end": 95.602
+    }
+   ]
+  }
+ ],
+ "marks": {
+  "reveal": 5.6,
+  "verbs": [
+   {
+    "key": "L05a",
+    "at": 21.2,
+    "end": 22.512
+   },
+   {
+    "key": "L05b",
+    "at": 22.7,
+    "end": 23.54
+   },
+   {
+    "key": "L05c",
+    "at": 23.6,
+    "end": 24.918000000000003
+   },
+   {
+    "key": "L05d",
+    "at": 25.1,
+    "end": 26.369
+   },
+   {
+    "key": "L05e",
+    "at": 26.6,
+    "end": 27.752000000000002
+   },
+   {
+    "key": "L05f",
+    "at": 27.8,
+    "end": 28.921
+   },
+   {
+    "key": "L05g",
+    "at": 29.0,
+    "end": 30.381
+   }
+  ],
+  "count_start": 32.02,
+  "areas_at": 34.181,
+  "risk_at": 39.28,
+  "type_start": 44.9,
+  "type_end": 47.2,
+  "step1_at": 48.64,
+  "step2_at": 49.76,
+  "breath_elo": [
+   52.7,
+   53.6
+  ],
+  "elo_wake": 58.1,
+  "elo_screen": 59.54,
+  "elo_share": 61.38,
+  "code_start": 66.16,
+  "review_at": 72.289,
+  "approve_at": 73.475,
+  "ultron_at": 80.12,
+  "final_breath": [
+   83.6,
+   84.2
+  ],
+  "final_ignition": 89.6,
+  "cta_at": 93.5
+ }
+}

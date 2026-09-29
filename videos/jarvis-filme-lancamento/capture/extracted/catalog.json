@@ -1,0 +1,1217 @@
+{
+ "cats": [
+  {
+   "id": "agenda",
+   "label": "Agenda",
+   "blurb": "Compromissos, lembretes e tarefas, com a Google Agenda.",
+   "items": [
+    {
+     "n": "calcular data",
+     "r": "segura",
+     "d": "Calcula datas e a diferença entre elas: quantos dias faltam para algo, que dia cai daqui a 45 dias, quantos dias há entre duas datas."
+    },
+    {
+     "n": "cancelar evento agenda",
+     "r": "sensível",
+     "d": "Cancela um evento da Google Agenda."
+    },
+    {
+     "n": "cancelar lembrete",
+     "r": "moderada",
+     "d": "Cancela lembretes pendentes que contenham um trecho de texto."
+    },
+    {
+     "n": "concluir tarefa",
+     "r": "moderada",
+     "d": "Marca uma tarefa como concluída."
+    },
+    {
+     "n": "criar evento agenda",
+     "r": "moderada",
+     "d": "Cria um evento na Google Agenda. Diferente de um lembrete interno, ele aparece no seu calendário e em todos os seus aparelhos."
+    },
+    {
+     "n": "criar lembrete",
+     "r": "moderada",
+     "d": "Cria um alarme para um horário específico: na hora marcada, o JARVIS fala em voz alta, mesmo sem ninguém pedir nada."
+    },
+    {
+     "n": "criar tarefa",
+     "r": "segura",
+     "d": "Adiciona uma tarefa à lista de afazeres. Não toca alarme: fica na lista até ser concluída."
+    },
+    {
+     "n": "horários livres",
+     "r": "segura",
+     "d": "Diz em que horários você está livre num dia, olhando a Google Agenda."
+    },
+    {
+     "n": "listar eventos agenda",
+     "r": "segura",
+     "d": "Lê os próximos compromissos da Google Agenda."
+    },
+    {
+     "n": "listar lembretes",
+     "r": "segura",
+     "d": "Lista os lembretes pendentes."
+    },
+    {
+     "n": "listar tarefas",
+     "r": "segura",
+     "d": "Lista as tarefas abertas, em ordem de prioridade e prazo."
+    }
+   ]
+  },
+  {
+   "id": "arquivos",
+   "label": "Arquivos",
+   "blurb": "Busca, leitura e organização de arquivos no computador.",
+   "items": [
+    {
+     "n": "apagar arquivo",
+     "r": "crítica",
+     "d": "Manda um arquivo para a lixeira, de onde ele pode ser recuperado. Nunca apaga uma pasta inteira de forma permanente."
+    },
+    {
+     "n": "arquivos maiores",
+     "r": "segura",
+     "d": "Encontra os maiores arquivos de uma pasta. Ideal para quando o disco está cheio."
+    },
+    {
+     "n": "buscar arquivos",
+     "r": "segura",
+     "d": "Procura arquivos pelo nome no computador, para quando você não lembra onde salvou algo."
+    },
+    {
+     "n": "copiar arquivo",
+     "r": "moderada",
+     "d": "Copia um arquivo ou uma pasta."
+    },
+    {
+     "n": "escrever arquivo",
+     "r": "moderada",
+     "d": "Cria ou sobrescreve um arquivo de texto."
+    },
+    {
+     "n": "ler arquivo",
+     "r": "segura",
+     "d": "Lê o conteúdo de um arquivo de texto, PDF, Word ou PowerPoint."
+    },
+    {
+     "n": "listar pasta",
+     "r": "segura",
+     "d": "Mostra o que existe numa pasta, com tamanho e data. Entende nomes comuns como “downloads”, “documentos” e “área de trabalho”, ou um caminho completo."
+    },
+    {
+     "n": "mover arquivo",
+     "r": "moderada",
+     "d": "Move ou renomeia um arquivo ou uma pasta."
+    },
+    {
+     "n": "organizar pasta",
+     "r": "moderada",
+     "d": "Separa os arquivos de uma pasta em subpastas por tipo (imagens, documentos, vídeos…). Por padrão, só simula e mostra o que faria."
+    },
+    {
+     "n": "procurar texto em arquivos",
+     "r": "segura",
+     "d": "Procura um texto dentro dos arquivos de uma pasta, e não só no nome deles."
+    }
+   ]
+  },
+  {
+   "id": "casa",
+   "label": "Casa",
+   "blurb": "Luzes, tomadas e cenas da casa inteligente, via Home Assistant.",
+   "items": [
+    {
+     "n": "ajustar brilho",
+     "r": "moderada",
+     "d": "Ajusta o brilho de uma luz da casa inteligente."
+    },
+    {
+     "n": "desligar dispositivo",
+     "r": "moderada",
+     "d": "Desliga um dispositivo da casa inteligente."
+    },
+    {
+     "n": "executar cena da casa",
+     "r": "moderada",
+     "d": "Executa uma cena ou um script configurado no Home Assistant."
+    },
+    {
+     "n": "ligar dispositivo",
+     "r": "moderada",
+     "d": "Liga uma luz, uma tomada, um ventilador ou qualquer dispositivo da casa inteligente."
+    },
+    {
+     "n": "listar dispositivos da casa",
+     "r": "segura",
+     "d": "Lista os dispositivos da casa inteligente e o estado de cada um."
+    }
+   ]
+  },
+  {
+   "id": "celular",
+   "label": "Celular",
+   "blurb": "O Android inteiro na voz: apps, ligações, notificações, câmera e lugares.",
+   "items": [
+    {
+     "n": "abrir app",
+     "r": "moderada",
+     "d": "Abre um aplicativo no celular."
+    },
+    {
+     "n": "abrir arquivo",
+     "r": "segura",
+     "d": "Abre um arquivo do celular no app certo: PDF, Word, slides, planilha ou foto."
+    },
+    {
+     "n": "abrir link",
+     "r": "moderada",
+     "d": "Abre um endereço no navegador do celular."
+    },
+    {
+     "n": "achar o celular",
+     "r": "moderada",
+     "d": "Toca o alarme no volume máximo para você achar o celular. Funciona até no silencioso."
+    },
+    {
+     "n": "analisar tela",
+     "r": "segura",
+     "d": "Olha a tela do celular e responde a uma pergunta sobre ela, usando a leitura de acessibilidade, que traz o texto exato."
+    },
+    {
+     "n": "atender ligação",
+     "r": "moderada",
+     "d": "Atende a ligação que está tocando."
+    },
+    {
+     "n": "auditar o celular",
+     "r": "segura",
+     "d": "Faz uma varredura no celular em busca de apps parados e permissões sensíveis."
+    },
+    {
+     "n": "bolha flutuante",
+     "r": "moderada",
+     "d": "Liga ou desliga a bolha do JARVIS por cima dos outros apps. Um toque e ele já está ouvindo, sem você sair do que está fazendo."
+    },
+    {
+     "n": "capturar tela",
+     "r": "segura",
+     "d": "Tira um print da tela do celular e guarda em arquivo."
+    },
+    {
+     "n": "compartilhar",
+     "r": "moderada",
+     "d": "Abre o menu de compartilhamento do Android com um texto pronto. Você escolhe para quem vai: o JARVIS não envia sozinho."
+    },
+    {
+     "n": "compartilhar arquivo",
+     "r": "moderada",
+     "d": "Abre o menu de compartilhar com o arquivo já anexado (WhatsApp, Drive, e-mail). Você escolhe o destino."
+    },
+    {
+     "n": "conversas não lidas",
+     "r": "segura",
+     "d": "Mostra quais conversas do WhatsApp têm mensagem não lida."
+    },
+    {
+     "n": "criar rotina de lugar",
+     "r": "moderada",
+     "d": "Faz o JARVIS agir sozinho ao chegar ou sair de um lugar. A ação é escrita em português e executada como se você tivesse pedido."
+    },
+    {
+     "n": "definir volume do celular",
+     "r": "moderada",
+     "d": "Ajusta o volume de mídia do celular."
+    },
+    {
+     "n": "desligar o jarvis",
+     "r": "moderada",
+     "d": "Desliga o JARVIS no celular: ele para de ouvir e sai da memória."
+    },
+    {
+     "n": "discar",
+     "r": "moderada",
+     "d": "Deixa um número discado para você apertar o botão de chamar. A ligação nunca sai sozinha."
+    },
+    {
+     "n": "dispensar notificação",
+     "r": "moderada",
+     "d": "Dispensa uma notificação da barra."
+    },
+    {
+     "n": "economia de bateria",
+     "r": "moderada",
+     "d": "Desliga o que mais gasta: a escuta contínua do microfone e a bolha. Com a economia ligada, o JARVIS só ouve quando você toca no atalho ou no widget."
+    },
+    {
+     "n": "esquecer lugar",
+     "r": "moderada",
+     "d": "Apaga um lugar salvo e as rotinas ligadas a ele."
+    },
+    {
+     "n": "fechar app",
+     "r": "moderada",
+     "d": "Fecha um aplicativo, interrompendo o que ele roda em segundo plano."
+    },
+    {
+     "n": "lanterna",
+     "r": "moderada",
+     "d": "Acende ou apaga a lanterna do celular."
+    },
+    {
+     "n": "ler conversa whatsapp",
+     "r": "segura",
+     "d": "Lê as mensagens de uma conversa do WhatsApp. Rolando para trás, traz mais histórico."
+    },
+    {
+     "n": "ler o que estou vendo",
+     "r": "segura",
+     "d": "Lê o texto que a câmera está vendo e traduz, se você pedir. Funciona offline: o reconhecimento de texto roda no próprio celular."
+    },
+    {
+     "n": "ler tela do celular",
+     "r": "segura",
+     "d": "Lê o que está na tela agora (textos, botões e campos) para saber o que existe antes de tocar em algo."
+    },
+    {
+     "n": "listar apps",
+     "r": "segura",
+     "d": "Lista os aplicativos instalados no celular."
+    },
+    {
+     "n": "listar lugares",
+     "r": "segura",
+     "d": "Mostra os lugares salvos e as rotinas ligadas a eles."
+    },
+    {
+     "n": "modo dormir",
+     "r": "moderada",
+     "d": "Prepara o celular para dormir: não perturbe, bolha desligada e alarme."
+    },
+    {
+     "n": "modo reunião",
+     "r": "moderada",
+     "d": "Grava uma conversa, transcreve e, no fim, entrega o resumo e as tarefas."
+    },
+    {
+     "n": "modo trajeto",
+     "r": "moderada",
+     "d": "Lê em voz alta as mensagens que chegam, para você usar o fone sem olhar a tela, e deixa você responder falando."
+    },
+    {
+     "n": "não perturbe",
+     "r": "moderada",
+     "d": "Liga ou desliga o Não Perturbe do celular."
+    },
+    {
+     "n": "navegar até",
+     "r": "moderada",
+     "d": "Abre a navegação no mapa até um destino."
+    },
+    {
+     "n": "notificações recentes",
+     "r": "segura",
+     "d": "Lê as notificações que chegaram no celular."
+    },
+    {
+     "n": "o que eu perdi",
+     "r": "segura",
+     "d": "Resume o que chegou no celular nas últimas horas, separando o que importa."
+    },
+    {
+     "n": "olhar pela câmera",
+     "r": "segura",
+     "d": "Tira uma foto com a câmera e responde sobre o que viu: que planta é essa, o que diz essa placa."
+    },
+    {
+     "n": "onde estou",
+     "r": "segura",
+     "d": "Diz onde o celular está agora e a qual lugar salvo isso corresponde."
+    },
+    {
+     "n": "permissões do jarvis",
+     "r": "segura",
+     "d": "Mostra o que ainda falta liberar para o JARVIS mexer no celular."
+    },
+    {
+     "n": "preparar amanhã",
+     "r": "moderada",
+     "d": "Resume o dia de amanhã (aulas, provas, trajeto) e acerta o alarme."
+    },
+    {
+     "n": "recusar ligação",
+     "r": "moderada",
+     "d": "Recusa ou encerra a ligação atual."
+    },
+    {
+     "n": "resumir conversa",
+     "r": "segura",
+     "d": "Lê uma conversa do WhatsApp e resume o que interessa."
+    },
+    {
+     "n": "salvar lugar",
+     "r": "moderada",
+     "d": "Salva com um nome o lugar onde você está agora."
+    },
+    {
+     "n": "status do celular",
+     "r": "segura",
+     "d": "Bateria, armazenamento, memória e o que está ligado no celular."
+    },
+    {
+     "n": "tempo de tela",
+     "r": "segura",
+     "d": "Quanto tempo você passou em cada app."
+    },
+    {
+     "n": "tradutor de conversa",
+     "r": "moderada",
+     "d": "Intérprete ao vivo: ouve, traduz e fala na outra língua, nos dois sentidos. Quem fala português ouve a tradução no outro idioma, e vice-versa."
+    }
+   ]
+  },
+  {
+   "id": "codigo",
+   "label": "Código",
+   "blurb": "Cálculo exato e Python em ambiente isolado.",
+   "items": [
+    {
+     "n": "calcular",
+     "r": "segura",
+     "d": "Calcula expressões matemáticas com precisão, para que nenhuma conta seja feita de cabeça."
+    },
+    {
+     "n": "converter unidades",
+     "r": "segura",
+     "d": "Converte comprimento, peso, temperatura, volume, velocidade e armazenamento digital."
+    },
+    {
+     "n": "executar python",
+     "r": "sensível",
+     "d": "Executa código Python num processo isolado, com limite de tempo, quando a resposta exige cálculo de verdade."
+    }
+   ]
+  },
+  {
+   "id": "comunicacao",
+   "label": "Comunicação",
+   "blurb": "Leitura, busca e envio de e-mails.",
+   "items": [
+    {
+     "n": "buscar email",
+     "r": "segura",
+     "d": "Procura e-mails por assunto ou conteúdo."
+    },
+    {
+     "n": "enviar email",
+     "r": "crítica",
+     "d": "Envia um e-mail em seu nome, redigido no tom certo para o destinatário a partir do que você pediu."
+    },
+    {
+     "n": "ler emails",
+     "r": "segura",
+     "d": "Lê os e-mails recentes da caixa de entrada."
+    }
+   ]
+  },
+  {
+   "id": "conhecimento",
+   "label": "Conhecimento",
+   "blurb": "Seus documentos viram uma base que responde perguntas.",
+   "items": [
+    {
+     "n": "comparar documentos",
+     "r": "segura",
+     "d": "Lê dois arquivos e aponta as diferenças e semelhanças entre eles."
+    },
+    {
+     "n": "consultar base de conhecimento",
+     "r": "segura",
+     "d": "Procura a resposta nos documentos que você já indexou."
+    },
+    {
+     "n": "indexar documento",
+     "r": "moderada",
+     "d": "Lê um arquivo e o adiciona à base de conhecimento, para responder perguntas sobre ele depois. Aceita txt, md, pdf, docx e ppt."
+    },
+    {
+     "n": "indexar pasta",
+     "r": "moderada",
+     "d": "Indexa todos os documentos de uma pasta na base de conhecimento."
+    },
+    {
+     "n": "listar documentos indexados",
+     "r": "segura",
+     "d": "Lista os documentos que já estão na base de conhecimento."
+    },
+    {
+     "n": "remover documento indexado",
+     "r": "moderada",
+     "d": "Remove um documento da base de conhecimento."
+    },
+    {
+     "n": "resumir documento",
+     "r": "segura",
+     "d": "Lê um arquivo inteiro e devolve um resumo: do que trata esse PDF, o que diz esse contrato, o que tem nessa apresentação."
+    }
+   ]
+  },
+  {
+   "id": "controle",
+   "label": "Controle de tela",
+   "blurb": "Toca, digita e rola a tela do celular por você.",
+   "items": [
+    {
+     "n": "botão do sistema",
+     "r": "moderada",
+     "d": "Aperta um botão do sistema Android."
+    },
+    {
+     "n": "digitar no celular",
+     "r": "moderada",
+     "d": "Escreve no campo de texto em foco no celular. Campos de senha são recusados."
+    },
+    {
+     "n": "rolar a tela",
+     "r": "moderada",
+     "d": "Rola a tela do celular."
+    },
+    {
+     "n": "tocar em",
+     "r": "moderada",
+     "d": "Toca num elemento da tela do celular pelo texto dele."
+    }
+   ]
+  },
+  {
+   "id": "documentos",
+   "label": "Documentos",
+   "blurb": "Cria Word, Excel, PowerPoint e PDF prontos.",
+   "items": [
+    {
+     "n": "criar apresentação",
+     "r": "moderada",
+     "d": "Cria uma apresentação de PowerPoint (.pptx), com o conteúdo de cada slide em tópicos curtos e diretos."
+    },
+    {
+     "n": "criar documento pdf",
+     "r": "moderada",
+     "d": "Cria um arquivo PDF formatado, com o conteúdo completo escrito pelo JARVIS."
+    },
+    {
+     "n": "criar documento word",
+     "r": "moderada",
+     "d": "Cria um documento Word (.docx) bem formatado, escrito por inteiro a partir do seu pedido."
+    },
+    {
+     "n": "criar planilha",
+     "r": "moderada",
+     "d": "Cria uma planilha de Excel (.xlsx) com cabeçalho formatado."
+    },
+    {
+     "n": "salvar texto em arquivo",
+     "r": "moderada",
+     "d": "Salva um texto num arquivo simples: uma transcrição, uma anotação, uma lista ditada."
+    }
+   ]
+  },
+  {
+   "id": "elo",
+   "label": "Elo",
+   "blurb": "Celular e PC trabalhando juntos.",
+   "items": [
+    {
+     "n": "abrir no pc",
+     "r": "moderada",
+     "d": "Abre um programa ou site no PC."
+    },
+    {
+     "n": "arquivos do pc",
+     "r": "segura",
+     "d": "Lista o que está na pasta compartilhada Downloads/Jarvis do PC."
+    },
+    {
+     "n": "bloquear o pc",
+     "r": "moderada",
+     "d": "Bloqueia a tela do PC."
+    },
+    {
+     "n": "controlar o pc",
+     "r": "moderada",
+     "d": "Controla a música e a energia do PC."
+    },
+    {
+     "n": "controlar pc pelo parsec",
+     "r": "moderada",
+     "d": "Abre o PC inteiro no celular pelo Parsec e prepara tudo sozinho: liga o PC pela rede se ele estiver desligado, abre o Parsec lá e conecta."
+    },
+    {
+     "n": "copiar texto do pc",
+     "r": "segura",
+     "d": "Traz o que está copiado no PC para a área de transferência do celular."
+    },
+    {
+     "n": "espelhar notificações no pc",
+     "r": "moderada",
+     "d": "Faz as mensagens que chegam no celular aparecerem na tela do PC."
+    },
+    {
+     "n": "ligar o pc",
+     "r": "moderada",
+     "d": "Liga o computador pela rede (Wake-on-LAN)."
+    },
+    {
+     "n": "mandar arquivo pro pc",
+     "r": "moderada",
+     "d": "Envia um arquivo do celular para a pasta Downloads/Jarvis do PC."
+    },
+    {
+     "n": "mandar texto pro pc",
+     "r": "moderada",
+     "d": "Coloca um texto na área de transferência do PC, pronto para colar."
+    },
+    {
+     "n": "pedir ao pc",
+     "r": "sensível",
+     "d": "Manda o JARVIS do PC fazer algo que só o computador consegue: mexer em arquivos, abrir programas, pesquisar no navegador de lá, criar documentos."
+    },
+    {
+     "n": "pegar arquivo do pc",
+     "r": "moderada",
+     "d": "Traz um arquivo da pasta Downloads/Jarvis do PC para o celular."
+    },
+    {
+     "n": "sincronizar memória",
+     "r": "segura",
+     "d": "Troca com o outro JARVIS tudo o que cada um aprendeu desde a última vez."
+    },
+    {
+     "n": "situação do pc",
+     "r": "segura",
+     "d": "Diz se o PC está ligado e conectado, e como ele está de memória e disco."
+    },
+    {
+     "n": "tela do pc",
+     "r": "segura",
+     "d": "Mostra no celular o que está na tela do PC agora."
+    },
+    {
+     "n": "volume do pc",
+     "r": "moderada",
+     "d": "Ajusta o volume do PC."
+    }
+   ]
+  },
+  {
+   "id": "estudo",
+   "label": "Estudo",
+   "blurb": "Grade de aulas, provas, flashcards, simulados e redação no padrão ENEM.",
+   "items": [
+    {
+     "n": "adicionar aula",
+     "r": "moderada",
+     "d": "Adiciona uma aula fixa na grade semanal."
+    },
+    {
+     "n": "anotar na matéria",
+     "r": "moderada",
+     "d": "Guarda uma anotação no caderno digital da matéria."
+    },
+    {
+     "n": "apagar prova",
+     "r": "moderada",
+     "d": "Remove uma prova marcada."
+    },
+    {
+     "n": "buscar nas anotações",
+     "r": "segura",
+     "d": "Procura um termo nas anotações do caderno digital."
+    },
+    {
+     "n": "começar a estudar",
+     "r": "moderada",
+     "d": "Começa um bloco de estudo cronometrado e bloqueia apps de distração: Instagram, TikTok, YouTube e jogos ficam fechados até o bloco acabar."
+    },
+    {
+     "n": "como foi meu dia",
+     "r": "segura",
+     "d": "Retrospectiva honesta do dia: estudo, revisão e tempo de tela, lado a lado."
+    },
+    {
+     "n": "corrigir redação",
+     "r": "segura",
+     "d": "Corrige uma redação nas cinco competências do ENEM, com nota e sugestões."
+    },
+    {
+     "n": "corrigir redação da foto",
+     "r": "segura",
+     "d": "Fotografa uma redação e corrige nas cinco competências do ENEM. Funciona melhor com texto digitado ou impresso."
+    },
+    {
+     "n": "criar flashcards",
+     "r": "moderada",
+     "d": "Cria flashcards de um assunto, ou de um texto ou anotação, para revisar."
+    },
+    {
+     "n": "digitalizar anotação",
+     "r": "moderada",
+     "d": "Fotografa a lousa ou o caderno e transforma num resumo organizado da matéria."
+    },
+    {
+     "n": "escanear documento",
+     "r": "moderada",
+     "d": "Escaneia páginas com a câmera e junta tudo num PDF em Download/Jarvis: “escaneia” a cada página e “finaliza o PDF” no fim."
+    },
+    {
+     "n": "estou pronto para a prova",
+     "r": "segura",
+     "d": "Estima a sua preparação para a prova de uma matéria e diz o que falta, cruzando a data da prova, os acertos nos simulados, os flashcards e as anotações."
+    },
+    {
+     "n": "explicar exercício da foto",
+     "r": "segura",
+     "d": "Tira foto de um exercício (caderno, apostila, lousa) e explica passo a passo."
+    },
+    {
+     "n": "explicar exercício da tela",
+     "r": "segura",
+     "d": "Resolve, ensinando, o exercício que está aberto na tela do celular: PDF, site ou app."
+    },
+    {
+     "n": "fazer simulado",
+     "r": "moderada",
+     "d": "Gera questões de vestibular e aplica uma por vez."
+    },
+    {
+     "n": "flashcards pendentes",
+     "r": "segura",
+     "d": "Quantos flashcards estão para revisar hoje."
+    },
+    {
+     "n": "grade de aulas",
+     "r": "segura",
+     "d": "Diz as aulas de um dia."
+    },
+    {
+     "n": "gravar aula",
+     "r": "moderada",
+     "d": "Grava a aula, transcreve e, no fim, transforma em resumo de caderno e flashcards."
+    },
+    {
+     "n": "marcar prova",
+     "r": "moderada",
+     "d": "Marca prova, trabalho, simulado ou vestibular."
+    },
+    {
+     "n": "me explica",
+     "r": "segura",
+     "d": "Explica um assunto como um bom professor, com exemplo e pegadinha de prova."
+    },
+    {
+     "n": "meu desempenho",
+     "r": "segura",
+     "d": "Acertos por matéria e os assuntos mais fracos."
+    },
+    {
+     "n": "minhas médias",
+     "r": "segura",
+     "d": "Médias por matéria, de 0 a 10."
+    },
+    {
+     "n": "montar cronograma",
+     "r": "moderada",
+     "d": "Monta um cronograma de estudos com base nas provas e no desempenho."
+    },
+    {
+     "n": "o que estudar agora",
+     "r": "segura",
+     "d": "Diz o que estudar agora, pesando provas próximas, revisão e pontos fracos."
+    },
+    {
+     "n": "parar de estudar",
+     "r": "segura",
+     "d": "Encerra o bloco de estudo atual e libera os apps."
+    },
+    {
+     "n": "próxima aula",
+     "r": "segura",
+     "d": "Diz qual é a aula agora e qual é a próxima."
+    },
+    {
+     "n": "próximas provas",
+     "r": "segura",
+     "d": "Lista provas, trabalhos e simulados que estão chegando."
+    },
+    {
+     "n": "registrar nota",
+     "r": "moderada",
+     "d": "Registra uma nota para calcular as médias."
+    },
+    {
+     "n": "resolver exercício",
+     "r": "segura",
+     "d": "Resolve um exercício ensinando o raciocínio, passo a passo."
+    },
+    {
+     "n": "responder flashcard",
+     "r": "segura",
+     "d": "Responde o flashcard que está aberto na revisão."
+    },
+    {
+     "n": "responder questão",
+     "r": "segura",
+     "d": "Responde a questão aberta do simulado."
+    },
+    {
+     "n": "resumão para prova",
+     "r": "segura",
+     "d": "Monta um resumão de véspera com as suas anotações, se quiser em PDF."
+    },
+    {
+     "n": "revisar flashcards",
+     "r": "segura",
+     "d": "Começa a revisão dos flashcards vencidos: pergunta um por um, você responde falando e ele corrige."
+    },
+    {
+     "n": "silenciar nas aulas",
+     "r": "moderada",
+     "d": "Liga o Não Perturbe sozinho durante as aulas da grade e desliga depois."
+    },
+    {
+     "n": "tempo de estudo",
+     "r": "segura",
+     "d": "Quanto você estudou por matéria nos últimos dias."
+    }
+   ]
+  },
+  {
+   "id": "geral",
+   "label": "Geral",
+   "blurb": "Configuração, personalidades, voz e as ferramentas que ele mesmo cria.",
+   "items": [
+    {
+     "n": "advogado do diabo",
+     "r": "segura",
+     "d": "Ataca uma decisão que você já tomou, procurando o furo que você está evitando olhar, e termina dizendo o que faria você mudar de ideia."
+    },
+    {
+     "n": "ajustar autonomia",
+     "r": "moderada",
+     "d": "Ajusta o quanto o JARVIS age por conta própria."
+    },
+    {
+     "n": "ajustar efeitos sonoros",
+     "r": "moderada",
+     "d": "Liga, desliga ou ajusta o volume dos efeitos sonoros da interface."
+    },
+    {
+     "n": "aprovar ferramenta",
+     "r": "sensível",
+     "d": "Ativa uma ferramenta criada pelo JARVIS que estava esperando aprovação. A partir daí ela passa a existir de verdade, já na mesma sessão."
+    },
+    {
+     "n": "criar ferramenta",
+     "r": "moderada",
+     "d": "Escreve uma ferramenta nova em Python quando nenhuma das existentes serve para o que você pediu."
+    },
+    {
+     "n": "efeitos sonoros",
+     "r": "segura",
+     "d": "Toca os efeitos sonoros do JARVIS: todos em sequência, para conhecer, ou um específico."
+    },
+    {
+     "n": "listar contas salvas",
+     "r": "segura",
+     "d": "Lista os serviços com login cadastrado, nunca as senhas."
+    },
+    {
+     "n": "listar ferramentas criadas",
+     "r": "segura",
+     "d": "Lista as ferramentas que o próprio JARVIS escreveu, ativas e pendentes."
+    },
+    {
+     "n": "listar minhas capacidades",
+     "r": "segura",
+     "d": "Lista o que o JARVIS consegue fazer, ou responde se ele é capaz de algo específico."
+    },
+    {
+     "n": "meu diagnóstico",
+     "r": "segura",
+     "d": "Estado interno do JARVIS: provedores de IA ativos, o que está configurado, o que falta, há quanto tempo está no ar e quantas ferramentas tem."
+    },
+    {
+     "n": "meu gasto",
+     "r": "segura",
+     "d": "Quanto o JARVIS gastou com IA no mês, por modelo, e quanto falta para o teto configurado."
+    },
+    {
+     "n": "meus hábitos",
+     "r": "segura",
+     "d": "Mostra os seus padrões de uso: o que você mais pede ao JARVIS."
+    },
+    {
+     "n": "modo atual",
+     "r": "segura",
+     "d": "Diz qual personalidade está respondendo agora."
+    },
+    {
+     "n": "mudar tema",
+     "r": "moderada",
+     "d": "Muda o tema visual do HUD do JARVIS."
+    },
+    {
+     "n": "mudar voz",
+     "r": "moderada",
+     "d": "Muda a voz do JARVIS, com vozes neurais brasileiras masculinas e femininas."
+    },
+    {
+     "n": "remover ferramenta criada",
+     "r": "moderada",
+     "d": "Apaga de vez uma ferramenta que o JARVIS tinha escrito."
+    },
+    {
+     "n": "resumo do dia",
+     "r": "segura",
+     "d": "Resume o que foi conversado e feito hoje."
+    },
+    {
+     "n": "trocar modo",
+     "r": "moderada",
+     "d": "Troca quem responde: o JARVIS, o ULTRON ou os dois discutindo. Cada um funciona de forma independente, com a mesma memória e as mesmas ferramentas."
+    },
+    {
+     "n": "ver código da ferramenta",
+     "r": "segura",
+     "d": "Mostra no painel o código de uma ferramenta criada pelo JARVIS, para você revisar antes de aprovar."
+    }
+   ]
+  },
+  {
+   "id": "memoria",
+   "label": "Memória",
+   "blurb": "O que ele sabe sobre você e as pessoas da sua vida.",
+   "items": [
+    {
+     "n": "buscar conversa antiga",
+     "r": "segura",
+     "d": "Procura no histórico de conversas anteriores, para quando você pergunta o que vocês já falaram sobre algo."
+    },
+    {
+     "n": "buscar na memória",
+     "r": "segura",
+     "d": "Procura na memória de longo prazo o que já foi guardado sobre um assunto."
+    },
+    {
+     "n": "consultar pessoa",
+     "r": "segura",
+     "d": "Consulta o que está guardado sobre uma pessoa."
+    },
+    {
+     "n": "esquecer fato",
+     "r": "moderada",
+     "d": "Remove da memória tudo que contém um trecho de texto, para quando algo mudou ou deixou de ser verdade."
+    },
+    {
+     "n": "lembrar fato",
+     "r": "segura",
+     "d": "Guarda permanentemente uma informação sobre você, para lembrar em conversas futuras."
+    },
+    {
+     "n": "ler meus padrões",
+     "r": "segura",
+     "d": "Deduz seus padrões de comportamento a partir do histórico real de conversas: não pelo que você contou, mas pelo que você fez."
+    },
+    {
+     "n": "narrar meu dia",
+     "r": "segura",
+     "d": "Narra o seu dia como um documentário de natureza, com humor sardônico, usando o que de fato aconteceu."
+    },
+    {
+     "n": "resumir o que sei do usuário",
+     "r": "segura",
+     "d": "Um panorama de tudo que está guardado sobre você, organizado por categoria."
+    },
+    {
+     "n": "salvar pessoa",
+     "r": "segura",
+     "d": "Registra uma pessoa da sua vida e o que se sabe sobre ela, de forma organizada."
+    }
+   ]
+  },
+  {
+   "id": "mensagem",
+   "label": "Mensagem",
+   "blurb": "WhatsApp e respostas direto pela notificação.",
+   "items": [
+    {
+     "n": "enviar whatsapp",
+     "r": "sensível",
+     "d": "Manda uma mensagem no WhatsApp: abre o app, acha a conversa, escreve e envia, conferindo a tela a cada passo."
+    },
+    {
+     "n": "responder notificação",
+     "r": "sensível",
+     "d": "Responde uma conversa direto pela notificação, sem abrir o app. Funciona com WhatsApp, Telegram, Instagram e qualquer app com resposta rápida."
+    }
+   ]
+  },
+  {
+   "id": "midia",
+   "label": "Mídia",
+   "blurb": "Imagens, música, Spotify e mapas mentais em 3D.",
+   "items": [
+    {
+     "n": "adicionar ao mapa",
+     "r": "moderada",
+     "d": "Pendura uma ideia no mapa mental enquanto você fala, decidindo sozinho em que ramo ela se encaixa."
+    },
+    {
+     "n": "buscar imagem real",
+     "r": "moderada",
+     "d": "Busca e mostra uma foto real, de licença aberta, de um lugar, um animal ou um objeto."
+    },
+    {
+     "n": "buscar no spotify",
+     "r": "segura",
+     "d": "Busca músicas no Spotify sem tocar nenhuma."
+    },
+    {
+     "n": "compor música",
+     "r": "moderada",
+     "d": "Compõe uma música a partir de uma descrição em texto, com o ElevenLabs Music."
+    },
+    {
+     "n": "debater ideia",
+     "r": "moderada",
+     "d": "Põe JARVIS e ULTRON para discutir uma ideia entre si, cada um com sua personalidade, até cravarem uma posição final."
+    },
+    {
+     "n": "descrever imagem",
+     "r": "segura",
+     "d": "Olha uma imagem salva no computador e responde sobre ela."
+    },
+    {
+     "n": "esconder imagem",
+     "r": "segura",
+     "d": "Tira a imagem que está sendo exibida na tela do JARVIS."
+    },
+    {
+     "n": "gerar imagem",
+     "r": "moderada",
+     "d": "Gera uma imagem original por IA a partir de uma descrição, salva em disco e mostra na tela do JARVIS."
+    },
+    {
+     "n": "gerar qrcode",
+     "r": "moderada",
+     "d": "Gera um QR code com texto, link, wi-fi ou contato e mostra na tela."
+    },
+    {
+     "n": "limpar mapa",
+     "r": "segura",
+     "d": "Apaga o mapa mental que está projetado."
+    },
+    {
+     "n": "mapear ideia",
+     "r": "moderada",
+     "d": "Transforma uma ideia falada num mapa mental em 3D que você manipula com as mãos."
+    },
+    {
+     "n": "minhas playlists",
+     "r": "segura",
+     "d": "Lista as playlists da sua conta do Spotify."
+    },
+    {
+     "n": "tocar no spotify",
+     "r": "moderada",
+     "d": "Toca no seu Spotify: uma música, um artista ou uma playlist da sua conta."
+    }
+   ]
+  },
+  {
+   "id": "transito",
+   "label": "Trânsito",
+   "blurb": "Tempo de trajeto e hora de sair, com o trânsito ao vivo.",
+   "items": [
+    {
+     "n": "hora de sair",
+     "r": "moderada",
+     "d": "Calcula a hora de sair para chegar no horário e avisa quando for a hora."
+    },
+    {
+     "n": "mapa do trânsito",
+     "r": "segura",
+     "d": "Mostra o mapa de trânsito ao vivo (Waze) dentro do JARVIS."
+    },
+    {
+     "n": "quanto tempo até",
+     "r": "segura",
+     "d": "Quanto tempo leva agora até um lugar, com o trânsito do momento."
+    }
+   ]
+  },
+  {
+   "id": "utilidades",
+   "label": "Utilidades",
+   "blurb": "Timers, pomodoro, modo foco, senhas e sorteios.",
+   "items": [
+    {
+     "n": "cancelar timer",
+     "r": "moderada",
+     "d": "Cancela um timer em andamento."
+    },
+    {
+     "n": "gerar senha",
+     "r": "segura",
+     "d": "Gera uma senha forte e aleatória. Ela não fica guardada em lugar nenhum: você copia e salva onde quiser."
+    },
+    {
+     "n": "iniciar pomodoro",
+     "r": "moderada",
+     "d": "Inicia um ciclo pomodoro: um período de foco e depois o aviso de pausa."
+    },
+    {
+     "n": "iniciar timer",
+     "r": "moderada",
+     "d": "Inicia um timer que aparece na tela contando e avisa em voz alta quando acaba."
+    },
+    {
+     "n": "listar timers",
+     "r": "segura",
+     "d": "Diz quanto falta nos timers em andamento."
+    },
+    {
+     "n": "modo foco",
+     "r": "sensível",
+     "d": "Liga ou desliga o modo foco, que bloqueia sites que distraem (redes sociais, YouTube) no computador inteiro."
+    },
+    {
+     "n": "sortear",
+     "r": "segura",
+     "d": "Sorteia entre opções ou um número num intervalo."
+    }
+   ]
+  },
+  {
+   "id": "web",
+   "label": "Web",
+   "blurb": "Pesquisa, notícias, clima, cotações e leitura de páginas.",
+   "items": [
+    {
+     "n": "baixar arquivo",
+     "r": "sensível",
+     "d": "Baixa um arquivo da internet para a pasta de downloads do JARVIS. Executáveis são recusados."
+    },
+    {
+     "n": "clima",
+     "r": "segura",
+     "d": "Clima atual e previsão. Sem cidade, usa a cidade configurada."
+    },
+    {
+     "n": "cotações",
+     "r": "segura",
+     "d": "Cotação de moedas em tempo real."
+    },
+    {
+     "n": "criptomoedas",
+     "r": "segura",
+     "d": "Preço de criptomoedas em reais e dólares."
+    },
+    {
+     "n": "ler url",
+     "r": "segura",
+     "d": "Lê o texto de uma página da internet sem abrir o navegador, bem rápido."
+    },
+    {
+     "n": "notícias",
+     "r": "segura",
+     "d": "Manchetes reais e atuais: as principais do Brasil ou sobre um tema."
+    },
+    {
+     "n": "pesquisa profunda",
+     "r": "segura",
+     "d": "Quebra o assunto em várias perguntas, busca cada uma, lê as melhores fontes e devolve um dossiê com o que encontrou."
+    },
+    {
+     "n": "pesquisar na web",
+     "r": "segura",
+     "d": "Pesquisa na internet e traz resultados reais e atuais."
+    },
+    {
+     "n": "traduzir",
+     "r": "segura",
+     "d": "Traduz um texto para outro idioma."
+    },
+    {
+     "n": "verificar site",
+     "r": "segura",
+     "d": "Verifica se um site está no ar e quanto demora para responder."
+    },
+    {
+     "n": "wikipedia",
+     "r": "segura",
+     "d": "Resumo enciclopédico de um termo, pessoa, lugar ou conceito."
+    }
+   ]
+  }
+ ],
+ "examples": [
+  {
+   "say": "Liga o PC e me deixa usar ele daqui.",
+   "steps": [
+    "ligar o pc",
+    "controlar pc pelo parsec"
+   ]
+  },
+  {
+   "say": "O que eu perdi nas últimas horas?",
+   "steps": [
+    "o que eu perdi",
+    "resumir conversa"
+   ]
+  },
+  {
+   "say": "Quando eu chegar em casa, acende a luz da sala.",
+   "steps": [
+    "criar rotina de lugar",
+    "ligar dispositivo"
+   ]
+  },
+  {
+   "say": "Estou pronto para a prova de química?",
+   "steps": [
+    "estou pronto para a prova",
+    "montar cronograma"
+   ]
+  }
+ ],
+ "tags": [
+  "Google Agenda",
+  "WhatsApp",
+  "Telegram",
+  "Instagram",
+  "E-mail",
+  "Spotify",
+  "Waze",
+  "Home Assistant",
+  "Parsec",
+  "ElevenLabs Music",
+  "Wikipedia",
+  "Word",
+  "Excel",
+  "PowerPoint",
+  "PDF",
+  "Python",
+  "Vozes neurais em português",
+  "Leitura de texto offline"
+ ],
+ "total": 206,
+ "riskCount": {
+  "segura": 104,
+  "sensível": 8,
+  "moderada": 92,
+  "crítica": 2
+ }
+}

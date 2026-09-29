@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template id="f08-personas-template">
+      <style>
+        @font-face { font-family: "Mona Sans"; src: url("assets/fonts/MonaSans-Variable.woff2") format("woff2"); font-weight: 200 900; font-stretch: 75% 125%; }
+        @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; }
+        @font-face { font-family: "Orbitron"; src: url("assets/fonts/Orbitron-Variable.woff2") format("woff2"); font-weight: 400 900; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #04080c; }
+        #ps-bg { position: absolute; inset: 0; }
+        .side { position: absolute; top: 0; bottom: 0; width: 960px; opacity: 0; }
+        #ps-side-j { left: 0; background: radial-gradient(760px 620px at 560px 480px, rgba(92,214,245,0.14), rgba(4,8,12,0) 70%); }
+        #ps-side-u { left: 960px; background: radial-gradient(760px 620px at 400px 480px, rgba(236,90,97,0.16), rgba(4,8,12,0) 70%); }
+        #ps-world { position: absolute; inset: 0; }
+
+        #ps-head { position: absolute; left: 0; right: 0; top: 118px; height: 90px; text-align: center; }
+        .hl { position: absolute; left: 0; right: 0; top: 0; overflow: hidden; padding-bottom: 0.1em;
+          font-family: "Mona Sans", sans-serif; font-stretch: 125%; font-weight: 600; font-size: 64px; line-height: 1.1; color: #e6f7fd; letter-spacing: -0.005em; }
+        .hl span { display: inline-block; }
+        .hl .k { color: #5cd6f5; }
+
+        .card { position: absolute; top: 262px; width: 470px; height: 470px; border-radius: 22px; background: rgba(9,20,27,0.88);
+          border: 1.5px solid rgba(142,167,178,0.28); box-shadow: 0 40px 120px rgba(0,0,0,0.6), inset 0 1px 0 rgba(230,247,253,0.07); overflow: hidden; }
+        #ps-j { left: 300px; } #ps-u { left: 1150px; }
+        .orb { position: absolute; left: 50%; top: 190px; width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%; }
+        #ps-j .orb { background: radial-gradient(circle at 36% 30%, #f4fdff 0%, #a8ecfb 26%, #5cd6f5 58%, #16607c 100%); box-shadow: 0 0 60px rgba(92,214,245,0.45); }
+        #ps-u .orb { background: radial-gradient(circle at 36% 30%, #fff1f1 0%, #ffb3b6 24%, #ec5a61 58%, #6e1c22 100%); box-shadow: 0 0 60px rgba(236,90,97,0.45); }
+        .ring { position: absolute; left: 50%; top: 190px; width: 250px; height: 250px; margin: -125px 0 0 -125px; border-radius: 50%; border: 1.5px dashed rgba(92,214,245,0.45); }
+        #ps-u .ring { border-color: rgba(236,90,97,0.5); }
+        .nm { position: absolute; left: 0; right: 0; top: 352px; text-align: center; font-family: "Orbitron", sans-serif; font-weight: 600; font-size: 38px; letter-spacing: 0.32em; padding-left: 0.32em; }
+        #ps-j .nm { color: #e6f7fd; } #ps-u .nm { color: #ffd9db; }
+        .tag { position: absolute; left: 0; right: 0; top: 414px; text-align: center; font-family: "Geist Mono", monospace; font-weight: 500; font-size: 16px; letter-spacing: 0.3em; color: #8ea7b2; }
+        .glow { position: absolute; inset: 0; opacity: 0; }
+        #ps-j .glow { background: radial-gradient(360px 300px at 50% 40%, rgba(92,214,245,0.16), rgba(92,214,245,0) 70%); }
+        #ps-u .glow { background: radial-gradient(360px 300px at 50% 40%, rgba(236,90,97,0.20), rgba(236,90,97,0) 70%); }
+
+        /* o que é compartilhado: memória e ferramentas */
+        #ps-svg { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: visible; }
+        .ln { fill: none; stroke-width: 2; stroke-linecap: round; }
+        .ln.j { stroke: rgba(92,214,245,0.8); } .ln.u { stroke: rgba(236,90,97,0.8); }
+        .node { position: absolute; left: 860px; width: 200px; height: 64px; border-radius: 999px; display: flex; align-items: center; justify-content: center;
+          font-family: "Geist Mono", monospace; font-weight: 600; font-size: 17px; letter-spacing: 0.28em; padding-left: 0.28em; color: #e6f7fd;
+          background: rgba(11,24,32,0.92); border: 1.5px solid rgba(230,247,253,0.55); box-shadow: 0 0 30px rgba(168,236,251,0.12); opacity: 0; }
+        #ps-mem { top: 400px; } #ps-tools { top: 560px; }
+        #ps-scan { position: absolute; left: 0; right: 0; top: 0; height: 3px; background: #ec5a61; opacity: 0; box-shadow: 0 0 20px #ec5a61; }
+      </style>
+      <div id="root" data-composition-id="f08-personas" data-width="1920" data-height="1080">
+        <div id="ps-bg" data-layout-ignore><div class="side" id="ps-side-j"></div><div class="side" id="ps-side-u"></div></div>
+
+        <div id="ps-world">
+          <div id="ps-head" data-layout-allow-overlap>
+            <div class="hl" id="ps-h1" data-layout-allow-overlap data-layout-allow-overflow><span data-layout-allow-overlap>Duas personalidades.</span></div>
+            <div class="hl" id="ps-h2" data-layout-allow-overlap data-layout-allow-overflow><span data-layout-allow-overlap>Uma só <span class="k">memória.</span></span></div>
+          </div>
+
+          <div class="card" id="ps-j">
+            <div class="glow" data-layout-ignore></div>
+            <div class="ring" data-layout-ignore></div><div class="orb" data-layout-ignore></div>
+            <div class="nm">JARVIS</div>
+            <div class="tag">PERSONALIDADE</div>
+          </div>
+          <div class="card" id="ps-u">
+            <div class="glow" data-layout-ignore></div>
+            <div class="ring" data-layout-ignore></div><div class="orb" data-layout-ignore></div>
+            <div class="nm">ULTRON</div>
+            <div class="tag">PERSONALIDADE</div>
+          </div>
+
+          <svg id="ps-svg" viewBox="0 0 1920 1080" data-layout-ignore>
+            <path class="ln j" id="ps-lm-j" d="M 770 432 L 860 432" />
+            <path class="ln u" id="ps-lm-u" d="M 1150 432 L 1060 432" />
+            <path class="ln j" id="ps-lt-j" d="M 770 592 L 860 592" />
+            <path class="ln u" id="ps-lt-u" d="M 1150 592 L 1060 592" />
+          </svg>
+          <div class="node" id="ps-mem">MEMÓRIA</div>
+          <div class="node" id="ps-tools">FERRAMENTAS</div>
+        </div>
+        <div id="ps-scan" data-layout-ignore></div>
+      </div>
+      <script>
+        (function () {
+          gsap.registerPlugin(DrawSVGPlugin);
+          const tl = gsap.timeline({ paused: true });
+          const J = window.JM;
+          const F = JT.frame("f08");
+          const L = (t) => t - F.start;
+          const END = F.end - F.start;
+          const tDuas = L(JT.v("L14").start);
+          const tUma = L(JT.word("L14", "Uma"));
+          const tMem = L(JT.word("L14", "memória"));
+          const tJarvis = L(JT.v("L15").start);
+          const tUltron = L(JT.marks.ultron_at);
+          const tMesma = L(JT.word("L15", "mesma"));
+          const tFerr = L(JT.word("L15", "mesmas"));
+          const tEnd15 = L(JT.v("L15").end);
+
+          // ---------------------------------------------------------------- abre ao meio: dois lados, inclinações opostas
+          tl.fromTo("#ps-side-j", { opacity: 0, x: -120 }, { opacity: 0.55, x: 0, duration: 0.9, ease: "power3.out" }, 0.0);
+          tl.fromTo("#ps-side-u", { opacity: 0, x: 120 }, { opacity: 0.35, x: 0, duration: 0.9, ease: "power3.out" }, 0.05);
+          tl.fromTo("#ps-j", { x: -260, rotationY: 32, transformPerspective: 1400, opacity: 0, filter: "blur(10px)" },
+            { x: 0, rotationY: 0, opacity: 1, filter: "blur(0px)", duration: 1.1, ease: "expo.out" }, 0.12);
+          tl.fromTo("#ps-u", { x: 260, rotationY: -32, transformPerspective: 1400, opacity: 0, filter: "blur(10px)" },
+            { x: 0, rotationY: 0, opacity: 1, filter: "blur(0px)", duration: 1.1, ease: "expo.out" }, 0.18);
+          ["#ps-j", "#ps-u"].forEach((c, k) => {
+            tl.fromTo(`${c} .orb`, { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.9, ease: "expo.out" }, 0.45 + k * 0.06);
+            tl.fromTo(`${c} .ring`, { rotation: -60, scale: 0.8, opacity: 0 }, { rotation: 20, scale: 1, opacity: 1, duration: 2.6, ease: "power3.out" }, 0.5 + k * 0.06);
+            tl.fromTo(`${c} .ring`, { rotation: 20 }, { rotation: 70, duration: 5, ease: "none", immediateRender: false }, 3.1 + k * 0.06);
+          });
+          J.trackIn(tl, document.querySelector("#ps-j .nm"), 0.75, { fontPx: 38, spread: 0.35, dur: 0.9 });
+          J.trackIn(tl, document.querySelector("#ps-u .nm"), 0.81, { fontPx: 38, spread: 0.35, dur: 0.9 });
+          J.hudIn(tl, "#ps-j .tag", 1.0, { x: 0 });
+          J.hudIn(tl, "#ps-u .tag", 1.06, { x: 0 });
+
+          // "Duas personalidades." → "Uma só memória."
+          tl.set(["#ps-h1", "#ps-h2"], { visibility: "hidden" }, 0);
+          tl.set("#ps-h1", { visibility: "visible" }, tDuas - 0.1);
+          tl.set("#ps-h2", { visibility: "visible" }, tUma - 0.1);
+          tl.set("#ps-h1", { visibility: "hidden" }, tUma + 0.1);
+          tl.set("#ps-h2", { visibility: "hidden" }, tJarvis - 0.02);
+          J.maskReveal(tl, document.querySelector("#ps-h1 span"), tDuas - 0.06, { dur: 0.8 });
+          tl.fromTo("#ps-h1 span", { yPercent: 0 }, { yPercent: -110, duration: 0.45, ease: "power3.in", immediateRender: false }, tUma - 0.42);
+          J.maskReveal(tl, document.querySelector("#ps-h2 > span"), tUma - 0.04, { dur: 0.8 });
+          // a memória comum aparece entre os dois e se liga aos dois lados
+          tl.fromTo("#ps-mem", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, tMem - 0.1);
+          tl.fromTo(["#ps-lm-j", "#ps-lm-u"], { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.45, ease: "power2.out" }, tMem + 0.05);
+          tl.fromTo("#ps-h2 > span", { yPercent: 0, opacity: 1 }, { yPercent: -110, opacity: 1, duration: 0.45, ease: "power3.in", immediateRender: false }, tJarvis - 0.5);
+
+          // "JARVIS ou ULTRON" — cada lado acende no seu nome (vermelho só no ULTRON)
+          tl.fromTo("#ps-j .glow", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, tJarvis - 0.04);
+          tl.fromTo("#ps-j", { borderColor: "rgba(142,167,178,0.28)" }, { borderColor: "rgba(92,214,245,0.85)", duration: 0.3, ease: "power2.out" }, tJarvis - 0.04);
+          tl.fromTo("#ps-j .orb", { scale: 1 }, { scale: 1.08, duration: 0.18, ease: "power2.out", yoyo: true, repeat: 1 }, tJarvis);
+          tl.fromTo("#ps-u .glow", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, tUltron - 0.04);
+          tl.fromTo("#ps-u", { borderColor: "rgba(142,167,178,0.28)" }, { borderColor: "rgba(236,90,97,0.9)", duration: 0.3, ease: "power2.out" }, tUltron - 0.04);
+          tl.fromTo("#ps-u .orb", { scale: 1 }, { scale: 1.08, duration: 0.18, ease: "power2.out", yoyo: true, repeat: 1 }, tUltron);
+          tl.fromTo("#ps-side-u", { opacity: 0.35 }, { opacity: 1, duration: 0.4, ease: "power2.out", immediateRender: false }, tUltron - 0.04);
+          tl.fromTo("#ps-side-j", { opacity: 0.55 }, { opacity: 1, duration: 0.4, ease: "power2.out", immediateRender: false }, tJarvis - 0.04);
+          // "mesma memória" — a memória pulsa para os dois lados
+          tl.fromTo("#ps-mem", { boxShadow: "0 0 30px rgba(168,236,251,0.12)" }, { boxShadow: "0 0 50px rgba(168,236,251,0.55)", duration: 0.25, ease: "power2.out", yoyo: true, repeat: 1 }, tMesma + 0.2);
+          tl.fromTo(["#ps-lm-j", "#ps-lm-u"], { strokeWidth: 2 }, { strokeWidth: 4, duration: 0.25, ease: "power2.out", yoyo: true, repeat: 1 }, tMesma + 0.2);
+          // "mesmas ferramentas" — o segundo elo comum
+          tl.fromTo("#ps-tools", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, tFerr - 0.05);
+          tl.fromTo(["#ps-lt-j", "#ps-lt-u"], { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.45, ease: "power2.out" }, tFerr + 0.1);
+
+          // ---------------------------------------------------------------- saída: glitch vermelho controlado e corte seco
+          const g = Math.max(tEnd15 + 0.08, END - 0.62);
+          const world = "#ps-world";
+          tl.set("#ps-u", { x: -14, filter: "drop-shadow(8px 0 0 rgba(236,90,97,0.85)) drop-shadow(-8px 0 0 rgba(92,214,245,0.6))" }, g);
+          tl.set("#ps-scan", { opacity: 1, y: 470 }, g);
+          tl.set("#ps-u", { x: 10, filter: "drop-shadow(-6px 0 0 rgba(236,90,97,0.85)) drop-shadow(6px 0 0 rgba(92,214,245,0.5))" }, g + 0.07);
+          tl.set("#ps-scan", { y: 610 }, g + 0.07);
+          tl.set("#ps-u", { x: 0, filter: "none" }, g + 0.14);
+          tl.set("#ps-scan", { opacity: 0 }, g + 0.14);
+          tl.set(world, { x: 8, opacity: 0.7 }, g + 0.22);
+          tl.set("#ps-scan", { opacity: 1, y: 330 }, g + 0.22);
+          tl.set(world, { x: -5, opacity: 0.4 }, g + 0.29);
+          tl.set("#ps-scan", { opacity: 0 }, g + 0.29);
+          tl.set([world, "#ps-bg"], { opacity: 0, visibility: "hidden" }, g + 0.36);
+          window.__timelines["f08-personas"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

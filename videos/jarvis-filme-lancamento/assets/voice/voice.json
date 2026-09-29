@@ -1,0 +1,1183 @@
+{
+ "voice": "pm_alex",
+ "lines": [
+  {
+   "n": 1,
+   "frame": 1,
+   "label": "Gancho",
+   "text": "E se bastasse falar?",
+   "file": "line-01.flac",
+   "duration": 1.643,
+   "asr": "E se bastasse falar?",
+   "words": [
+    {
+     "text": "E",
+     "start": 0.08,
+     "end": 0.24
+    },
+    {
+     "text": "se",
+     "start": 0.24,
+     "end": 0.4
+    },
+    {
+     "text": "bastasse",
+     "start": 0.4,
+     "end": 1.04
+    },
+    {
+     "text": "falar?",
+     "start": 1.04,
+     "end": 1.643
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "frame": 2,
+   "label": "Promessa",
+   "text": "Fale. O JARVIS faz.",
+   "file": "line-02.flac",
+   "duration": 2.148,
+   "asr": "Fale, o Jarvis faz.",
+   "words": [
+    {
+     "text": "Fale.",
+     "start": 0.08,
+     "end": 0.72
+    },
+    {
+     "text": "O",
+     "start": 0.72,
+     "end": 0.96
+    },
+    {
+     "text": "JARVIS",
+     "start": 0.96,
+     "end": 1.6
+    },
+    {
+     "text": "faz.",
+     "start": 1.6,
+     "end": 2.148
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "frame": 2,
+   "label": "O que é",
+   "text": "Um assistente pessoal por voz, que controla o seu celular Android e o seu computador.",
+   "file": "line-03.flac",
+   "duration": 4.754,
+   "asr": "Um assistente pessoal por voz que controla o seu celular Android e o seu computador.",
+   "words": [
+    {
+     "text": "Um",
+     "start": 0.0,
+     "end": 0.24
+    },
+    {
+     "text": "assistente",
+     "start": 0.24,
+     "end": 0.8
+    },
+    {
+     "text": "pessoal",
+     "start": 0.8,
+     "end": 1.28
+    },
+    {
+     "text": "por",
+     "start": 1.28,
+     "end": 1.44
+    },
+    {
+     "text": "voz,",
+     "start": 1.44,
+     "end": 1.92
+    },
+    {
+     "text": "que",
+     "start": 1.92,
+     "end": 2.08
+    },
+    {
+     "text": "controla",
+     "start": 2.08,
+     "end": 2.48
+    },
+    {
+     "text": "o",
+     "start": 2.48,
+     "end": 2.56
+    },
+    {
+     "text": "seu",
+     "start": 2.56,
+     "end": 2.72
+    },
+    {
+     "text": "celular",
+     "start": 2.72,
+     "end": 3.2
+    },
+    {
+     "text": "Android",
+     "start": 3.2,
+     "end": 3.68
+    },
+    {
+     "text": "e",
+     "start": 3.68,
+     "end": 3.84
+    },
+    {
+     "text": "o",
+     "start": 3.84,
+     "end": 3.92
+    },
+    {
+     "text": "seu",
+     "start": 3.92,
+     "end": 4.08
+    },
+    {
+     "text": "computador.",
+     "start": 4.08,
+     "end": 4.754
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "frame": 3,
+   "label": "Virada",
+   "text": "Ele não só responde.",
+   "file": "line-04.flac",
+   "duration": 1.608,
+   "asr": "Ele não só responde.",
+   "words": [
+    {
+     "text": "Ele",
+     "start": 0.0,
+     "end": 0.32
+    },
+    {
+     "text": "não",
+     "start": 0.32,
+     "end": 0.48
+    },
+    {
+     "text": "só",
+     "start": 0.48,
+     "end": 0.72
+    },
+    {
+     "text": "responde.",
+     "start": 0.72,
+     "end": 1.608
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "frame": 3,
+   "label": "Ações",
+   "text": "Ele toca na tela.",
+   "file": "line-05a.flac",
+   "duration": 1.312,
+   "asr": "(cortado de \"Ele toca na tela. Digita.\")",
+   "words": [
+    {
+     "text": "Ele",
+     "start": 0.03,
+     "end": 0.335
+    },
+    {
+     "text": "toca",
+     "start": 0.335,
+     "end": 0.641
+    },
+    {
+     "text": "na",
+     "start": 0.641,
+     "end": 0.946
+    },
+    {
+     "text": "tela.",
+     "start": 0.946,
+     "end": 1.252
+    }
+   ],
+   "part": 1
+  },
+  {
+   "n": 5,
+   "frame": 3,
+   "label": "Ações",
+   "text": "Digita.",
+   "file": "line-05b.flac",
+   "duration": 0.84,
+   "asr": "(cortado de \"Ele toca na tela. Digita.\")",
+   "words": [
+    {
+     "text": "Digita.",
+     "start": 0.03,
+     "end": 0.78
+    }
+   ],
+   "part": 2
+  },
+  {
+   "n": 5,
+   "frame": 3,
+   "label": "Ações",
+   "text": "Abre aplicativos.",
+   "file": "line-05c.flac",
+   "duration": 1.318,
+   "asr": "Abre aplicativos.",
+   "words": [
+    {
+     "text": "Abre",
+     "start": 0.03,
+     "end": 0.644
+    },
+    {
+     "text": "aplicativos.",
+     "start": 0.644,
+     "end": 1.258
+    }
+   ],
+   "part": 3
+  },
+  {
+   "n": 5,
+   "frame": 3,
+   "label": "Ações",
+   "text": "Liga o computador.",
+   "file": "line-05d.flac",
+   "duration": 1.269,
+   "asr": "Liga o computador.",
+   "words": [
+    {
+     "text": "Liga",
+     "start": 0.03,
+     "end": 0.423
+    },
+    {
+     "text": "o",
+     "start": 0.423,
+     "end": 0.816
+    },
+    {
+     "text": "computador.",
+     "start": 0.816,
+     "end": 1.209
+    }
+   ],
+   "part": 4
+  },
+  {
+   "n": 5,
+   "frame": 3,
+   "label": "Ações",
+   "text": "Acende a luz.",
+   "file": "line-05e.flac",
+   "duration": 1.152,
+   "asr": "Acende a luz.",
+   "words": [
+    {
+     "text": "Acende",
+     "start": 0.03,
+     "end": 0.384
+    },
+    {
+     "text": "a",
+     "start": 0.384,
+     "end": 0.738
+    },
+    {
+     "text": "luz.",
+     "start": 0.738,
+     "end": 1.092
+    }
+   ],
+   "part": 5
+  },
+  {
+   "n": 5,
+   "frame": 3,
+   "label": "Ações",
+   "text": "Grava as aulas.",
+   "file": "line-05f.flac",
+   "duration": 1.121,
+   "asr": "Grava as aulas.",
+   "words": [
+    {
+     "text": "Grava",
+     "start": 0.03,
+     "end": 0.374
+    },
+    {
+     "text": "as",
+     "start": 0.374,
+     "end": 0.717
+    },
+    {
+     "text": "aulas.",
+     "start": 0.717,
+     "end": 1.061
+    }
+   ],
+   "part": 6
+  },
+  {
+   "n": 5,
+   "frame": 3,
+   "label": "Ações",
+   "text": "E lê o que a câmera vê.",
+   "file": "line-05g.flac",
+   "duration": 1.381,
+   "asr": "E lê o que a câmera vez.",
+   "words": [
+    {
+     "text": "E",
+     "start": 0.03,
+     "end": 0.214
+    },
+    {
+     "text": "lê",
+     "start": 0.214,
+     "end": 0.399
+    },
+    {
+     "text": "o",
+     "start": 0.399,
+     "end": 0.583
+    },
+    {
+     "text": "que",
+     "start": 0.583,
+     "end": 0.768
+    },
+    {
+     "text": "a",
+     "start": 0.768,
+     "end": 0.952
+    },
+    {
+     "text": "câmera",
+     "start": 0.952,
+     "end": 1.137
+    },
+    {
+     "text": "vê.",
+     "start": 1.137,
+     "end": 1.321
+    }
+   ],
+   "part": 7
+  },
+  {
+   "n": 6,
+   "frame": 4,
+   "label": "Escala",
+   "text": "São duzentas e seis funções prontas, em dezoito áreas.",
+   "file": "line-06.flac",
+   "duration": 3.381,
+   "asr": "São 206 funções prontas em 18 áreas.",
+   "words": [
+    {
+     "text": "São",
+     "start": 0.08,
+     "end": 0.32
+    },
+    {
+     "text": "duzentas",
+     "start": 0.32,
+     "end": 0.86
+    },
+    {
+     "text": "e",
+     "start": 0.86,
+     "end": 0.98
+    },
+    {
+     "text": "seis",
+     "start": 0.98,
+     "end": 1.28
+    },
+    {
+     "text": "funções",
+     "start": 1.28,
+     "end": 1.761
+    },
+    {
+     "text": "prontas,",
+     "start": 1.761,
+     "end": 2.301
+    },
+    {
+     "text": "em",
+     "start": 2.301,
+     "end": 2.481
+    },
+    {
+     "text": "dezoito",
+     "start": 2.481,
+     "end": 2.961
+    },
+    {
+     "text": "áreas.",
+     "start": 2.961,
+     "end": 3.381
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "frame": 4,
+   "label": "Controle",
+   "text": "Do controle do celular à casa inteligente, cada uma com um nível de risco definido.",
+   "file": "line-07.flac",
+   "duration": 4.698,
+   "asr": "Do controle do celular à casa inteligente, cada uma com um nível de risco definido.",
+   "words": [
+    {
+     "text": "Do",
+     "start": 0.0,
+     "end": 0.32
+    },
+    {
+     "text": "controle",
+     "start": 0.32,
+     "end": 0.64
+    },
+    {
+     "text": "do",
+     "start": 0.64,
+     "end": 0.8
+    },
+    {
+     "text": "celular",
+     "start": 0.8,
+     "end": 1.2
+    },
+    {
+     "text": "à",
+     "start": 1.2,
+     "end": 1.36
+    },
+    {
+     "text": "casa",
+     "start": 1.36,
+     "end": 1.76
+    },
+    {
+     "text": "inteligente,",
+     "start": 1.76,
+     "end": 2.48
+    },
+    {
+     "text": "cada",
+     "start": 2.48,
+     "end": 2.72
+    },
+    {
+     "text": "uma",
+     "start": 2.72,
+     "end": 2.96
+    },
+    {
+     "text": "com",
+     "start": 2.96,
+     "end": 3.12
+    },
+    {
+     "text": "um",
+     "start": 3.12,
+     "end": 3.28
+    },
+    {
+     "text": "nível",
+     "start": 3.28,
+     "end": 3.52
+    },
+    {
+     "text": "de",
+     "start": 3.52,
+     "end": 3.68
+    },
+    {
+     "text": "risco",
+     "start": 3.68,
+     "end": 4.08
+    },
+    {
+     "text": "definido.",
+     "start": 4.08,
+     "end": 4.698
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "frame": 5,
+   "label": "Encadeia",
+   "text": "Você pede. Ele encadeia as ações.",
+   "file": "line-08.flac",
+   "duration": 2.893,
+   "asr": "Você pede, ele encadeia as ações.",
+   "words": [
+    {
+     "text": "Você",
+     "start": 0.0,
+     "end": 0.4
+    },
+    {
+     "text": "pede.",
+     "start": 0.4,
+     "end": 1.2
+    },
+    {
+     "text": "Ele",
+     "start": 1.2,
+     "end": 1.44
+    },
+    {
+     "text": "encadeia",
+     "start": 1.44,
+     "end": 2.16
+    },
+    {
+     "text": "as",
+     "start": 2.16,
+     "end": 2.32
+    },
+    {
+     "text": "ações.",
+     "start": 2.32,
+     "end": 2.893
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "frame": 5,
+   "label": "Exemplo",
+   "text": "Uma frase, e ele cria a rotina que acende a luz quando você chegar em casa.",
+   "file": "line-09.flac",
+   "duration": 4.43,
+   "asr": "Uma frase e ele cria a rotina que acende a luz quando você chegar em casa.",
+   "words": [
+    {
+     "text": "Uma",
+     "start": 0.08,
+     "end": 0.32
+    },
+    {
+     "text": "frase,",
+     "start": 0.32,
+     "end": 0.72
+    },
+    {
+     "text": "e",
+     "start": 0.72,
+     "end": 0.88
+    },
+    {
+     "text": "ele",
+     "start": 0.88,
+     "end": 1.04
+    },
+    {
+     "text": "cria",
+     "start": 1.04,
+     "end": 1.36
+    },
+    {
+     "text": "a",
+     "start": 1.36,
+     "end": 1.44
+    },
+    {
+     "text": "rotina",
+     "start": 1.44,
+     "end": 1.92
+    },
+    {
+     "text": "que",
+     "start": 1.92,
+     "end": 2.16
+    },
+    {
+     "text": "acende",
+     "start": 2.16,
+     "end": 2.64
+    },
+    {
+     "text": "a",
+     "start": 2.64,
+     "end": 2.8
+    },
+    {
+     "text": "luz",
+     "start": 2.8,
+     "end": 3.12
+    },
+    {
+     "text": "quando",
+     "start": 3.12,
+     "end": 3.28
+    },
+    {
+     "text": "você",
+     "start": 3.28,
+     "end": 3.52
+    },
+    {
+     "text": "chegar",
+     "start": 3.52,
+     "end": 4.0
+    },
+    {
+     "text": "em",
+     "start": 4.0,
+     "end": 4.08
+    },
+    {
+     "text": "casa.",
+     "start": 4.08,
+     "end": 4.43
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "frame": 6,
+   "label": "Elo",
+   "text": "Com o Elo, o celular e o computador funcionam como um só.",
+   "file": "line-10.flac",
+   "duration": 3.387,
+   "asr": "Com o elo, o celular e o computador funcionam como um só.",
+   "words": [
+    {
+     "text": "Com",
+     "start": 0.0,
+     "end": 0.16
+    },
+    {
+     "text": "o",
+     "start": 0.16,
+     "end": 0.32
+    },
+    {
+     "text": "Elo,",
+     "start": 0.32,
+     "end": 0.72
+    },
+    {
+     "text": "o",
+     "start": 0.72,
+     "end": 0.8
+    },
+    {
+     "text": "celular",
+     "start": 0.8,
+     "end": 1.36
+    },
+    {
+     "text": "e",
+     "start": 1.36,
+     "end": 1.52
+    },
+    {
+     "text": "o",
+     "start": 1.52,
+     "end": 1.6
+    },
+    {
+     "text": "computador",
+     "start": 1.6,
+     "end": 2.16
+    },
+    {
+     "text": "funcionam",
+     "start": 2.16,
+     "end": 2.72
+    },
+    {
+     "text": "como",
+     "start": 2.72,
+     "end": 2.88
+    },
+    {
+     "text": "um",
+     "start": 2.88,
+     "end": 3.04
+    },
+    {
+     "text": "só.",
+     "start": 3.04,
+     "end": 3.387
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "frame": 6,
+   "label": "Elo em ação",
+   "text": "Ligue a máquina de longe, use a tela dela no celular, e compartilhe arquivos e memória.",
+   "file": "line-11.flac",
+   "duration": 4.991,
+   "asr": "Ligue a máquina de longe, use a tela dela no celular e compartilhe arquivos e memória.",
+   "words": [
+    {
+     "text": "Ligue",
+     "start": 0.0,
+     "end": 0.4
+    },
+    {
+     "text": "a",
+     "start": 0.4,
+     "end": 0.48
+    },
+    {
+     "text": "máquina",
+     "start": 0.48,
+     "end": 0.8
+    },
+    {
+     "text": "de",
+     "start": 0.8,
+     "end": 0.96
+    },
+    {
+     "text": "longe,",
+     "start": 0.96,
+     "end": 1.44
+    },
+    {
+     "text": "use",
+     "start": 1.44,
+     "end": 1.84
+    },
+    {
+     "text": "a",
+     "start": 1.84,
+     "end": 1.92
+    },
+    {
+     "text": "tela",
+     "start": 1.92,
+     "end": 2.16
+    },
+    {
+     "text": "dela",
+     "start": 2.16,
+     "end": 2.4
+    },
+    {
+     "text": "no",
+     "start": 2.4,
+     "end": 2.56
+    },
+    {
+     "text": "celular,",
+     "start": 2.56,
+     "end": 3.04
+    },
+    {
+     "text": "e",
+     "start": 3.04,
+     "end": 3.28
+    },
+    {
+     "text": "compartilhe",
+     "start": 3.28,
+     "end": 3.92
+    },
+    {
+     "text": "arquivos",
+     "start": 3.92,
+     "end": 4.32
+    },
+    {
+     "text": "e",
+     "start": 4.32,
+     "end": 4.48
+    },
+    {
+     "text": "memória.",
+     "start": 4.48,
+     "end": 4.991
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "frame": 7,
+   "label": "Poder",
+   "text": "E quando falta uma função, ele escreve a própria ferramenta.",
+   "file": "line-12.flac",
+   "duration": 3.4,
+   "asr": "E quando falta uma função, ele escreve a própria ferramenta.",
+   "words": [
+    {
+     "text": "E",
+     "start": 0.0,
+     "end": 0.24
+    },
+    {
+     "text": "quando",
+     "start": 0.24,
+     "end": 0.48
+    },
+    {
+     "text": "falta",
+     "start": 0.48,
+     "end": 0.88
+    },
+    {
+     "text": "uma",
+     "start": 0.88,
+     "end": 1.04
+    },
+    {
+     "text": "função,",
+     "start": 1.04,
+     "end": 1.6
+    },
+    {
+     "text": "ele",
+     "start": 1.6,
+     "end": 1.76
+    },
+    {
+     "text": "escreve",
+     "start": 1.76,
+     "end": 2.32
+    },
+    {
+     "text": "a",
+     "start": 2.32,
+     "end": 2.4
+    },
+    {
+     "text": "própria",
+     "start": 2.4,
+     "end": 2.72
+    },
+    {
+     "text": "ferramenta.",
+     "start": 2.72,
+     "end": 3.4
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "frame": 7,
+   "label": "Controle",
+   "text": "Em Python. Mas ela só passa a funcionar depois que você revisa o código e aprova.",
+   "file": "line-13.flac",
+   "duration": 5.402,
+   "asr": "Em Python, mas ela só passa a funcionar depois que você revisa o código e a prova.",
+   "words": [
+    {
+     "text": "Em",
+     "start": 0.0,
+     "end": 0.198
+    },
+    {
+     "text": "Python.",
+     "start": 0.198,
+     "end": 0.725
+    },
+    {
+     "text": "Mas",
+     "start": 0.725,
+     "end": 0.988
+    },
+    {
+     "text": "ela",
+     "start": 0.988,
+     "end": 1.252
+    },
+    {
+     "text": "só",
+     "start": 1.252,
+     "end": 1.449
+    },
+    {
+     "text": "passa",
+     "start": 1.449,
+     "end": 1.845
+    },
+    {
+     "text": "a",
+     "start": 1.845,
+     "end": 1.976
+    },
+    {
+     "text": "funcionar",
+     "start": 1.976,
+     "end": 2.635
+    },
+    {
+     "text": "depois",
+     "start": 2.635,
+     "end": 3.096
+    },
+    {
+     "text": "que",
+     "start": 3.096,
+     "end": 3.36
+    },
+    {
+     "text": "você",
+     "start": 3.36,
+     "end": 3.689
+    },
+    {
+     "text": "revisa",
+     "start": 3.689,
+     "end": 4.15
+    },
+    {
+     "text": "o",
+     "start": 4.15,
+     "end": 4.282
+    },
+    {
+     "text": "código",
+     "start": 4.282,
+     "end": 4.743
+    },
+    {
+     "text": "e",
+     "start": 4.743,
+     "end": 4.875
+    },
+    {
+     "text": "aprova.",
+     "start": 4.875,
+     "end": 5.402
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "frame": 8,
+   "label": "Personalidades",
+   "text": "Duas personalidades. Uma só memória.",
+   "file": "line-14.flac",
+   "duration": 3.123,
+   "asr": "Duas personalidades. Uma só memória.",
+   "words": [
+    {
+     "text": "Duas",
+     "start": 0.0,
+     "end": 0.56
+    },
+    {
+     "text": "personalidades.",
+     "start": 0.56,
+     "end": 1.84
+    },
+    {
+     "text": "Uma",
+     "start": 1.84,
+     "end": 2.16
+    },
+    {
+     "text": "só",
+     "start": 2.16,
+     "end": 2.48
+    },
+    {
+     "text": "memória.",
+     "start": 2.48,
+     "end": 3.123
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "frame": 8,
+   "label": "JARVIS × ULTRON",
+   "text": "JARVIS ou ULTRON: mesma memória, mesmas ferramentas.",
+   "file": "line-15.flac",
+   "duration": 3.438,
+   "asr": "Jarvis ou Ultron, mesma memória, mesmas ferramentas.",
+   "words": [
+    {
+     "text": "JARVIS",
+     "start": 0.0,
+     "end": 0.56
+    },
+    {
+     "text": "ou",
+     "start": 0.56,
+     "end": 0.72
+    },
+    {
+     "text": "ULTRON:",
+     "start": 0.72,
+     "end": 1.36
+    },
+    {
+     "text": "mesma",
+     "start": 1.36,
+     "end": 1.68
+    },
+    {
+     "text": "memória,",
+     "start": 1.68,
+     "end": 2.16
+    },
+    {
+     "text": "mesmas",
+     "start": 2.16,
+     "end": 2.56
+    },
+    {
+     "text": "ferramentas.",
+     "start": 2.56,
+     "end": 3.438
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "frame": 9,
+   "label": "Português",
+   "text": "Feito em português. No seu celular e no seu computador.",
+   "file": "line-16.flac",
+   "duration": 3.666,
+   "asr": "Feito em português. No seu celular e no seu computador.",
+   "words": [
+    {
+     "text": "Feito",
+     "start": 0.0,
+     "end": 0.56
+    },
+    {
+     "text": "em",
+     "start": 0.56,
+     "end": 0.72
+    },
+    {
+     "text": "português.",
+     "start": 0.72,
+     "end": 1.52
+    },
+    {
+     "text": "No",
+     "start": 1.52,
+     "end": 1.68
+    },
+    {
+     "text": "seu",
+     "start": 1.68,
+     "end": 1.92
+    },
+    {
+     "text": "celular",
+     "start": 1.92,
+     "end": 2.48
+    },
+    {
+     "text": "e",
+     "start": 2.48,
+     "end": 2.64
+    },
+    {
+     "text": "no",
+     "start": 2.64,
+     "end": 2.8
+    },
+    {
+     "text": "seu",
+     "start": 2.8,
+     "end": 2.96
+    },
+    {
+     "text": "computador.",
+     "start": 2.96,
+     "end": 3.666
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "frame": 9,
+   "label": "Assinatura",
+   "text": "Fale. O JARVIS faz.",
+   "file": "line-17.flac",
+   "duration": 2.149,
+   "asr": "Fale, o Jarvis faz.",
+   "words": [
+    {
+     "text": "Fale.",
+     "start": 0.08,
+     "end": 0.72
+    },
+    {
+     "text": "O",
+     "start": 0.72,
+     "end": 0.96
+    },
+    {
+     "text": "JARVIS",
+     "start": 0.96,
+     "end": 1.6
+    },
+    {
+     "text": "faz.",
+     "start": 1.6,
+     "end": 2.149
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "frame": 9,
+   "label": "Convite",
+   "text": "Teste grátis por sete dias.",
+   "file": "line-18.flac",
+   "duration": 2.102,
+   "asr": "Teste grátis por sete dias.",
+   "words": [
+    {
+     "text": "Teste",
+     "start": 0.08,
+     "end": 0.56
+    },
+    {
+     "text": "grátis",
+     "start": 0.56,
+     "end": 1.04
+    },
+    {
+     "text": "por",
+     "start": 1.04,
+     "end": 1.28
+    },
+    {
+     "text": "sete",
+     "start": 1.28,
+     "end": 1.6
+    },
+    {
+     "text": "dias.",
+     "start": 1.6,
+     "end": 2.102
+    }
+   ]
+  }
+ ],
+ "speed": 0.97,
+ "total_speech": 65.61
+}

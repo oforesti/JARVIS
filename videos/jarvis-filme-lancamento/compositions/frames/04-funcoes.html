@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template id="f04-funcoes-template">
+      <style>
+        @font-face { font-family: "Mona Sans"; src: url("assets/fonts/MonaSans-Variable.woff2") format("woff2"); font-weight: 200 900; font-stretch: 75% 125%; }
+        @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; }
+        @font-face { font-family: "Orbitron"; src: url("assets/fonts/Orbitron-Variable.woff2") format("woff2"); font-weight: 400 900; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #04080c; }
+        #fn-bg { position: absolute; inset: 0; }
+        #fn-glow { position: absolute; left: 160px; top: 60px; width: 1600px; height: 900px; border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(22,96,124,0.20), rgba(6,19,33,0.50) 62%, rgba(4,8,12,0) 100%); }
+        #fn-grid { position: absolute; inset: 0;
+          background-image: linear-gradient(rgba(111,133,145,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(111,133,145,0.07) 1px, transparent 1px);
+          background-size: 64px 64px; background-position: 0 28px;
+          -webkit-mask-image: radial-gradient(1000px 600px at 50% 46%, #000 0%, transparent 100%);
+                  mask-image: radial-gradient(1000px 600px at 50% 46%, #000 0%, transparent 100%); }
+
+        #fn-world { position: absolute; inset: 0; transform-origin: 960px 430px; }
+
+        /* contador */
+        #fn-num { position: absolute; left: 184px; top: 262px; transform-origin: 0 0; white-space: nowrap;
+          font-family: "Mona Sans", sans-serif; font-stretch: 125%; font-weight: 500; font-size: 300px; line-height: 1; color: #e6f7fd; }
+        #fn-num .dg { display: inline-block; width: 0.74em; text-align: center; }
+        #fn-num .dg.z { color: rgba(142,167,178,0.20); }
+        #fn-shine { position: absolute; inset: 0; white-space: nowrap; opacity: 0;
+          background: linear-gradient(105deg, rgba(230,247,253,0) 38%, rgba(255,255,255,0.95) 50%, rgba(230,247,253,0) 62%);
+          background-size: 240% 100%; background-position: 120% 0%;
+          -webkit-background-clip: text; background-clip: text; color: transparent; }
+        #fn-label { position: absolute; left: 198px; top: 598px; font-family: "Geist Mono", monospace; font-weight: 500; font-size: 30px;
+          letter-spacing: 0.32em; color: #5cd6f5; white-space: nowrap; }
+
+        /* cabeçalho depois da reorganização */
+        #fn-head { position: absolute; left: 434px; top: 166px; display: flex; flex-direction: column; gap: 10px;
+          font-family: "Geist Mono", monospace; font-weight: 500; font-size: 20px; letter-spacing: 0.26em; white-space: nowrap; }
+        #fn-head .a { color: #e6f7fd; } #fn-head .b { color: #5cd6f5; }
+
+        #fn-risk { position: absolute; right: 192px; top: 178px; display: flex; gap: 30px; align-items: center; }
+        .rk { display: flex; align-items: center; gap: 12px; }
+        .rk-n { font-family: "Geist Mono", monospace; font-weight: 500; font-size: 28px; color: #e6f7fd; letter-spacing: 0.02em; }
+        .pill { font-family: "Orbitron", sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+          padding: 7px 14px 6px; border-radius: 999px; border: 1.5px solid rgba(var(--b), 0.55); background: rgba(var(--b), 0.14); color: rgb(var(--b)); }
+        .r-s { --b: 95,220,188; } .r-m { --b: 98,191,245; } .r-x { --b: 242,182,92; } .r-c { --b: 242,107,116; }
+
+        #fn-bar { position: absolute; left: 192px; top: 262px; width: 1536px; height: 4px; }
+        #fn-bar-base { position: absolute; inset: 0; background: rgba(111,133,145,0.30); border-radius: 2px; }
+        .seg { position: absolute; top: 0; height: 4px; border-radius: 2px; background: rgb(var(--b)); }
+
+        /* unidades (cada quadrado = uma função real) */
+        #fn-cells { position: absolute; inset: 0; }
+        .cl { position: absolute; inset: 0; }
+        .c { position: absolute; left: 0; top: 0; width: 16px; height: 16px; border-radius: 4px; background: #5cd6f5; opacity: 0; transform-origin: 0 0; }
+        .cl-lab { position: absolute; width: 226px; display: flex; justify-content: space-between; align-items: baseline; opacity: 0; white-space: nowrap; }
+        .cl-lab .nm { font-family: "Mona Sans", sans-serif; font-weight: 500; font-size: 23px; color: #e6f7fd; }
+        .cl-lab .ct { font-family: "Geist Mono", monospace; font-weight: 500; font-size: 20px; color: #5cd6f5; }
+
+        #fn-ring { position: absolute; width: 46px; height: 46px; border-radius: 50%; border: 2px solid #a8ecfb; opacity: 0;
+          box-shadow: 0 0 18px rgba(92,214,245,0.55); }
+
+        /* card real que sai da unidade e vira o painel da próxima cena */
+        #fn-card { position: absolute; left: 670px; top: 270px; width: 580px; height: 320px; border-radius: 18px; background: #0b1820;
+          border: 1.5px solid rgba(92,214,245,0.34); box-shadow: 0 40px 120px rgba(0,0,0,0.55), inset 0 1px 0 rgba(230,247,253,0.10);
+          opacity: 0; transform-origin: 50% 50%; }
+        #fn-card-in { position: absolute; left: 40px; right: 40px; top: 36px; }
+        .cd-top { display: flex; justify-content: space-between; align-items: center; }
+        .cd-cat { font-family: "Geist Mono", monospace; font-weight: 500; font-size: 17px; letter-spacing: 0.26em; color: #8ea7b2; }
+        .cd-name { margin-top: 30px; font-family: "Mona Sans", sans-serif; font-stretch: 112%; font-weight: 600; font-size: 46px; color: #e6f7fd; letter-spacing: -0.005em; }
+        .cd-desc { margin-top: 16px; font-family: "Mona Sans", sans-serif; font-weight: 400; font-size: 23px; line-height: 1.4; color: #c4dae3; }
+      </style>
+      <div id="root" data-composition-id="f04-funcoes" data-width="1920" data-height="1080">
+        <div id="fn-bg" data-layout-ignore><div id="fn-glow"></div><div id="fn-grid"></div></div>
+
+        <div id="fn-world">
+          <div id="fn-num"><span class="dg" data-layout-allow-overlap>0</span><span class="dg" data-layout-allow-overlap>0</span><span class="dg" data-layout-allow-overlap>0</span><div id="fn-shine" data-layout-ignore><span class="dg">2</span><span class="dg">0</span><span class="dg">6</span></div></div>
+          <div id="fn-label" data-layout-allow-overlap>FUNÇÕES PRONTAS</div>
+
+          <div id="fn-head"><span class="a">FUNÇÕES PRONTAS</span><span class="b">EM 18 ÁREAS</span></div>
+          <div id="fn-risk">
+            <div class="rk"><span class="rk-n">104</span><span class="pill r-s">Segura</span></div>
+            <div class="rk"><span class="rk-n">92</span><span class="pill r-m">Moderada</span></div>
+            <div class="rk"><span class="rk-n">8</span><span class="pill r-x">Sensível</span></div>
+            <div class="rk"><span class="rk-n">2</span><span class="pill r-c">Crítica</span></div>
+          </div>
+          <div id="fn-bar"><div id="fn-bar-base"></div></div>
+
+          <div id="fn-cells"></div>
+          <div id="fn-ring" data-layout-ignore></div>
+        </div>
+
+        <div id="fn-card" data-layout-allow-overlap>
+          <div id="fn-card-in">
+            <div class="cd-top"><span class="cd-cat">CASA · FUNÇÃO</span><span class="pill r-m">Moderada</span></div>
+            <div class="cd-name">ligar dispositivo</div>
+            <div class="cd-desc">Liga uma luz, uma tomada, um ventilador ou qualquer dispositivo da casa inteligente.</div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          const J = window.JM;
+          const F = JT.frame("f04");
+          const L = (t) => t - F.start;
+          const END = F.end - F.start;
+          const tCount = L(JT.marks.count_start) - 0.04;   // "duzentas"
+          const tFuncoes = L(JT.word("L06", "funções"));
+          const tAreas = L(JT.marks.areas_at);              // "dezoito"
+          const tCtrl = L(JT.word("L07", "controle"));
+          const tCasa = L(JT.word("L07", "casa"));
+          const tCada = L(JT.word("L07", "cada"));
+          const tNivel = L(JT.word("L07", "nível"));
+          const tRisco = L(JT.marks.risk_at);
+
+          // 18 áreas reais do catálogo (contagem por nível: segura, moderada, sensível, crítica)
+          const AREAS = [
+            ["Celular", 18, 25, 0, 0], ["Estudo", 22, 13, 0, 0], ["Geral", 11, 7, 1, 0], ["Elo", 5, 10, 1, 0], ["Mídia", 5, 8, 0, 0], ["Agenda", 6, 4, 1, 0],
+            ["Web", 10, 0, 1, 0], ["Arquivos", 5, 4, 0, 1], ["Memória", 8, 1, 0, 0], ["Conhecimento", 4, 3, 0, 0], ["Utilidades", 3, 3, 1, 0], ["Casa", 1, 4, 0, 0],
+            ["Documentos", 0, 5, 0, 0], ["Controle de tela", 0, 4, 0, 0], ["Código", 2, 0, 1, 0], ["Comunicação", 2, 0, 0, 1], ["Trânsito", 2, 1, 0, 0], ["Mensagem", 0, 0, 2, 0],
+          ];
+          const RC = ["rgb(95,220,188)", "rgb(98,191,245)", "rgb(242,182,92)", "rgb(242,107,116)"];
+          const CYAN = "rgb(92,214,245)";
+
+          // geometria — fase 1: grade 24 colunas ao lado do número; fase 2: 18 grupos (6 × 3)
+          const G1 = { x: 1010, y: 300, pitch: 30, cols: 24, s: 1.4 };
+          const COLW = 226, GAP = 36, PITCH = 22, PER = 10;
+          const ROWY = [330, 530, 668];
+          const cellsRoot = document.getElementById("fn-cells");
+          const cells = [];
+          const clusters = [];
+          let idx = 0;
+          AREAS.forEach((a, k) => {
+            const [name, ...byRisk] = a;
+            const total = byRisk.reduce((s, v) => s + v, 0);
+            const cx = 192 + (k % 6) * (COLW + GAP), cy = ROWY[Math.floor(k / 6)];
+            const cl = document.createElement("div");
+            cl.className = "cl";
+            const lab = document.createElement("div");
+            lab.className = "cl-lab";
+            lab.style.left = cx + "px"; lab.style.top = cy + "px";
+            lab.innerHTML = `<span class="nm">${name}</span><span class="ct">${total}</span>`;
+            cl.appendChild(lab);
+            const list = [];
+            let n = 0;
+            byRisk.forEach((count, r) => {
+              for (let j = 0; j < count; j++, n++) {
+                const c = document.createElement("div");
+                c.className = "c";
+                cl.appendChild(c);
+                const cell = { el: c, i: idx, risk: r, k,
+                  x1: G1.x + (idx % G1.cols) * G1.pitch, y1: G1.y + Math.floor(idx / G1.cols) * G1.pitch,
+                  x2: cx + (n % PER) * PITCH, y2: cy + 44 + Math.floor(n / PER) * PITCH };
+                cells.push(cell); list.push(cell);
+                idx++;
+              }
+            });
+            cellsRoot.appendChild(cl);
+            clusters.push({ el: cl, lab, name, cells: list });
+          });
+          const N = cells.length; // 206
+
+          // ---------------------------------------------------------------- chegada (empurrão em profundidade)
+          tl.fromTo("#fn-world", { scale: 1.08, opacity: 0, filter: "blur(10px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.7, ease: "power3.out" }, 0);
+          tl.fromTo("#fn-glow", { opacity: 0.4 }, { opacity: 1, duration: 3, ease: "sine.inOut" }, 0);
+          cells.forEach((c) => gsap.set(c.el, { x: c.x1, y: c.y1, scale: G1.s }));
+
+          // ---------------------------------------------------------------- 1 · 206 conta na voz
+          const dg = Array.from(document.querySelectorAll("#fn-num > .dg"));
+          const setNum = (v) => {
+            const n = Math.round(v), s = String(n).padStart(3, "0"), lead = 3 - String(n).length;
+            dg.forEach((d, i) => { d.textContent = s[i]; d.classList.toggle("z", i < lead); });
+          };
+          setNum(0);
+          const CDUR = 0.9;
+          const proxy = { v: 0 };
+          tl.fromTo(proxy, { v: 0 }, { v: N, duration: CDUR, ease: "power3.out", onUpdate: () => setNum(proxy.v) }, tCount);
+          // cada unidade acende quando o contador passa por ela (inverso de power3.out)
+          cells.forEach((c) => {
+            const at = tCount + CDUR * (1 - Math.pow(1 - (c.i + 0.5) / N, 1 / 3));
+            tl.fromTo(c.el, { opacity: 0 }, { opacity: 1, duration: 0.06, ease: "none" }, at);
+            tl.fromTo(c.el, { backgroundColor: "rgb(244,253,255)" }, { backgroundColor: CYAN, duration: 0.4, ease: "power2.out" }, at);
+          });
+          tl.fromTo("#fn-shine", { opacity: 1, backgroundPosition: "120% 0%" }, { backgroundPosition: "-20% 0%", duration: 0.9, ease: "power2.inOut", immediateRender: false }, tCount + CDUR - 0.05);
+          tl.set("#fn-shine", { opacity: 0 }, tCount + CDUR + 0.9);
+          J.trackIn(tl, document.getElementById("fn-label"), tFuncoes - 0.05, { fontPx: 30, spread: 0.5, dur: 0.8, blur: 8 });
+
+          // ---------------------------------------------------------------- 2 · as 18 áreas se organizam
+          const t2 = tAreas - 0.08;
+          J.focusOut(tl, "#fn-label", t2 - 0.05, { dur: 0.3 });
+          tl.fromTo("#fn-num", { x: 0, y: 0, scale: 1 }, { x: 8, y: -128, scale: 0.3, duration: 0.95, ease: "expo.inOut" }, t2);
+          cells.forEach((c) => {
+            tl.fromTo(c.el, { x: c.x1, y: c.y1, scale: G1.s }, { x: c.x2, y: c.y2, scale: 1, duration: 0.85, ease: "expo.inOut" }, t2 + 0.05 + c.k * 0.026);
+          });
+          clusters.forEach((cl, k) => J.hudIn(tl, cl.lab, t2 + 0.45 + k * 0.026, { x: -10, dur: 0.5 }));
+          const head = document.querySelectorAll("#fn-head span");
+          J.hudIn(tl, head[0], t2 + 0.55, { x: -12 });
+          J.hudIn(tl, head[1], t2 + 0.65, { x: -12 });
+          J.drawLine(tl, "#fn-bar-base", t2 + 0.35, { dur: 1.1 });
+
+          // "do controle do celular à casa inteligente" — foco numa área, depois na outra
+          const byName = (n) => clusters.find((c) => c.name === n);
+          const cel = byName("Celular"), casa = byName("Casa");
+          clusters.forEach((cl) => {
+            if (cl !== cel) tl.fromTo(cl.el, { opacity: 1 }, { opacity: 0.2, duration: 0.4, ease: "power2.inOut" }, tCtrl);
+            if (cl !== casa) tl.fromTo(cl.el, { opacity: 0.2 }, { opacity: 1, duration: 0.45, ease: "power2.inOut", immediateRender: false }, tCada - 0.05);
+          });
+          tl.fromTo(cel.lab.querySelector(".nm"), { color: "#e6f7fd" }, { color: "#5cd6f5", duration: 0.3, ease: "power2.out" }, tCtrl);
+          tl.fromTo(cel.el, { opacity: 1 }, { opacity: 0.2, duration: 0.4, ease: "power2.inOut", immediateRender: false }, tCasa - 0.05);
+          tl.fromTo(cel.lab.querySelector(".nm"), { color: "#5cd6f5" }, { color: "#e6f7fd", duration: 0.3, ease: "power2.out", immediateRender: false }, tCasa - 0.05);
+          tl.fromTo(casa.el, { opacity: 0.2 }, { opacity: 1, duration: 0.4, ease: "power2.inOut", immediateRender: false }, tCasa - 0.05);
+          tl.fromTo(casa.lab.querySelector(".nm"), { color: "#e6f7fd" }, { color: "#5cd6f5", duration: 0.3, ease: "power2.out" }, tCasa - 0.05);
+          tl.fromTo(casa.lab.querySelector(".nm"), { color: "#5cd6f5" }, { color: "#e6f7fd", duration: 0.3, ease: "power2.out", immediateRender: false }, tCada);
+          cel.cells.concat(casa.cells).forEach((c) => {
+            const on = cel.cells.includes(c) ? tCtrl : tCasa - 0.05;
+            tl.fromTo(c.el, { backgroundColor: CYAN }, { backgroundColor: "rgb(168,236,251)", duration: 0.3, ease: "power2.out", immediateRender: false }, on);
+            tl.fromTo(c.el, { backgroundColor: "rgb(168,236,251)" }, { backgroundColor: CYAN, duration: 0.3, ease: "power2.out", immediateRender: false }, cel.cells.includes(c) ? tCasa - 0.05 : tCada);
+          });
+
+          // ---------------------------------------------------------------- 3 · cada uma com um nível de risco
+          cells.forEach((c) => {
+            const at = tNivel + ((c.x2 - 192) / 1536) * 0.55;
+            tl.fromTo(c.el, { backgroundColor: CYAN }, { backgroundColor: RC[c.risk], duration: 0.35, ease: "power2.out", immediateRender: false }, at);
+          });
+          const RN = [104, 92, 8, 2], GAPB = 4, W = 1536 - GAPB * 3;
+          let bx = 0;
+          RN.forEach((n, r) => {
+            const s = document.createElement("div");
+            s.className = "seg " + ["r-s", "r-m", "r-x", "r-c"][r];
+            const w = (n / 206) * W;
+            s.style.left = bx + "px"; s.style.width = w + "px";
+            document.getElementById("fn-bar").appendChild(s);
+            bx += w + GAPB;
+            tl.fromTo(s, { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 0.5, ease: "expo.out" }, tRisco - 0.1 + r * 0.12);
+          });
+          gsap.utils.toArray("#fn-risk .rk").forEach((el, r) => J.hudIn(tl, el, tRisco - 0.12 + r * 0.1, { x: 12, dur: 0.45 }));
+
+          // ---------------------------------------------------------------- 4 · uma função real sai do quadro e a câmera entra nela
+          const hero = casa.cells[casa.cells.length - 1]; // "ligar dispositivo" (moderada) — o passo 2 da próxima cena
+          const hx = hero.x2 + 8, hy = hero.y2 + 8;
+          const ring = document.getElementById("fn-ring");
+          gsap.set(ring, { left: hx - 23, top: hy - 23 });
+          const tFocus = END - 1.2;
+          tl.fromTo(ring, { opacity: 0, scale: 1.8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, tFocus);
+          tl.fromTo(hero.el, { backgroundColor: RC[1] }, { backgroundColor: "rgb(230,247,253)", duration: 0.2, ease: "power2.out", immediateRender: false }, tFocus);
+          tl.fromTo("#fn-world", { opacity: 1, filter: "blur(0px)" }, { opacity: 0.42, filter: "blur(5px)", duration: 0.5, ease: "power2.inOut", immediateRender: false }, tFocus + 0.14);
+          const cardCX = 960, cardCY = 430;
+          const tOut = tFocus + 0.16;
+          tl.fromTo("#fn-card", { opacity: 0, x: hx - cardCX, y: hy - cardCY, scale: 16 / 580 },
+            { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, tOut);
+          const tPlunge = END - 0.46;
+          tl.fromTo("#fn-card-in", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(6px)", duration: 0.2, ease: "power1.in", immediateRender: false }, tPlunge + 0.14);
+          tl.fromTo("#fn-card", { scale: 1 }, { scale: 9, duration: 0.46, ease: "power3.in", immediateRender: false }, tPlunge);
+          tl.fromTo("#fn-world", { scale: 1 }, { scale: 1.4, duration: 0.6, ease: "power2.in", immediateRender: false }, END - 0.6);
+
+          window.__timelines["f04-funcoes"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

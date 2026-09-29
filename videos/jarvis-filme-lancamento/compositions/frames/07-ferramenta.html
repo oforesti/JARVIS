@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template id="f07-ferramenta-template">
+      <style>
+        @font-face { font-family: "Mona Sans"; src: url("assets/fonts/MonaSans-Variable.woff2") format("woff2"); font-weight: 200 900; font-stretch: 75% 125%; }
+        @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; }
+        @font-face { font-family: "Orbitron"; src: url("assets/fonts/Orbitron-Variable.woff2") format("woff2"); font-weight: 400 900; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #04080c; }
+        #fe-bg { position: absolute; inset: 0; }
+        #fe-glow { position: absolute; left: 260px; top: 20px; width: 1400px; height: 860px; border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(22,96,124,0.18), rgba(6,19,33,0.5) 60%, rgba(4,8,12,0) 100%); }
+
+        /* o catálogo, com uma lacuna */
+        #fe-field { position: absolute; inset: 0; transform-origin: 960px 450px; }
+        .fc { position: absolute; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 6px; background: #5cd6f5; opacity: 0; }
+        #fe-slot { position: absolute; left: 943px; top: 433px; width: 34px; height: 34px; }
+        #fe-slot svg { width: 34px; height: 34px; overflow: visible; }
+        #fe-newcell { position: absolute; left: 947px; top: 437px; width: 26px; height: 26px; border-radius: 6px; background: #e6f7fd; opacity: 0;
+          box-shadow: 0 0 22px rgba(168,236,251,0.9); }
+        #fe-lockring { position: absolute; left: 930px; top: 420px; width: 60px; height: 60px; border-radius: 50%; border: 2px solid #a8ecfb; opacity: 0; }
+        #fe-caret { position: absolute; left: 0; top: 0; width: 4px; height: 64px; margin: -32px 0 0 -2px; background: #5cd6f5; box-shadow: 0 0 14px rgba(92,214,245,0.7); }
+        #fe-seam { position: absolute; left: 959px; top: 0; width: 2px; height: 1080px; background: #a8ecfb; opacity: 0; box-shadow: 0 0 18px #5cd6f5; }
+
+        /* o editor */
+        #fe-panel { position: absolute; left: 370px; top: 180px; width: 1180px; height: 540px; border-radius: 18px; background: rgba(9,20,27,0.94);
+          border: 1.5px solid rgba(92,214,245,0.28); box-shadow: 0 40px 120px rgba(0,0,0,0.6), inset 0 1px 0 rgba(230,247,253,0.08);
+          transform-origin: 50% 50%; opacity: 0; overflow: hidden; }
+        #fe-in { position: absolute; inset: 0; }
+        #fe-bar { position: absolute; left: 0; right: 0; top: 0; height: 68px; border-bottom: 1px solid rgba(24,49,64,0.9); display: flex; align-items: center; padding: 0 30px; gap: 18px; }
+        .dots { display: flex; gap: 9px; } .dots i { width: 11px; height: 11px; border-radius: 50%; background: rgba(111,133,145,0.45); display: block; }
+        #fe-file { font-family: "Geist Mono", monospace; font-weight: 500; font-size: 20px; color: #e6f7fd; margin-left: 10px; }
+        #fe-lang { font-family: "Geist Mono", monospace; font-weight: 600; font-size: 14px; letter-spacing: 0.22em; color: #8ea7b2; padding: 5px 10px; border: 1px solid rgba(111,133,145,0.5); border-radius: 6px; }
+        #fe-by { margin-left: auto; font-family: "Geist Mono", monospace; font-weight: 500; font-size: 15px; letter-spacing: 0.22em; color: #8ea7b2; }
+        .pill { position: relative; font-family: "Orbitron", sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+          padding: 7px 14px 6px; border-radius: 999px; border: 1.5px solid rgba(var(--b), 0.6); background: rgba(var(--b), 0.14); color: rgb(var(--b)); }
+        .p-wait { --b: 242,182,92; } .p-ok { --b: 95,220,188; }
+        #fe-pills { position: relative; width: 150px; height: 34px; }
+        #fe-pills .pill { position: absolute; right: 0; top: 0; white-space: nowrap; }
+        #fe-pill-ok { opacity: 0; }
+
+        #fe-code { position: absolute; left: 0; right: 0; top: 96px; font-family: "Geist Mono", monospace; font-weight: 400; font-size: 25px; line-height: 50px; }
+        .ln { position: relative; height: 50px; padding-left: 96px; white-space: pre; }
+        .ln .no { position: absolute; left: 30px; width: 40px; text-align: right; color: #7f97a3; opacity: 0; }
+        .u { position: relative; opacity: 0; }
+        .u[data-c="1"]::after { content: ""; position: absolute; right: -5px; top: 9px; width: 3px; height: 32px; background: #5cd6f5; }
+        .kw { color: #5cd6f5; } .fn { color: #e6f7fd; font-weight: 600; } .id { color: #c4dae3; } .p { color: #8ea7b2; }
+        .st { color: #5fdcbc; } .nu { color: #a8ecfb; } .bi { color: #a8ecfb; }
+        #fe-read { position: absolute; left: 0; right: 0; height: 50px; top: 96px; opacity: 0;
+          background: linear-gradient(90deg, rgba(92,214,245,0) 0%, rgba(92,214,245,0.14) 12%, rgba(92,214,245,0.14) 88%, rgba(92,214,245,0) 100%);
+          border-top: 1px solid rgba(92,214,245,0.35); border-bottom: 1px solid rgba(92,214,245,0.35); }
+
+        #fe-foot { position: absolute; left: 0; right: 0; bottom: 0; height: 92px; border-top: 1px solid rgba(24,49,64,0.9); display: flex; align-items: center; padding: 0 30px; }
+        #fe-hint { font-family: "Geist Mono", monospace; font-weight: 500; font-size: 17px; letter-spacing: 0.06em; color: #8ea7b2; }
+        #fe-btn { position: relative; margin-left: auto; overflow: hidden; font-family: "Orbitron", sans-serif; font-weight: 600; font-size: 16px; letter-spacing: 0.24em;
+          color: #e6f7fd; padding: 15px 30px 14px; border-radius: 12px; border: 1.5px solid rgba(92,214,245,0.7); background: rgba(92,214,245,0.12); }
+        #fe-btn .rp { position: absolute; left: 50%; top: 50%; width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%; background: rgba(168,236,251,0.55); opacity: 0; }
+      </style>
+      <div id="root" data-composition-id="f07-ferramenta" data-width="1920" data-height="1080">
+        <div id="fe-bg" data-layout-ignore><div id="fe-glow"></div></div>
+
+        <div id="fe-field" data-layout-ignore></div>
+        <div id="fe-slot" data-layout-ignore><svg viewBox="0 0 34 34"><rect id="fe-slot-r" x="1" y="1" width="32" height="32" rx="7" fill="none" stroke="#5cd6f5" stroke-width="2" stroke-dasharray="5 4" /></svg></div>
+        <div id="fe-newcell" data-layout-ignore></div>
+        <div id="fe-lockring" data-layout-ignore></div>
+
+        <div id="fe-panel">
+          <div id="fe-in">
+            <div id="fe-bar">
+              <div class="dots"><i></i><i></i><i></i></div>
+              <span id="fe-file">ajustar_receita.py</span>
+              <span id="fe-lang">PYTHON</span>
+              <span id="fe-by">ESCRITA PELO JARVIS</span>
+              <div id="fe-pills"><span class="pill p-wait" id="fe-pill-wait">Pendente</span><span class="pill p-ok" id="fe-pill-ok">Aprovada</span></div>
+            </div>
+            <div id="fe-read" data-layout-ignore></div>
+            <div id="fe-code">
+              <div class="ln"><span class="no">1</span><span class="u kw">def</span><span class="u"> </span><span class="u fn">ajustar_receita</span><span class="u p">(</span><span class="u id">ingredientes</span><span class="u p">, </span><span class="u id">porcoes</span><span class="u p">, </span><span class="u id">base</span><span class="u p">=</span><span class="u nu">4</span><span class="u p">):</span></div>
+              <div class="ln"><span class="no">2</span><span class="u">    </span><span class="u st">"""Recalcula</span><span class="u st"> a receita</span><span class="u st"> para outro</span><span class="u st"> número de</span><span class="u st"> porções."""</span></div>
+              <div class="ln"><span class="no">3</span><span class="u">    </span><span class="u id">fator</span><span class="u p"> = </span><span class="u id">porcoes</span><span class="u p"> / </span><span class="u id">base</span></div>
+              <div class="ln"><span class="no">4</span><span class="u">    </span><span class="u kw">return</span><span class="u p"> {</span><span class="u id">item</span><span class="u p">: </span><span class="u bi">round</span><span class="u p">(</span><span class="u id">qtd</span><span class="u p"> * </span><span class="u id">fator</span><span class="u p">, </span><span class="u nu">1</span><span class="u p">)</span></div>
+              <div class="ln"><span class="no">5</span><span class="u">            </span><span class="u kw">for</span><span class="u id"> item</span><span class="u p">, </span><span class="u id">qtd</span><span class="u kw"> in </span><span class="u id">ingredientes</span><span class="u p">.</span><span class="u bi">items</span><span class="u p">()}</span></div>
+            </div>
+            <div id="fe-foot">
+              <span id="fe-hint">revise o código antes de aprovar</span>
+              <div id="fe-btn"><span class="rp"></span>APROVAR</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="fe-caret" data-layout-ignore></div>
+        <div id="fe-seam" data-layout-ignore></div>
+      </div>
+      <script>
+        (function () {
+          gsap.registerPlugin(DrawSVGPlugin);
+          const tl = gsap.timeline({ paused: true });
+          const J = window.JM;
+          const F = JT.frame("f07");
+          const L = (t) => t - F.start;
+          const END = F.end - F.start;
+          const tQuando = L(JT.word("L12", "quando"));
+          const tFalta = L(JT.word("L12", "falta"));
+          const tFuncao = L(JT.word("L12", "função"));
+          const tEscreve = L(JT.marks.code_start);
+          const tPython = L(JT.word("L13", "Python"));
+          const tSo = L(JT.word("L13", "só"));
+          const tRevisa = L(JT.marks.review_at);
+          const tAprova = L(JT.marks.approve_at);
+          const tEnd13 = L(JT.v("L13").end);
+
+          // ---------------------------------------------------------------- o catálogo com uma lacuna no centro
+          const field = document.getElementById("fe-field");
+          const COLS = 21, ROWS = 9, PITCH = 38, CX = 960, CY = 450;
+          const fcs = [];
+          for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+            if (r === 4 && c === 10) continue; // a lacuna
+            const el = document.createElement("div");
+            el.className = "fc";
+            const x = CX + (c - 10) * PITCH, y = CY + (r - 4) * PITCH;
+            el.style.left = x + "px"; el.style.top = y + "px";
+            field.appendChild(el);
+            const d = Math.hypot((c - 10) / 10.5, (r - 4) / 4.5);
+            fcs.push({ el, x, d, op: Math.max(0.05, 0.42 * (1 - d * 0.82)) });
+          }
+          // o cursor da cena anterior desce para dentro da lacuna
+          const caret = document.getElementById("fe-caret");
+          tl.fromTo(caret, { x: 960, y: 540, scaleY: 1, opacity: 1 }, { x: 960, y: 450, scaleY: 0.42, duration: 0.55, ease: "power3.inOut" }, 0.15);
+          tl.fromTo(caret, { opacity: 1 }, { opacity: 0.15, duration: 0.18, ease: "none", yoyo: true, repeat: 5, immediateRender: false }, 0.75);
+          fcs.forEach((f) => tl.fromTo(f.el, { opacity: 0, scale: 0.5 }, { opacity: f.op, scale: 1, duration: 0.5, ease: "power3.out" }, 0.3 + f.d * 0.55));
+          tl.fromTo("#fe-slot", { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, tFalta - 0.05);
+          tl.fromTo("#fe-slot", { scale: 1 }, { scale: 1.22, duration: 0.18, ease: "power2.out", yoyo: true, repeat: 1 }, tFuncao);
+
+          // ---------------------------------------------------------------- "ele escreve": a câmera entra na lacuna e ela vira o editor
+          const tOpen = tEscreve - 0.12;
+          tl.fromTo("#fe-field", { scale: 1, opacity: 1, filter: "blur(0px)" }, { scale: 3.2, opacity: 0, filter: "blur(6px)", duration: 0.6, ease: "power3.in" }, tOpen);
+          tl.fromTo("#fe-slot", { opacity: 1 }, { opacity: 0, duration: 0.2, ease: "none", immediateRender: false }, tOpen + 0.1);
+          tl.set(caret, { opacity: 0 }, tOpen + 0.1);
+          tl.fromTo("#fe-panel", { opacity: 0, scaleX: 34 / 1180, scaleY: 34 / 540 }, { opacity: 1, scaleX: 1, scaleY: 1, duration: 0.7, ease: "expo.inOut" }, tOpen);
+          tl.fromTo("#fe-in", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tOpen + 0.5);
+
+          // o código se escreve (unidades = tokens, ritmo constante em caracteres)
+          const units = gsap.utils.toArray("#fe-code .u");
+          const lines = gsap.utils.toArray("#fe-code .ln");
+          const tCode = tOpen + 0.62, tCodeEnd = tPython - 0.25;
+          const chars = units.map((u) => u.textContent.length);
+          const lineBreakW = 6; // pausa curta em cada quebra de linha
+          const weights = units.map((u, i) => chars[i] + (i > 0 && u.parentNode !== units[i - 1].parentNode ? lineBreakW : 0));
+          const total = weights.reduce((a, b) => a + b, 0);
+          let acc = 0;
+          units.forEach((u, i) => {
+            acc += weights[i];
+            const at = tCode + (tCodeEnd - tCode) * (acc / total);
+            tl.set(u, { opacity: 1, attr: { "data-c": "1" } }, at);
+            if (i + 1 < units.length) {
+              const accN = acc + weights[i + 1];
+              tl.set(u, { attr: { "data-c": "0" } }, tCode + (tCodeEnd - tCode) * (accN / total));
+            }
+            if (i === 0 || u.parentNode !== units[i - 1].parentNode) tl.set(u.parentNode.querySelector(".no"), { opacity: 1 }, at - 0.02);
+          });
+          const last = units[units.length - 1];
+          tl.fromTo(last, { attr: { "data-c": "1" } }, { attr: { "data-c": "0" }, duration: 0.2, ease: "steps(1)", yoyo: true, repeat: 3, immediateRender: false }, tCodeEnd + 0.1);
+          tl.set(last, { attr: { "data-c": "0" } }, tCodeEnd + 0.9);
+
+          // "Em Python."
+          tl.fromTo("#fe-lang", { color: "#8ea7b2", borderColor: "rgba(111,133,145,0.5)" }, { color: "#5cd6f5", borderColor: "rgba(92,214,245,0.9)", duration: 0.3, ease: "power2.out" }, tPython - 0.05);
+          // "Mas ela só passa a funcionar…" — pendente pulsa
+          tl.fromTo("#fe-pill-wait", { scale: 1 }, { scale: 1.1, duration: 0.2, ease: "power2.out", yoyo: true, repeat: 3 }, tSo);
+          // "…depois que você revisa o código" — a leitura percorre linha a linha
+          tl.fromTo("#fe-read", { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "none" }, tRevisa - 0.12);
+          tl.fromTo("#fe-read", { y: 0 }, { y: 200, duration: 1.0, ease: "power1.inOut" }, tRevisa - 0.1);
+          tl.fromTo("#fe-read", { opacity: 1 }, { opacity: 0, duration: 0.2, ease: "none", immediateRender: false }, tRevisa + 0.95);
+          lines.forEach((ln, k) => {
+            tl.fromTo(ln, { filter: "brightness(1)" }, { filter: "brightness(1.45)", duration: 0.12, ease: "power1.out", yoyo: true, repeat: 1 }, tRevisa - 0.1 + k * 0.25);
+          });
+          // "…e aprova." — clique, ondulação, pílula vira APROVADA
+          tl.fromTo("#fe-btn", { scale: 1 }, { scale: 0.94, duration: 0.09, ease: "power2.out", yoyo: true, repeat: 1 }, tAprova - 0.06);
+          tl.fromTo("#fe-btn .rp", { opacity: 0.9, scale: 0.2 }, { opacity: 0, scale: 9, duration: 0.6, ease: "power2.out", immediateRender: false }, tAprova - 0.02);
+          tl.fromTo("#fe-btn", { backgroundColor: "rgba(92,214,245,0.12)" }, { backgroundColor: "rgba(92,214,245,0.30)", duration: 0.25, ease: "power2.out" }, tAprova);
+          tl.fromTo("#fe-pill-wait", { opacity: 1, y: 0 }, { opacity: 0, y: -10, duration: 0.22, ease: "power2.in", immediateRender: false }, tAprova + 0.02);
+          tl.fromTo("#fe-pill-ok", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, tAprova + 0.14);
+          tl.fromTo("#fe-panel", { borderColor: "rgba(92,214,245,0.28)" }, { borderColor: "rgba(95,220,188,0.75)", duration: 0.3, ease: "power2.out" }, tAprova + 0.1);
+
+          // ---------------------------------------------------------------- a ferramenta nasce e ocupa a lacuna do catálogo
+          const tBack = Math.max(tEnd13 + 0.02, END - 1.25);
+          tl.fromTo("#fe-in", { opacity: 1 }, { opacity: 0, duration: 0.18, ease: "power1.in", immediateRender: false }, tBack);
+          tl.fromTo("#fe-panel", { scaleX: 1, scaleY: 1, opacity: 1 }, { scaleX: 26 / 1180, scaleY: 26 / 540, opacity: 0.9, duration: 0.5, ease: "power3.in", immediateRender: false }, tBack + 0.05);
+          tl.set("#fe-panel", { opacity: 0 }, tBack + 0.56);
+          tl.fromTo("#fe-field", { scale: 3.2, opacity: 0, filter: "blur(6px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.55, ease: "power3.out", immediateRender: false }, tBack + 0.05);
+          const tLock = tBack + 0.55;
+          tl.fromTo("#fe-newcell", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power3.out" }, tLock);
+          tl.fromTo("#fe-newcell", { backgroundColor: "#e6f7fd" }, { backgroundColor: "#5cd6f5", duration: 0.5, ease: "power2.out" }, tLock + 0.2);
+          tl.fromTo("#fe-lockring", { opacity: 0.9, scale: 0.5 }, { opacity: 0, scale: 2.4, duration: 0.6, ease: "power2.out", immediateRender: false }, tLock);
+
+          // saída em divisão: o quadro se abre ao meio para as duas personalidades
+          const tSplit = END - 0.38;
+          tl.fromTo("#fe-seam", { opacity: 0, scaleY: 0.2 }, { opacity: 1, scaleY: 1, duration: 0.14, ease: "power2.out" }, tSplit);
+          tl.fromTo("#fe-seam", { opacity: 1 }, { opacity: 0, duration: 0.2, ease: "power2.in", immediateRender: false }, tSplit + 0.18);
+          fcs.forEach((f) => {
+            const dir = f.x < 960 ? -1 : 1;
+            tl.fromTo(f.el, { x: 0 }, { x: dir * 260, duration: 0.38, ease: "power2.in", immediateRender: false }, tSplit);
+          });
+          tl.fromTo(["#fe-field", "#fe-newcell"], { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.34, ease: "power2.in", immediateRender: false }, tSplit + 0.04);
+          window.__timelines["f07-ferramenta"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

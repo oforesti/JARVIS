@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template id="f06-elo-template">
+      <style>
+        @font-face { font-family: "Mona Sans"; src: url("assets/fonts/MonaSans-Variable.woff2") format("woff2"); font-weight: 200 900; font-stretch: 75% 125%; }
+        @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; }
+        @font-face { font-family: "Orbitron"; src: url("assets/fonts/Orbitron-Variable.woff2") format("woff2"); font-weight: 400 900; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #04080c; }
+        #lk-bg { position: absolute; inset: 0; }
+        #lk-glow { position: absolute; left: 160px; top: 20px; width: 1600px; height: 900px; border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(22,96,124,0.18), rgba(6,19,33,0.5) 60%, rgba(4,8,12,0) 100%); }
+        .pool { position: absolute; border-radius: 50%; opacity: 0.5; }
+        #lk-pool-a { left: 180px; top: 160px; width: 600px; height: 600px; background: radial-gradient(closest-side, rgba(92,214,245,0.16), rgba(92,214,245,0) 100%); }
+        #lk-pool-b { left: 1060px; top: 60px; width: 640px; height: 640px; background: radial-gradient(closest-side, rgba(47,123,255,0.18), rgba(47,123,255,0) 100%); }
+        #lk-world { position: absolute; inset: 0; }
+
+        /* celular com a tela real do app (lista do Elo) */
+        #lk-phone { position: absolute; left: 330px; top: 150px; width: 300px; height: 620px; border-radius: 46px; background: #070d12;
+          border: 2px solid rgba(142,167,178,0.55); box-shadow: 0 40px 120px rgba(0,0,0,0.6), inset 0 0 0 6px #0a1217; }
+        #lk-screen { position: absolute; left: 12px; top: 12px; right: 12px; bottom: 12px; border-radius: 34px; overflow: hidden; background: #03070a; }
+        #lk-app { position: absolute; left: 0; top: 0; width: 100%; height: auto; }
+        #lk-mirror { position: absolute; left: 0; right: 0; top: 0; bottom: 0; opacity: 0; background: #020507; }
+        #lk-mirror .pc { position: absolute; left: 6px; right: 6px; top: 214px; height: 164px; border-radius: 6px; overflow: hidden; }
+
+        /* monitor com o JARVIS do PC */
+        #lk-mon { position: absolute; left: 1080px; top: 190px; width: 560px; height: 340px; border-radius: 16px; background: #070d12;
+          border: 2px solid rgba(142,167,178,0.55); box-shadow: 0 40px 120px rgba(0,0,0,0.6); }
+        #lk-mon-scr { position: absolute; left: 12px; top: 12px; right: 12px; bottom: 12px; border-radius: 8px; overflow: hidden; background: #020507; }
+        #lk-neck { position: absolute; left: 1344px; top: 532px; width: 32px; height: 64px; background: linear-gradient(180deg, #0c151b, #0a1217);
+          border-left: 2px solid rgba(142,167,178,0.35); border-right: 2px solid rgba(142,167,178,0.35); }
+        #lk-base { position: absolute; left: 1250px; top: 594px; width: 220px; height: 12px; border-radius: 6px; background: #0c151b; border: 2px solid rgba(142,167,178,0.45); }
+        .hud { position: absolute; inset: 0; background: radial-gradient(420px 240px at 50% 44%, rgba(22,96,124,0.35), rgba(2,5,7,1) 70%); }
+        .hud .orb { position: absolute; left: 50%; top: 40%; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 50%;
+          background: radial-gradient(circle at 36% 30%, #f4fdff 0%, #a8ecfb 26%, #5cd6f5 58%, #16607c 100%); box-shadow: 0 0 40px rgba(92,214,245,0.55); }
+        .hud .ring { position: absolute; left: 50%; top: 40%; width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%; border: 1.5px dashed rgba(92,214,245,0.45); }
+        .hud .nm { position: absolute; left: 0; right: 0; top: 70%; text-align: center; font-family: "Orbitron", sans-serif; font-weight: 500; font-size: 17px; letter-spacing: 0.34em; color: #a8ecfb; }
+        .hud .bar { position: absolute; left: 22px; right: 22px; top: 16px; height: 2px; background: rgba(92,214,245,0.25); }
+        .hud .bar2 { position: absolute; left: 22px; width: 120px; top: 16px; height: 2px; background: rgba(92,214,245,0.8); }
+        .hud.small { transform-origin: 0 0; }
+        #lk-mon-on { position: absolute; inset: 0; opacity: 0; transform-origin: 50% 50%; }
+        #lk-mon-flash { position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: #e6f7fd; opacity: 0; box-shadow: 0 0 18px #a8ecfb; }
+
+        /* o feixe do Elo */
+        #lk-svg { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: visible; }
+        .beam { fill: none; stroke: #5cd6f5; stroke-width: 2.5; stroke-linecap: round; }
+        .beam-glow { fill: none; stroke: rgba(92,214,245,0.22); stroke-width: 12; stroke-linecap: round; }
+        #lk-name { position: absolute; left: 780px; top: 340px; width: 200px; text-align: center; font-family: "Orbitron", sans-serif; font-weight: 600; font-size: 26px; letter-spacing: 0.42em; color: #e6f7fd; }
+        #lk-count { position: absolute; left: 680px; top: 458px; width: 400px; text-align: center; font-family: "Geist Mono", monospace; font-weight: 500; font-size: 17px; letter-spacing: 0.28em; color: #8ea7b2; }
+        .pk { position: absolute; left: 0; top: 0; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: #e6f7fd; opacity: 0;
+          box-shadow: 0 0 12px #5cd6f5, 0 0 26px rgba(92,214,245,0.6); }
+        .pk.file { width: 18px; height: 22px; margin: -11px 0 0 -9px; border-radius: 3px; background: rgba(11,24,32,0.9); border: 1.5px solid #a8ecfb; box-shadow: 0 0 14px rgba(92,214,245,0.6); }
+        .pk.mem { width: 20px; height: 20px; margin: -10px 0 0 -10px; background: transparent; border: 2px solid #e6f7fd; }
+
+        /* log de funções reais, na ordem em que acontecem */
+        #lk-log { position: absolute; left: 686px; top: 536px; width: 380px; }
+        .lg { display: flex; align-items: baseline; gap: 14px; height: 42px; font-family: "Geist Mono", monospace; font-weight: 500; font-size: 21px; color: #e6f7fd; white-space: nowrap; opacity: 0; }
+        .lg .ar { width: 22px; color: #5cd6f5; text-align: center; }
+        .ring-pulse { position: absolute; border-radius: 50%; border: 2px solid rgba(168,236,251,0.9); opacity: 0; }
+
+        /* cortina digital (entrada) */
+        .band { position: absolute; left: 0; width: 1960px; background: #04080c; }
+        .band::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: #a8ecfb; box-shadow: 0 0 16px #5cd6f5; }
+        #lk-caret { position: absolute; left: 0; top: 0; width: 4px; height: 64px; margin: -32px 0 0 -2px; background: #5cd6f5; opacity: 0; box-shadow: 0 0 14px rgba(92,214,245,0.7); }
+      </style>
+      <div id="root" data-composition-id="f06-elo" data-width="1920" data-height="1080">
+        <div id="lk-bg" data-layout-ignore><div id="lk-glow"></div><div class="pool" id="lk-pool-a"></div><div class="pool" id="lk-pool-b"></div></div>
+
+        <div id="lk-world">
+          <div id="lk-phone">
+            <div id="lk-screen">
+              <img id="lk-app" src="assets/app/app-elo.jpg" alt="" />
+              <div id="lk-mirror"><div class="pc"><div class="hud"><div class="bar"></div><div class="bar2"></div><div class="ring" style="width:74px;height:74px;margin:-37px 0 0 -37px"></div><div class="orb" style="width:40px;height:40px;margin:-20px 0 0 -20px"></div><div class="nm" style="font-size:9px;top:72%">J.A.R.V.I.S.</div></div></div></div>
+            </div>
+          </div>
+          <div id="lk-neck" data-layout-ignore></div><div id="lk-base" data-layout-ignore></div>
+          <div id="lk-mon">
+            <div id="lk-mon-scr">
+              <div id="lk-mon-on"><div class="hud"><div class="bar"></div><div class="bar2"></div><div class="ring"></div><div class="orb"></div><div class="nm">J.A.R.V.I.S.</div></div></div>
+              <div id="lk-mon-flash" data-layout-ignore></div>
+            </div>
+          </div>
+
+          <svg id="lk-svg" viewBox="0 0 1920 1080" data-layout-ignore>
+            <path class="beam-glow" id="lk-beam-g" d="M 640 460 C 820 460 880 360 1070 360" />
+            <path class="beam" id="lk-beam" d="M 640 460 C 820 460 880 360 1070 360" />
+          </svg>
+          <div id="lk-name">ELO</div>
+          <div id="lk-count">16 FUNÇÕES DE ELO</div>
+          <div id="lk-packets" data-layout-ignore></div>
+
+          <div id="lk-log">
+            <div class="lg"><span class="ar">→</span><span>ligar o pc</span></div>
+            <div class="lg"><span class="ar">←</span><span>controlar pc pelo parsec</span></div>
+            <div class="lg"><span class="ar">→</span><span>mandar arquivo pro pc</span></div>
+            <div class="lg"><span class="ar">←</span><span>pegar arquivo do pc</span></div>
+            <div class="lg"><span class="ar">⇄</span><span>sincronizar memória</span></div>
+          </div>
+          <div class="ring-pulse" id="lk-rp-a" data-layout-ignore></div>
+          <div class="ring-pulse" id="lk-rp-b" data-layout-ignore></div>
+        </div>
+
+        <div id="lk-caret" data-layout-ignore></div>
+        <div id="lk-bands" data-layout-ignore></div>
+      </div>
+      <script>
+        (function () {
+          gsap.registerPlugin(DrawSVGPlugin);
+          const tl = gsap.timeline({ paused: true });
+          const J = window.JM;
+          const F = JT.frame("f06");
+          const L = (t) => t - F.start;
+          const END = F.end - F.start;
+          const tElo = L(JT.word("L10", "Elo"));
+          const tCel = L(JT.word("L10", "celular"));
+          const tPc = L(JT.word("L10", "computador"));
+          const tFunc = L(JT.word("L10", "funcionam"));
+          const tSo = L(JT.word("L10", "só"));
+          const tWake = L(JT.marks.elo_wake), tScreen = L(JT.marks.elo_screen), tShare = L(JT.marks.elo_share);
+          const tArq = L(JT.word("L11", "arquivos"));
+          const tMem = L(JT.word("L11", "memória"));
+          const tEndL11 = L(JT.v("L11").end);
+
+          // curva do feixe (bezier cúbica) para os pacotes seguirem
+          const P = [[640, 460], [820, 460], [880, 360], [1070, 360]];
+          const bz = (t) => {
+            const u = 1 - t;
+            return [0, 1].map((i) => u * u * u * P[0][i] + 3 * u * u * t * P[1][i] + 3 * u * t * t * P[2][i] + t * t * t * P[3][i]);
+          };
+          const pkRoot = document.getElementById("lk-packets");
+          function packet(at, dur, dir, kind) {
+            const el = document.createElement("div");
+            el.className = "pk" + (kind ? " " + kind : "");
+            pkRoot.appendChild(el);
+            const s = { p: dir > 0 ? 0 : 1 };
+            const place = () => { const [x, y] = bz(s.p); el.style.transform = `translate(${x}px, ${y}px)`; };
+            place();
+            tl.fromTo(s, { p: dir > 0 ? 0 : 1 }, { p: dir > 0 ? 1 : 0, duration: dur, ease: "power1.inOut", onUpdate: place }, at);
+            tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "none" }, at);
+            tl.fromTo(el, { opacity: 1 }, { opacity: 0, duration: 0.14, ease: "none", immediateRender: false }, at + dur - 0.14);
+          }
+
+          // ---------------------------------------------------------------- cortina digital (no tempo forte do clímax)
+          const bands = document.getElementById("lk-bands");
+          const R = J.rng(606);
+          const NBAND = 10;
+          for (let k = 0; k < NBAND; k++) {
+            const b = document.createElement("div");
+            b.className = "band";
+            b.style.top = k * 108 + "px"; b.style.height = "108px";
+            bands.appendChild(b);
+            tl.fromTo(b, { x: 0 }, { x: 1980, duration: 0.62, ease: "power3.inOut" }, 0.02 + R() * 0.14);
+          }
+          tl.set(bands, { visibility: "hidden" }, 0.9);
+
+          // ---------------------------------------------------------------- aparelhos entram em profundidade
+          tl.fromTo("#lk-phone", { x: -70, scale: 0.94, filter: "blur(8px)" }, { x: 0, scale: 1, filter: "blur(0px)", duration: 1.0, ease: "power3.out" }, 0.05);
+          tl.fromTo(["#lk-mon", "#lk-neck", "#lk-base"], { x: 70, scale: 0.94, filter: "blur(8px)" }, { x: 0, scale: 1, filter: "blur(0px)", duration: 1.0, ease: "power3.out" }, 0.1);
+          tl.fromTo("#lk-app", { y: 0 }, { y: -40, duration: 5.2, ease: "sine.inOut" }, 0.2);
+
+          // "Com o Elo" — o feixe se desenha do celular até o PC
+          tl.fromTo(["#lk-beam", "#lk-beam-g"], { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.7, ease: "power2.inOut" }, tElo - 0.1);
+          J.trackIn(tl, document.getElementById("lk-name"), tElo + 0.25, { fontPx: 26, spread: 0.6, dur: 0.8, blur: 8 });
+          J.hudIn(tl, "#lk-count", tElo + 0.5, { x: 0 });
+          // "o celular e o computador" — cada um acende no nome
+          tl.fromTo("#lk-phone", { borderColor: "rgba(142,167,178,0.55)" }, { borderColor: "rgba(168,236,251,0.95)", duration: 0.3, ease: "power2.out" }, tCel);
+          tl.fromTo("#lk-pool-a", { opacity: 0.5 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, tCel);
+          tl.fromTo("#lk-mon", { borderColor: "rgba(142,167,178,0.55)" }, { borderColor: "rgba(168,236,251,0.95)", duration: 0.3, ease: "power2.out" }, tPc);
+          tl.fromTo("#lk-pool-b", { opacity: 0.5 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, tPc);
+          // "funcionam como um só" — o fluxo contínuo nos dois sentidos
+          for (let k = 0; k < 5; k++) {
+            packet(tFunc - 0.1 + k * 0.28, 0.85, k % 2 ? -1 : 1);
+          }
+          tl.fromTo(["#lk-beam-g"], { opacity: 1 }, { opacity: 0.35, duration: 0.2, ease: "none", yoyo: true, repeat: 3 }, tSo - 0.1);
+
+          // ---------------------------------------------------------------- as funções reais, na hora da fala
+          const logs = gsap.utils.toArray("#lk-log .lg");
+          const logIn = (el, at) => tl.fromTo(el, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, at);
+          // "Ligue a máquina de longe" → o pedido vai do celular e o PC acorda
+          packet(tWake - 0.05, 0.55, 1);
+          logIn(logs[0], tWake);
+          const tOn = tWake + 0.5;
+          tl.fromTo("#lk-mon-flash", { opacity: 0, scaleX: 0.1 }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power2.out" }, tOn);
+          tl.fromTo("#lk-mon-flash", { opacity: 1 }, { opacity: 0, duration: 0.2, ease: "power2.in", immediateRender: false }, tOn + 0.2);
+          tl.fromTo("#lk-mon-on", { opacity: 0, scaleY: 0.02 }, { opacity: 1, scaleY: 1, duration: 0.4, ease: "expo.out" }, tOn + 0.12);
+          // "use a tela dela no celular" → a tela do PC desce para o celular
+          for (let k = 0; k < 3; k++) packet(tScreen - 0.1 + k * 0.16, 0.6, -1);
+          logIn(logs[1], tScreen);
+          tl.fromTo("#lk-mirror", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, tScreen + 0.45);
+          tl.fromTo("#lk-mirror .pc", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "expo.out" }, tScreen + 0.5);
+          // "compartilhe arquivos" → arquivos nos dois sentidos
+          packet(tShare, 0.8, 1, "file");
+          logIn(logs[2], tShare + 0.05);
+          packet(tArq, 0.8, -1, "file");
+          logIn(logs[3], tArq + 0.05);
+          // "e memória" → um pulso sai dos dois lados e se encontra no meio
+          const tSync = tMem - 0.05;
+          const s1 = { p: 0 }, s2 = { p: 1 };
+          const m1 = document.createElement("div"), m2 = document.createElement("div");
+          m1.className = m2.className = "pk mem";
+          pkRoot.appendChild(m1); pkRoot.appendChild(m2);
+          const pm = (el, s) => () => { const [x, y] = bz(s.p); el.style.transform = `translate(${x}px, ${y}px)`; };
+          pm(m1, s1)(); pm(m2, s2)();
+          tl.fromTo(s1, { p: 0 }, { p: 0.5, duration: 0.45, ease: "power2.in", onUpdate: pm(m1, s1) }, tSync);
+          tl.fromTo(s2, { p: 1 }, { p: 0.5, duration: 0.45, ease: "power2.in", onUpdate: pm(m2, s2) }, tSync);
+          tl.fromTo([m1, m2], { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "none" }, tSync);
+          tl.set([m1, m2], { opacity: 0 }, tSync + 0.45);
+          logIn(logs[4], tMem);
+          const mid = bz(0.5);
+          [["#lk-rp-a", 0], ["#lk-rp-b", 0.12]].forEach(([id, d]) => {
+            gsap.set(id, { left: mid[0] - 20, top: mid[1] - 20, width: 40, height: 40 });
+            tl.fromTo(id, { opacity: 0.95, scale: 0.3 }, { opacity: 0, scale: 4.2, duration: 0.8, ease: "power2.out", immediateRender: false }, tSync + 0.45 + d);
+          });
+          tl.fromTo(["#lk-phone", "#lk-mon"], { boxShadow: "0 40px 120px rgba(0,0,0,0.6), 0 0 0 rgba(92,214,245,0)" },
+            { boxShadow: "0 40px 120px rgba(0,0,0,0.6), 0 0 60px rgba(92,214,245,0.45)", duration: 0.3, ease: "power2.out", yoyo: true, repeat: 1 }, tSync + 0.45);
+
+          // ---------------------------------------------------------------- saída: o feixe vira o cursor da próxima cena
+          const tX = Math.max(tEndL11 + 0.02, END - 0.72);
+          tl.fromTo(["#lk-phone", "#lk-mon", "#lk-neck", "#lk-base", "#lk-log", "#lk-name", "#lk-count"],
+            { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(10px)", duration: 0.4, ease: "power2.in", immediateRender: false }, tX);
+          tl.fromTo(["#lk-bg .pool", "#lk-glow"], { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power2.in", immediateRender: false }, tX);
+          tl.fromTo(["#lk-beam", "#lk-beam-g"], { drawSVG: "0% 100%" }, { drawSVG: "50% 50%", duration: 0.4, ease: "power3.in", immediateRender: false }, tX + 0.05);
+          tl.set(["#lk-beam", "#lk-beam-g"], { opacity: 0 }, tX + 0.45);
+          const caret = document.getElementById("lk-caret");
+          tl.fromTo(caret, { opacity: 0, x: mid[0], y: mid[1], scaleY: 0.08 }, { opacity: 1, duration: 0.08, ease: "none" }, tX + 0.42);
+          tl.fromTo(caret, { x: mid[0], y: mid[1], scaleY: 0.08 }, { x: 960, y: 540, scaleY: 1, duration: 0.24, ease: "power3.inOut", immediateRender: false }, tX + 0.44);
+          window.__timelines["f06-elo"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

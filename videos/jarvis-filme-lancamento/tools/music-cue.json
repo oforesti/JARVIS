@@ -1,0 +1,186 @@
+{
+ "length": 98.602,
+ "bpm": 100.0,
+ "grid_anchor": 5.6,
+ "target_lufs": -18,
+ "sections": [
+  {
+   "name": "intro",
+   "start": 0,
+   "end": 5.6,
+   "energy": 0.12,
+   "layers": [
+    "drone",
+    "air"
+   ],
+   "chord": "Dm9",
+   "level_db": -15,
+   "ramp": 2.5
+  },
+  {
+   "name": "reveal",
+   "start": 5.6,
+   "end": 10.399999999999999,
+   "energy": 0.35,
+   "layers": [
+    "pad",
+    "drone"
+   ],
+   "chord": "Dm9",
+   "level_db": -7,
+   "ramp": 0.05,
+   "breath_before": 0.38
+  },
+  {
+   "name": "discovery",
+   "start": 10.399999999999999,
+   "end": 18.8,
+   "energy": 0.45,
+   "layers": [
+    "pad",
+    "arp",
+    "ticks"
+   ],
+   "prog_offset": 1,
+   "level_db": -7,
+   "ramp": 0.6
+  },
+  {
+   "name": "turn",
+   "start": 18.8,
+   "end": 20.9,
+   "energy": 0.3,
+   "layers": [
+    "pad",
+    "ticks"
+   ],
+   "chord": "Bbmaj9",
+   "level_db": -9,
+   "ramp": 0.05
+  },
+  {
+   "name": "verbs",
+   "start": 20.9,
+   "end": 31.1,
+   "energy": 0.68,
+   "layers": [
+    "pad",
+    "arp",
+    "bass",
+    "drums"
+   ],
+   "kit": "pulse",
+   "level_db": -4,
+   "ramp": 0.1
+  },
+  {
+   "name": "scale",
+   "start": 31.1,
+   "end": 41.0,
+   "energy": 0.78,
+   "layers": [
+    "pad",
+    "arp",
+    "bass",
+    "drums"
+   ],
+   "kit": "half",
+   "level_db": -3,
+   "ramp": 0.3
+  },
+  {
+   "name": "chain",
+   "start": 41.0,
+   "end": 53.6,
+   "energy": 0.6,
+   "layers": [
+    "pad",
+    "arp",
+    "bass",
+    "drums"
+   ],
+   "kit": "pulse",
+   "level_db": -5,
+   "ramp": 0.6
+  },
+  {
+   "name": "climax",
+   "start": 53.6,
+   "end": 75.2,
+   "energy": 0.95,
+   "layers": [
+    "pad",
+    "arp",
+    "bass",
+    "drums"
+   ],
+   "kit": "half",
+   "level_db": 0,
+   "ramp": 0.05,
+   "breath_before": 0.45
+  },
+  {
+   "name": "personas",
+   "start": 75.2,
+   "end": 83.6,
+   "energy": 0.7,
+   "layers": [
+    "pad",
+    "bass",
+    "drums",
+    "arp"
+   ],
+   "kit": "pulse",
+   "chord": "Bbmaj9",
+   "level_db": -4,
+   "ramp": 0.4
+  },
+  {
+   "name": "breath",
+   "start": 83.6,
+   "end": 89.6,
+   "energy": 0.18,
+   "layers": [
+    "drone",
+    "air"
+   ],
+   "chord": "Bbmaj9",
+   "level_db": -15,
+   "ramp": 0.3
+  },
+  {
+   "name": "final",
+   "start": 89.6,
+   "end": 98.602,
+   "energy": 0.3,
+   "layers": [
+    "drone",
+    "air",
+    "pad"
+   ],
+   "chord": "Dmaj9",
+   "level_db": -7,
+   "ramp": 0.05,
+   "breath_before": 0.5
+  }
+ ],
+ "motifs": [
+  {
+   "t": 6.55,
+   "gain": 0.26
+  },
+  {
+   "t": 53.6,
+   "gain": 0.4,
+   "pluck": true
+  },
+  {
+   "t": 90.8,
+   "gain": 0.42
+  }
+ ],
+ "toms": [
+  5.6,
+  53.6
+ ]
+}

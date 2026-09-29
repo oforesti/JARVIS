@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template id="f09-final-template">
+      <style>
+        @font-face { font-family: "Mona Sans"; src: url("assets/fonts/MonaSans-Variable.woff2") format("woff2"); font-weight: 200 900; font-stretch: 75% 125%; }
+        @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; }
+        @font-face { font-family: "Orbitron"; src: url("assets/fonts/Orbitron-Variable.woff2") format("woff2"); font-weight: 400 900; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #04080c; }
+        #fi-navy { position: absolute; inset: 0; opacity: 0; background: radial-gradient(1200px 800px at 50% 45%, #0a1b2c 0%, #061321 60%, #040d17 100%); }
+        #fi-glow { position: absolute; left: 360px; top: 20px; width: 1200px; height: 800px; border-radius: 50%; opacity: 0;
+          background: radial-gradient(closest-side, rgba(47,123,255,0.12), rgba(6,19,33,0.45) 60%, rgba(4,8,12,0) 100%); }
+
+        /* feito em português */
+        #fi-pt { position: absolute; left: 0; right: 0; top: 400px; text-align: center; }
+        #fi-l1 { font-family: "Mona Sans", sans-serif; font-stretch: 110%; font-weight: 300; font-size: 94px; line-height: 1.1; color: #e6f7fd; letter-spacing: -0.01em; }
+        #fi-l1 b { font-weight: 600; }
+        #fi-shine { position: absolute; left: 0; right: 0; top: 0; opacity: 0; font-family: "Mona Sans", sans-serif; font-stretch: 110%; font-weight: 300; font-size: 94px; line-height: 1.1; letter-spacing: -0.01em;
+          background: linear-gradient(105deg, rgba(230,247,253,0) 40%, rgba(255,255,255,0.95) 50%, rgba(230,247,253,0) 60%); background-size: 260% 100%; background-position: 130% 0%;
+          -webkit-background-clip: text; background-clip: text; color: transparent; }
+        #fi-shine b { font-weight: 600; }
+        #fi-l2 { margin-top: 34px; font-family: "Mona Sans", sans-serif; font-weight: 400; font-size: 36px; color: #8ea7b2; letter-spacing: 0.005em; }
+
+        /* assinatura */
+        #fi-orb { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+        #fi-wm { position: absolute; left: 0; right: 0; top: 590px; display: flex; justify-content: center; }
+        #fi-wm span { display: block; font-family: "Orbitron", sans-serif; font-weight: 500; font-size: 70px; color: #e6f7fd; margin: 0 0.1em;
+          text-shadow: 0 0 30px rgba(92,214,245,0.28); }
+        #fi-tag { position: absolute; left: 0; right: 0; top: 694px; display: flex; justify-content: center; gap: 0.32em;
+          font-family: "Mona Sans", sans-serif; font-stretch: 112%; font-weight: 500; font-size: 40px; color: #c4dae3; }
+        #fi-tag .m { overflow: hidden; padding-bottom: 0.08em; }
+        #fi-tag .m span { display: inline-block; }
+        #fi-tag .k { color: #5cd6f5; }
+        #fi-cta { position: absolute; left: 50%; top: 792px; transform-origin: 50% 50%; white-space: nowrap; overflow: hidden;
+          font-family: "Mona Sans", sans-serif; font-weight: 500; font-size: 30px; color: #e6f7fd; letter-spacing: 0.01em;
+          padding: 17px 38px 16px; border-radius: 999px; border: 1.5px solid rgba(92,214,245,0.6); background: rgba(92,214,245,0.10);
+          box-shadow: 0 0 40px rgba(92,214,245,0.14); }
+        #fi-cta .sw { position: absolute; top: 0; bottom: 0; left: 0; width: 160px; opacity: 0;
+          background: linear-gradient(100deg, rgba(230,247,253,0) 0%, rgba(230,247,253,0.30) 50%, rgba(230,247,253,0) 100%); }
+      </style>
+      <div id="root" data-composition-id="f09-final" data-width="1920" data-height="1080">
+        <div id="fi-navy" data-layout-ignore></div>
+        <div id="fi-glow" data-layout-ignore></div>
+
+        <div id="fi-pt">
+          <div style="position: relative;">
+            <div id="fi-l1">Feito em <b>português.</b></div>
+            <div id="fi-shine" data-layout-ignore>Feito em <b>português.</b></div>
+          </div>
+          <div id="fi-l2">No seu celular e no seu computador.</div>
+        </div>
+
+        <canvas id="fi-orb" width="1920" height="1080" data-layout-ignore></canvas>
+        <div id="fi-wm"><span>J</span><span>.</span><span>A</span><span>.</span><span>R</span><span>.</span><span>V</span><span>.</span><span>I</span><span>.</span><span>S</span><span>.</span></div>
+        <div id="fi-tag"><div class="m"><span id="fi-t1">Fale.</span></div><div class="m"><span id="fi-t2">O <span class="k">JARVIS</span> faz.</span></div></div>
+        <div id="fi-cta"><span class="sw" data-layout-ignore></span>Teste grátis por 7 dias</div>
+      </div>
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          const J = window.JM;
+          const F = JT.frame("f09");
+          const L = (t) => t - F.start;
+          const END = F.end - F.start;
+          const tFeito = L(JT.v("L16").start);
+          const tPt = L(JT.word("L16", "português"));
+          const tNo = L(JT.word("L16", "No"));
+          const tEnd16 = L(JT.v("L16").end);
+          const IGN = L(JT.marks.final_ignition);
+          const tFale = L(JT.word("L17", "Fale"));
+          const tO = L(JT.word("L17", "O"));
+          const tCta = L(JT.marks.cta_at);
+
+          gsap.set("#fi-cta", { xPercent: -50 });
+
+          // ---------------------------------------------------------------- silêncio → "Feito em português."
+          J.focusIn(tl, "#fi-l1", tFeito - 0.08, { dur: 1.2, blur: 18, scale: 1.04 });
+          tl.fromTo("#fi-shine", { opacity: 1, backgroundPosition: "130% 0%" }, { backgroundPosition: "-30% 0%", duration: 1.2, ease: "power2.inOut", immediateRender: false }, tPt + 0.2);
+          tl.set("#fi-shine", { opacity: 0 }, tPt + 1.45);
+          J.wordsIn(tl, document.getElementById("fi-l2"), tNo - 0.06, { dur: 0.6, y: 14, blur: 8, stagger: 0.085 });
+          const tOut = tEnd16 + 0.35;
+          J.focusOut(tl, "#fi-l1", tOut, { dur: 0.7, blur: 14, scale: 0.985 });
+          J.fadeOut(tl, "#fi-l2", tOut + 0.05, { dur: 0.5, y: 6 });
+          tl.set("#fi-pt", { visibility: "hidden" }, tOut + 0.8);
+
+          // ---------------------------------------------------------------- ignição suave: o núcleo assina
+          const orb = J.orbRig(document.getElementById("fi-orb"), { x: 960, y: 400, r: 2, alpha: 0, halo: 0, bloom: 0, spec: 0, ring: 0, ringDraw: 0, ringRot: -60, flash: 0 });
+          orb.to(tl, { alpha: 0 }, { alpha: 1 }, IGN, 0.05, "none");
+          orb.to(tl, { r: 2 }, { r: 84 }, IGN, 1.3, "expo.out");
+          orb.to(tl, { bloom: 0 }, { bloom: 0.9 }, IGN, 1.4, "expo.out");
+          orb.to(tl, { halo: 0 }, { halo: 0.9 }, IGN + 0.05, 2.0, "power3.out");
+          orb.to(tl, { spec: 0 }, { spec: 1 }, IGN, 1.2, "expo.out");
+          orb.to(tl, { flash: 0 }, { flash: 0.6 }, IGN, 0.1, "none");
+          orb.to(tl, { flash: 0.6 }, { flash: 0 }, IGN + 0.1, 1.4, "power2.out");
+          orb.to(tl, { ring: 0 }, { ring: 1 }, IGN + 0.4, 0.3, "none");
+          orb.to(tl, { ringDraw: 0 }, { ringDraw: 1 }, IGN + 0.4, 1.6, "power2.inOut");
+          orb.to(tl, { ringRot: -60 }, { ringRot: 40 }, IGN + 0.4, END - IGN - 0.4, "sine.out");
+          tl.fromTo("#fi-glow", { opacity: 0 }, { opacity: 1, duration: 2.0, ease: "power2.out" }, IGN);
+          tl.fromTo("#fi-navy", { opacity: 0 }, { opacity: 0.55, duration: 3.0, ease: "sine.inOut" }, IGN + 0.2);
+          J.trackIn(tl, document.getElementById("fi-wm"), IGN + 0.95, { fontPx: 70, spread: 0.3, dur: 1.2 });
+          // "Fale. O JARVIS faz."
+          J.maskReveal(tl, document.getElementById("fi-t1"), tFale - 0.06, { dur: 0.8 });
+          J.maskReveal(tl, document.getElementById("fi-t2"), tO - 0.06, { dur: 0.8 });
+
+          // ---------------------------------------------------------------- o convite (texto do site)
+          tl.fromTo("#fi-cta", { opacity: 0, scale: 0.94, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "power3.out" }, tCta - 0.02);
+          tl.fromTo("#fi-cta .sw", { opacity: 1, x: -180 }, { x: 560, duration: 1.1, ease: "power2.inOut" }, tCta + 0.75);
+          tl.fromTo("#fi-cta", { boxShadow: "0 0 40px rgba(92,214,245,0.14)" }, { boxShadow: "0 0 60px rgba(92,214,245,0.32)", duration: 0.5, ease: "power2.out", yoyo: true, repeat: 1 }, tCta + 0.8);
+
+          // ---------------------------------------------------------------- tudo segura; fade final para o navy
+          const tFade = END - 1.5;
+          J.fadeOut(tl, "#fi-cta", tFade, { dur: 0.6 });
+          J.fadeOut(tl, "#fi-tag", tFade + 0.2, { dur: 0.6 });
+          J.fadeOut(tl, "#fi-wm", tFade + 0.4, { dur: 0.7 });
+          orb.to(tl, { alpha: 1 }, { alpha: 0 }, tFade + 0.45, 0.9, "power2.in");
+          tl.fromTo("#fi-glow", { opacity: 1 }, { opacity: 0, duration: 0.9, ease: "power2.in", immediateRender: false }, tFade + 0.45);
+          tl.fromTo("#fi-navy", { opacity: 0.55 }, { opacity: 1, duration: 1.2, ease: "sine.inOut", immediateRender: false }, tFade + 0.2);
+          tl.eventCallback("onUpdate", orb.draw);
+          window.__timelines["f09-final"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

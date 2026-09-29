@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template id="f03-acoes-template">
+      <style>
+        @font-face { font-family: "Mona Sans"; src: url("assets/fonts/MonaSans-Variable.woff2") format("woff2"); font-weight: 200 900; font-stretch: 75% 125%; }
+        @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #04080c; }
+        #ac-bg { position: absolute; inset: 0; }
+        #ac-glow { position: absolute; left: 260px; top: 140px; width: 1400px; height: 800px; border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(47,123,255,0.13), rgba(6,19,33,0.45) 60%, rgba(4,8,12,0) 100%); }
+        #ac-grid { position: absolute; inset: 0;
+          background-image: linear-gradient(rgba(111,133,145,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(111,133,145,0.10) 1px, transparent 1px);
+          background-size: 96px 96px; background-position: 0 12px;
+          -webkit-mask-image: radial-gradient(900px 560px at 50% 50%, #000 0%, transparent 100%);
+                  mask-image: radial-gradient(900px 560px at 50% 50%, #000 0%, transparent 100%); }
+        #ac-bloom { position: absolute; inset: 0; opacity: 0;
+          background: radial-gradient(760px 620px at 560px 500px, rgba(230,247,253,0.30), rgba(92,214,245,0.10) 45%, rgba(4,8,12,0) 75%); }
+
+        #ac-intro { position: absolute; left: 0; right: 0; top: 470px; text-align: center; font-family: "Mona Sans", sans-serif;
+          font-stretch: 112%; font-weight: 300; font-size: 104px; letter-spacing: -0.02em; color: #e6f7fd; }
+        #ac-intro b { font-weight: 700; }
+
+        .ac-v { position: absolute; inset: 0; visibility: hidden; }
+        .ac-ico { position: absolute; top: 290px; width: 500px; height: 500px; }
+        .ac-ico svg { width: 500px; height: 500px; display: block; overflow: visible; }
+        .ac-txt { position: absolute; top: 0; bottom: 0; width: 900px; display: flex; flex-direction: column; justify-content: center; }
+        .ac-v.l .ac-ico { left: 250px; } .ac-v.l .ac-txt { left: 830px; }
+        .ac-v.r .ac-ico { left: 1170px; } .ac-v.r .ac-txt { left: 192px; text-align: right; align-items: flex-end; width: 900px; }
+        .ac-num { font-family: "Geist Mono", monospace; font-weight: 500; font-size: 24px; letter-spacing: 0.2em; color: #5cd6f5; margin-bottom: 26px; }
+        .ac-word { font-family: "Mona Sans", sans-serif; font-stretch: 125%; font-weight: 600; font-size: 96px; line-height: 1.02;
+          letter-spacing: 0.02em; text-transform: uppercase; color: #e6f7fd; max-width: 900px; }
+        .ac-rule { width: 140px; height: 2px; background: #5cd6f5; margin-top: 34px; }
+        .st { fill: none; stroke: #5cd6f5; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+        .st2 { fill: none; stroke: #e6f7fd; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+        .fl { fill: #5cd6f5; }
+      </style>
+      <div id="root" data-composition-id="f03-acoes" data-width="1920" data-height="1080">
+        <div id="ac-bg" data-layout-ignore><div id="ac-glow"></div><div id="ac-grid"></div><div id="ac-bloom"></div></div>
+
+        <div id="ac-intro">Ele não só <b>responde.</b></div>
+
+        <!-- 1 toca na tela -->
+        <div class="ac-v l" id="ac-v0">
+          <div class="ac-ico"><svg viewBox="0 0 500 500">
+            <rect class="st d" x="150" y="40" width="200" height="420" rx="34" />
+            <line class="st2 d" x1="220" y1="72" x2="280" y2="72" />
+            <circle class="st rip" cx="250" cy="250" r="30" /><circle class="st rip" cx="250" cy="250" r="30" /><circle class="st rip" cx="250" cy="250" r="30" />
+            <circle class="fl tapdot" cx="250" cy="250" r="12" />
+          </svg></div>
+          <div class="ac-txt"><div class="ac-num">01 / 07</div><div class="ac-word">Toca na tela</div><div class="ac-rule"></div></div>
+        </div>
+        <!-- 2 digita -->
+        <div class="ac-v r" id="ac-v1">
+          <div class="ac-ico"><svg viewBox="0 0 500 500">
+            <rect class="st d" x="40" y="190" width="420" height="120" rx="60" />
+            <text class="typ" x="96" y="266" font-family="Geist Mono" font-size="44" fill="#e6f7fd" letter-spacing="3"></text>
+            <line class="st caret" x1="0" y1="222" x2="0" y2="278" />
+            <g class="keys"><rect class="st2 k" x="118" y="360" width="56" height="44" rx="10" /><rect class="st2 k" x="186" y="360" width="56" height="44" rx="10" /><rect class="st2 k" x="254" y="360" width="56" height="44" rx="10" /><rect class="st2 k" x="322" y="360" width="56" height="44" rx="10" /></g>
+          </svg></div>
+          <div class="ac-txt"><div class="ac-num">02 / 07</div><div class="ac-word">Digita</div><div class="ac-rule"></div></div>
+        </div>
+        <!-- 3 abre aplicativos -->
+        <div class="ac-v l" id="ac-v2">
+          <div class="ac-ico"><svg viewBox="0 0 500 500">
+            <g class="apps">
+              <rect class="st a" x="90" y="90" width="90" height="90" rx="22" /><rect class="st a" x="205" y="90" width="90" height="90" rx="22" /><rect class="st a" x="320" y="90" width="90" height="90" rx="22" />
+              <rect class="st a" x="90" y="205" width="90" height="90" rx="22" /><rect class="st a" x="205" y="205" width="90" height="90" rx="22" /><rect class="st a" x="320" y="205" width="90" height="90" rx="22" />
+              <rect class="st a" x="90" y="320" width="90" height="90" rx="22" /><rect class="st a" x="205" y="320" width="90" height="90" rx="22" /><rect class="st a" x="320" y="320" width="90" height="90" rx="22" />
+            </g>
+            <rect class="open" x="205" y="205" width="90" height="90" rx="22" fill="rgba(92,214,245,0.16)" stroke="#e6f7fd" stroke-width="3" />
+          </svg></div>
+          <div class="ac-txt"><div class="ac-num">03 / 07</div><div class="ac-word">Abre aplicativos</div><div class="ac-rule"></div></div>
+        </div>
+        <!-- 4 liga o computador -->
+        <div class="ac-v r" id="ac-v3">
+          <div class="ac-ico"><svg viewBox="0 0 500 500">
+            <rect class="st d" x="50" y="80" width="400" height="260" rx="18" />
+            <path class="st d" d="M200 340 L180 410 L320 410 L300 340" />
+            <rect class="scr" x="62" y="92" width="376" height="236" rx="10" fill="rgba(92,214,245,0.22)" />
+            <path class="st2 pw" d="M226 170 A 36 36 0 1 0 274 170" /><line class="st2 pw" x1="250" y1="152" x2="250" y2="200" />
+          </svg></div>
+          <div class="ac-txt"><div class="ac-num">04 / 07</div><div class="ac-word">Liga o computador</div><div class="ac-rule"></div></div>
+        </div>
+        <!-- 5 acende a luz -->
+        <div class="ac-v l" id="ac-v4">
+          <div class="ac-ico"><svg viewBox="0 0 500 500">
+            <path class="st d" d="M250 70 C 165 70 118 136 118 200 C 118 262 160 292 178 330 L 322 330 C 340 292 382 262 382 200 C 382 136 335 70 250 70 Z" />
+            <line class="st d" x1="190" y1="366" x2="310" y2="366" /><line class="st d" x1="206" y1="400" x2="294" y2="400" />
+            <path class="st2 fil" d="M214 300 L 232 220 L 250 262 L 268 220 L 286 300" />
+            <circle class="glowc" cx="250" cy="205" r="120" fill="rgba(230,247,253,0.0)" />
+          </svg></div>
+          <div class="ac-txt"><div class="ac-num">05 / 07</div><div class="ac-word">Acende a luz</div><div class="ac-rule"></div></div>
+        </div>
+        <!-- 6 grava as aulas -->
+        <div class="ac-v r" id="ac-v5">
+          <div class="ac-ico"><svg viewBox="0 0 500 500">
+            <circle class="fl rec" cx="110" cy="130" r="16" />
+            <text x="140" y="142" font-family="Geist Mono" font-size="34" fill="#e6f7fd" letter-spacing="6">REC</text>
+            <g class="bars"></g>
+            <line class="st2 d" x1="60" y1="400" x2="440" y2="400" />
+          </svg></div>
+          <div class="ac-txt"><div class="ac-num">06 / 07</div><div class="ac-word">Grava as aulas</div><div class="ac-rule"></div></div>
+        </div>
+        <!-- 7 lê o que a câmera vê -->
+        <div class="ac-v l" id="ac-v6">
+          <div class="ac-ico"><svg viewBox="0 0 500 500">
+            <g class="br"><path class="st" d="M60 140 L60 60 L140 60" /><path class="st" d="M360 60 L440 60 L440 140" /><path class="st" d="M440 360 L440 440 L360 440" /><path class="st" d="M140 440 L60 440 L60 360" /></g>
+            <line class="scanl" x1="80" y1="0" x2="420" y2="0" stroke="#e6f7fd" stroke-width="2" stroke-opacity="0.8" />
+            <g class="txtlines"><line class="st2 tl1" x1="150" y1="210" x2="350" y2="210" /><line class="st2 tl1" x1="150" y1="250" x2="330" y2="250" /><line class="st2 tl1" x1="150" y1="290" x2="300" y2="290" /></g>
+          </svg></div>
+          <div class="ac-txt"><div class="ac-num">07 / 07</div><div class="ac-word">Lê o que a câmera vê</div><div class="ac-rule"></div></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          gsap.registerPlugin(DrawSVGPlugin);
+          const tl = gsap.timeline({ paused: true });
+          const J = window.JM;
+          const F = JT.frame("f03");
+          const L = (t) => t - F.start;
+          const V = JT.marks.verbs.map((v) => ({ at: L(v.at), end: L(v.end) }));
+          const END = F.end - F.start;
+
+          tl.fromTo("#ac-glow", { opacity: 0.5 }, { opacity: 1, duration: 4, ease: "sine.inOut" }, 0);
+          // "Ele não só responde." — calmo, palavras em cascata
+          const tIntro = L(JT.v("L04").start);
+          J.wordsIn(tl, document.getElementById("ac-intro"), tIntro - 0.05, { dur: 0.7, y: 18, stagger: 0.09, blur: 10 });
+          tl.set("#ac-intro", { opacity: 0, visibility: "hidden" }, V[0].at);
+
+          V.forEach((v, i) => {
+            const g = document.getElementById("ac-v" + i);
+            const next = i + 1 < V.length ? V[i + 1].at : END;
+            tl.set(g, { visibility: "visible", opacity: 1 }, v.at);
+            if (i + 1 < V.length) tl.set(g, { visibility: "hidden" }, next);
+            const word = g.querySelector(".ac-word"), num = g.querySelector(".ac-num"), rule = g.querySelector(".ac-rule");
+            const fromX = g.classList.contains("l") ? 60 : -60;
+            tl.fromTo(word, { x: fromX, opacity: 0, filter: "blur(12px)" },
+              { x: 0, opacity: 1, filter: "blur(0px)", duration: 0.55, ease: "expo.out" }, v.at);
+            tl.fromTo(num, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, v.at + 0.05);
+            tl.fromTo(rule, { scaleX: 0, transformOrigin: g.classList.contains("l") ? "left center" : "right center" },
+              { scaleX: 1, duration: 0.5, ease: "expo.out" }, v.at + 0.1);
+            const draws = g.querySelectorAll(".d");
+            if (draws.length) tl.fromTo(draws, { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.45, ease: "power2.out", stagger: 0.06 }, v.at);
+            tl.fromTo(g.querySelector(".ac-ico"), { scale: 0.94 }, { scale: 1, duration: Math.max(0.6, next - v.at), ease: "sine.out" }, v.at);
+          });
+
+          // 1 — toque: ondas concêntricas
+          const t0 = V[0].at;
+          tl.fromTo("#ac-v0 .tapdot", { scale: 0, svgOrigin: "250 250" }, { scale: 1, duration: 0.25, ease: "back.out(3)" }, t0 + 0.25);
+          gsap.set("#ac-v0 .rip", { opacity: 0 });
+          gsap.utils.toArray("#ac-v0 .rip").forEach((c, k) => {
+            tl.fromTo(c, { attr: { r: 14 }, opacity: 0.9 }, { attr: { r: 150 }, opacity: 0, duration: 0.9, ease: "power2.out", immediateRender: false }, t0 + 0.3 + k * 0.22);
+          });
+          // 2 — digita: letras aparecem e o cursor anda
+          const t1 = V[1].at;
+          const typ = document.querySelector("#ac-v1 .typ"), caret = document.querySelector("#ac-v1 .caret");
+          const full = "Olá, JARVIS";
+          const proxy = { n: 0 };
+          tl.fromTo(proxy, { n: 0 }, { n: full.length, duration: 0.75, ease: "none",
+            onUpdate: () => { const k = Math.round(proxy.n); typ.textContent = full.slice(0, k); caret.setAttribute("x1", 96 + k * 26.4 + 4); caret.setAttribute("x2", 96 + k * 26.4 + 4); } }, t1 + 0.12);
+          gsap.utils.toArray("#ac-v1 .k").forEach((k, n) => {
+            tl.fromTo(k, { fill: "rgba(92,214,245,0)" }, { fill: "rgba(92,214,245,0.35)", duration: 0.08, yoyo: true, repeat: 1, ease: "none" }, t1 + 0.15 + n * 0.17);
+          });
+          // 3 — abre aplicativos: grade entra, um app se abre
+          const t2 = V[2].at;
+          tl.fromTo("#ac-v2 .a", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.35, ease: "back.out(2)", stagger: { each: 0.035, from: "center" } }, t2);
+          tl.fromTo("#ac-v2 .open", { scale: 1, opacity: 0, svgOrigin: "250 250" }, { scale: 4.4, opacity: 1, duration: 0.6, ease: "power3.inOut" }, t2 + 0.55);
+          // 4 — liga: símbolo de energia e a tela acende
+          const t3 = V[3].at;
+          tl.fromTo("#ac-v3 .pw", { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.4, ease: "power2.out" }, t3 + 0.1);
+          tl.fromTo("#ac-v3 .scr", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, t3 + 0.5);
+          // 5 — acende a luz: filamento e o quadro se ilumina
+          const t4 = V[4].at;
+          tl.fromTo("#ac-v4 .fil", { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.35, ease: "power2.out" }, t4 + 0.15);
+          tl.fromTo("#ac-v4 .glowc", { fill: "rgba(230,247,253,0)" }, { fill: "rgba(230,247,253,0.22)", duration: 0.3, ease: "power2.out" }, t4 + 0.45);
+          tl.fromTo("#ac-bloom", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, t4 + 0.45);
+          tl.to("#ac-bloom", { opacity: 0, duration: 0.5, ease: "power2.in" }, V[5].at - 0.25);
+          // 6 — grava: barras de áudio determinísticas
+          const t5 = V[5].at;
+          const bars = document.querySelector("#ac-v5 .bars");
+          const N = 22;
+          for (let k = 0; k < N; k++) {
+            const r = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            r.setAttribute("x", 66 + k * 17); r.setAttribute("y", 250); r.setAttribute("width", 9); r.setAttribute("height", 120); r.setAttribute("rx", 4.5);
+            r.setAttribute("fill", "#5cd6f5");
+            bars.appendChild(r);
+            const amp = 0.25 + 0.75 * Math.abs(Math.sin(k * 1.7 + 0.6)) * (0.55 + 0.45 * Math.sin(k * 0.45));
+            tl.fromTo(r, { scaleY: 0.08, svgOrigin: `${70.5 + k * 17} 310` }, { scaleY: amp, duration: 0.18, ease: "power2.out", yoyo: true, repeat: 5 }, t5 + 0.05 + (k % 5) * 0.03);
+          }
+          tl.fromTo("#ac-v5 .rec", { opacity: 0.3 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, t5);
+          // 7 — visor trava no texto e a leitura varre
+          const t6 = V[6].at;
+          tl.fromTo("#ac-v6 .br", { scale: 1.25, svgOrigin: "250 250", opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "power4.out" }, t6);
+          tl.fromTo("#ac-v6 .tl1", { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.35, ease: "power2.out", stagger: 0.08 }, t6 + 0.35);
+          tl.fromTo("#ac-v6 .scanl", { attr: { y1: 80, y2: 80 }, opacity: 0 }, { attr: { y1: 420, y2: 420 }, opacity: 1, duration: 0.9, ease: "power1.inOut" }, t6 + 0.3);
+          // saída em profundidade para a cena 4
+          tl.fromTo("#ac-v6", { scale: 1, opacity: 1, filter: "blur(0px)" }, { scale: 0.88, opacity: 0, filter: "blur(14px)", duration: 0.5, ease: "power2.in", immediateRender: false }, END - 0.5);
+          window.__timelines["f03-acoes"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

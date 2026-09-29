@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template id="f02-promessa-template">
+      <style>
+        @font-face { font-family: "Mona Sans"; src: url("assets/fonts/MonaSans-Variable.woff2") format("woff2"); font-weight: 200 900; font-stretch: 75% 125%; }
+        @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #04080c; }
+        #uh-bg { position: absolute; inset: 0; }
+        #uh-world { position: absolute; inset: 0; transform-origin: 1356px 300px; }
+        #uh-fill { position: absolute; inset: 0; background: radial-gradient(circle at 50% 44%, #f4fdff 0%, #a8ecfb 40%, #5cd6f5 100%); }
+        #uh-glow { position: absolute; left: 1080px; top: 80px; width: 900px; height: 900px; border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(47,123,255,0.20), rgba(6,19,33,0.5) 60%, rgba(4,8,12,0) 100%); }
+        #uh-grid { position: absolute; inset: 0;
+          background-image: linear-gradient(rgba(111,133,145,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(111,133,145,0.12) 1px, transparent 1px);
+          background-size: 80px 80px; background-position: 0 20px;
+          -webkit-mask-image: radial-gradient(700px 520px at 72% 50%, #000 0%, transparent 100%);
+                  mask-image: radial-gradient(700px 520px at 72% 50%, #000 0%, transparent 100%); }
+
+        #uh-stage { position: absolute; left: 1150px; top: 118px; width: 420px; height: 844px; perspective: 1600px; transform: scale(0.86); transform-origin: 206px 182px; }
+        #uh-phone { position: absolute; inset: 0; border-radius: 58px; background: #0a0f14;
+          box-shadow: 0 0 0 1.5px rgba(168,236,251,0.16), 0 60px 140px rgba(0,0,0,0.65), 0 0 90px rgba(92,214,245,0.10);
+          transform-style: preserve-3d; }
+        #uh-screen { position: absolute; left: 14px; top: 14px; right: 14px; bottom: 14px; border-radius: 46px; overflow: hidden; background: #04080c; }
+        #uh-screen img { position: absolute; left: 0; top: 0; width: 100%; height: auto; display: block; }
+        #uh-glass { position: absolute; left: 14px; top: 14px; right: 14px; bottom: 14px; border-radius: 46px; overflow: hidden; }
+        #uh-glass i { position: absolute; top: -20%; left: -60%; width: 40%; height: 140%;
+          background: linear-gradient(90deg, rgba(230,247,253,0) 0%, rgba(230,247,253,0.16) 50%, rgba(230,247,253,0) 100%); transform: skewX(-14deg); }
+
+        #uh-dim { position: absolute; inset: 0; background: rgba(4,8,12,0.66); opacity: 0;
+          -webkit-mask-image: radial-gradient(150px 150px at 1356px 312px, transparent 0%, transparent 55%, #000 100%);
+                  mask-image: radial-gradient(150px 150px at 1356px 312px, transparent 0%, transparent 55%, #000 100%); }
+
+        #uh-call { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+        #uh-call svg { position: absolute; left: 0; top: 0; overflow: visible; }
+        #uh-node { position: absolute; left: 1248px; top: 766px; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+          background: #5cd6f5; box-shadow: 0 0 0 5px rgba(92,214,245,0.18), 0 0 22px rgba(92,214,245,0.7); }
+        #uh-label { position: absolute; left: 717px; top: 624px; width: 400px; text-align: right; }
+        #uh-label .k { font-family: "Geist Mono", monospace; font-weight: 500; font-size: 22px; letter-spacing: 0.14em; color: #8ea7b2; }
+        #uh-label .v { margin-top: 8px; font-family: "Mona Sans", sans-serif; font-stretch: 112%; font-weight: 500; font-size: 38px; color: #e6f7fd; }
+
+        #uh-copy { position: absolute; left: 192px; top: 330px; width: 820px; }
+        .uh-mask { display: block; overflow: hidden; padding-bottom: 0.06em; }
+        .uh-line { display: block; font-family: "Mona Sans", sans-serif; font-stretch: 125%; font-weight: 300; font-size: 124px;
+          line-height: 1.02; letter-spacing: -0.02em; color: #e6f7fd; }
+        .uh-line b { font-weight: 800; }
+        #uh-kicker { margin-top: 34px; font-family: "Geist Mono", monospace; font-weight: 500; font-size: 22px; letter-spacing: 0.16em; color: #5cd6f5; }
+        #uh-rule { width: 120px; height: 2px; margin-top: 30px; background: #5cd6f5; }
+      </style>
+      <div id="root" data-composition-id="f02-promessa" data-width="1920" data-height="1080">
+        <div id="uh-bg" data-layout-ignore><div id="uh-glow"></div><div id="uh-grid"></div></div>
+        <div id="uh-world">
+        <div id="uh-stage">
+          <div id="uh-phone">
+            <div id="uh-screen"><img src="assets/app/app-home.jpg" alt="Tela inicial do JARVIS" /></div>
+            <div id="uh-glass" data-layout-ignore><i id="uh-sheen"></i></div>
+          </div>
+        </div>
+        <div id="uh-dim" data-layout-ignore></div>
+        <div id="uh-call">
+          <svg width="1920" height="1080" viewBox="0 0 1920 1080">
+            <path id="uh-lead" d="M1248 766 L1157 676 L1133 676" fill="none" stroke="#5cd6f5" stroke-width="1.6" stroke-opacity="0.85" />
+          </svg>
+          <div id="uh-node"></div>
+          <div id="uh-label"><div class="k" id="uh-k">ENTRADA DE VOZ</div><div class="v" id="uh-v">“Hey Jarvis”</div></div>
+        </div>
+        </div>
+        <div id="uh-copy">
+          <span class="uh-mask"><span class="uh-line" id="uh-l1">Fale.</span></span>
+          <span class="uh-mask"><span class="uh-line" id="uh-l2">O <b>JARVIS</b> faz.</span></span>
+          <div id="uh-rule"></div>
+          <div id="uh-kicker">ASSISTENTE POR VOZ · CELULAR E PC</div>
+        </div>
+        <div id="uh-fill" data-layout-ignore></div>
+      </div>
+      <script>
+        (function () {
+          gsap.registerPlugin(DrawSVGPlugin);
+          const tl = gsap.timeline({ paused: true });
+          const J = window.JM;
+          const F = JT.frame("f02");
+          const L = (t) => t - F.start;
+          const tFale = L(JT.word("L02", "Fale"));
+          const tJarvis = L(JT.word("L02", "O"));
+          const tL3 = L(JT.v("L03").start);
+          const tVoz = L(JT.word("L03", "voz"));
+          const tCel = L(JT.word("L03", "celular"));
+          tl.fromTo("#uh-glow", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 2.2, ease: "sine.out" }, 0);
+          tl.fromTo("#uh-grid", { opacity: 0 }, { opacity: 1, duration: 1.6, ease: "sine.out" }, 0.3);
+          // recuo de câmera saindo de dentro do núcleo (corte casado com a abertura)
+          tl.fromTo("#uh-fill", { opacity: 1 }, { opacity: 0, duration: 0.45, ease: "power2.out" }, 0);
+          tl.fromTo("#uh-world", { scale: 7.5, x: -396, y: 150, filter: "blur(8px)" }, { scale: 1, x: 0, y: 0, filter: "blur(0px)", duration: 1.9, ease: "power4.out" }, 0);
+          tl.fromTo("#uh-phone", { rotationY: -2, rotationX: 0 }, { rotationY: -9, rotationX: 2, duration: 2.2, ease: "power3.out" }, 0.2);
+          tl.fromTo("#uh-phone", { y: 0 }, { y: -10, duration: 3.0, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, 2.3);
+          tl.fromTo("#uh-sheen", { xPercent: 0 }, { xPercent: 420, duration: 1.4, ease: "power2.inOut" }, 1.5);
+          // "Fale." / "O JARVIS faz." na batida da voz
+          J.maskReveal(tl, ["#uh-l1"], tFale - 0.06, { dur: 0.8 });
+          J.maskReveal(tl, ["#uh-l2"], tJarvis - 0.06, { dur: 0.9 });
+          J.drawLine(tl, "#uh-rule", tL3 - 0.1, { dur: 0.7 });
+          J.hudIn(tl, "#uh-kicker", tL3 + 0.1);
+          // spotlight no núcleo enquanto a voz diz "assistente pessoal por voz"
+          tl.fromTo("#uh-dim", { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power2.inOut" }, tL3 + 0.2);
+          tl.fromTo("#uh-copy", { opacity: 1 }, { opacity: 0.4, duration: 0.55, ease: "power2.inOut" }, tL3 + 0.2);
+          tl.to("#uh-dim", { opacity: 0, duration: 0.45, ease: "power2.in" }, tVoz + 0.55);
+          tl.to("#uh-copy", { opacity: 1, duration: 0.45, ease: "power2.out" }, tVoz + 0.55);
+          // callout no campo de voz do app
+          tl.fromTo("#uh-node", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2.2)" }, tCel - 0.2);
+          tl.fromTo("#uh-lead", { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.5, ease: "power2.out" }, tCel);
+          J.hudIn(tl, "#uh-k", tCel + 0.35, { x: 16 });
+          J.focusIn(tl, "#uh-v", tCel + 0.5, { dur: 0.7, blur: 10 });
+          window.__timelines["f02-promessa"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
