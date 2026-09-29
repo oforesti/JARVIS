@@ -1,5 +1,5 @@
 {
- "length": 98.602,
+ "length": 99.402,
  "bpm": 100.0,
  "grid_anchor": 5.6,
  "target_lufs": -18,
@@ -70,7 +70,7 @@
     "drums"
    ],
    "kit": "pulse",
-   "level_db": -4,
+   "level_db": -6,
    "ramp": 0.1
   },
   {
@@ -151,7 +151,7 @@
   {
    "name": "final",
    "start": 89.6,
-   "end": 98.602,
+   "end": 99.402,
    "energy": 0.3,
    "layers": [
     "drone",
@@ -159,7 +159,7 @@
     "pad"
    ],
    "chord": "Dmaj9",
-   "level_db": -7,
+   "level_db": -8,
    "ramp": 0.05,
    "breath_before": 0.5
   }
@@ -175,7 +175,7 @@
    "pluck": true
   },
   {
-   "t": 90.8,
+   "t": 95.75,
    "gain": 0.42
   }
  ],

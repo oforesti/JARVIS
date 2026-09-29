@@ -39,16 +39,16 @@ def sfx_plan(tl: dict) -> list[tuple[str, str, float, float]]:
         S.append((name, file, round(t, 3), vol))
 
     # F01 — abertura
-    add("sfx-electric", "electric", 0.15, 0.32)
-    add("sfx-scan-open", "scan", 0.30, 0.18)
-    add("sfx-boot", "boot", 1.10, 0.36)
-    for k, (t, f, v) in enumerate([(1.20, "ui-click-1", .5), (1.85, "pulse-c", .28), (2.40, "ui-click-2", .45),
+    add("sfx-electric", "electric", 0.15, 0.2)
+    add("sfx-scan-open", "scan", 0.30, 0.13)
+    add("sfx-boot", "boot", 1.10, 0.22)
+    for k, (t, f, v) in enumerate([(1.20, "ui-click-1", .36), (1.85, "pulse-c", .2), (2.40, "ui-click-2", .34),
                                    (2.90, "ui-click-3", .45), (3.30, "tick", .55), (3.66, "ui-click-1", .4),
                                    (3.98, "tick", .5), (4.24, "pulse-b", .26), (4.44, "tick", .45)]):
         add(f"sfx-frag-{k}", f, t, v)
     add("sfx-flash-name", "glitch-1", 4.58, 0.22)
     add("sfx-ready", "confirm-low", 4.62, 0.26)
-    add("sfx-riser", "riser-long", 2.0, 0.5)
+    add("sfx-riser", "riser-long", 2.0, 0.38)
     add("sfx-ignite", "hit-sub-2", m["reveal"], 0.85)
     add("sfx-ignite-sub", "sub-drop", m["reveal"], 0.42)
     add("sfx-wordmark", "whoosh-soft-3", m["reveal"] + 0.95, 0.32)
@@ -63,9 +63,9 @@ def sfx_plan(tl: dict) -> list[tuple[str, str, float, float]]:
     add("sfx-callout", "ui-click-soft", f + 5.9, 0.45)
     # F03 — um som por verbo, na entrada da voz
     f = fr["f03"]["start"]
-    add("sfx-cut-black", "sub-drop", f, 0.3)
+    add("sfx-cut-black", "sub-drop", f, 0.12)
     verb_sfx = ["ui-click-1", "tick", "whoosh-soft-1", "hit-soft", "confirm", "pulse-b", "scan"]
-    verb_vol = [0.55, 0.6, 0.34, 0.34, 0.26, 0.3, 0.26]
+    verb_vol = [0.5, 0.55, 0.24, 0.18, 0.18, 0.22, 0.18]
     for k, (v, s, vol) in enumerate(zip(m["verbs"], verb_sfx, verb_vol)):
         add(f"sfx-verb-{k}", s, v["at"] - 0.02, vol)
     add("sfx-type-a", "tick", m["verbs"][1]["at"] + 0.18, 0.4)
@@ -109,9 +109,9 @@ def sfx_plan(tl: dict) -> list[tuple[str, str, float, float]]:
     add("sfx-glitch-out", "glitch-2", fr["f08"]["end"] - 0.32, 0.26)
     # F09
     f = fr["f09"]["start"]
-    add("sfx-final-ignite", "signature", m["final_ignition"], 0.62)
-    add("sfx-final-name", "whoosh-soft-3", m["final_ignition"] + 0.95, 0.24)
-    add("sfx-cta", "confirm-low", m["cta_at"] + 0.05, 0.26)
+    add("sfx-final-ignite", "signature", m["final_ignition"], 0.5)
+    add("sfx-final-name", "whoosh-soft-3", m["final_ignition"] + 0.95, 0.14)
+    add("sfx-cta", "confirm-low", m["cta_at"] + 0.05, 0.2)
     return S
 
 
@@ -125,17 +125,17 @@ def music_cue(tl: dict) -> dict:
             {"name": "reveal", "start": m["reveal"], "end": fr["f02"]["start"], "energy": 0.35, "layers": ["pad", "drone"], "chord": "Dm9", "level_db": -7, "ramp": 0.05, "breath_before": 0.38},
             {"name": "discovery", "start": fr["f02"]["start"], "end": fr["f03"]["start"], "energy": 0.45, "layers": ["pad", "arp", "ticks"], "prog_offset": 1, "level_db": -7, "ramp": 0.6},
             {"name": "turn", "start": fr["f03"]["start"], "end": m["verbs"][0]["at"] - 0.3, "energy": 0.3, "layers": ["pad", "ticks"], "chord": "Bbmaj9", "level_db": -9, "ramp": 0.05},
-            {"name": "verbs", "start": m["verbs"][0]["at"] - 0.3, "end": fr["f04"]["start"], "energy": 0.68, "layers": ["pad", "arp", "bass", "drums"], "kit": "pulse", "level_db": -4, "ramp": 0.1},
+            {"name": "verbs", "start": m["verbs"][0]["at"] - 0.3, "end": fr["f04"]["start"], "energy": 0.68, "layers": ["pad", "arp", "bass", "drums"], "kit": "pulse", "level_db": -6, "ramp": 0.1},
             {"name": "scale", "start": fr["f04"]["start"], "end": fr["f05"]["start"], "energy": 0.78, "layers": ["pad", "arp", "bass", "drums"], "kit": "half", "level_db": -3, "ramp": 0.3},
             {"name": "chain", "start": fr["f05"]["start"], "end": m["breath_elo"][1], "energy": 0.6, "layers": ["pad", "arp", "bass", "drums"], "kit": "pulse", "level_db": -5, "ramp": 0.6},
             {"name": "climax", "start": m["breath_elo"][1], "end": fr["f08"]["start"], "energy": 0.95, "layers": ["pad", "arp", "bass", "drums"], "kit": "half", "level_db": 0, "ramp": 0.05, "breath_before": 0.45},
             {"name": "personas", "start": fr["f08"]["start"], "end": fr["f09"]["start"], "energy": 0.7, "layers": ["pad", "bass", "drums", "arp"], "kit": "pulse", "chord": "Bbmaj9", "level_db": -4, "ramp": 0.4},
             {"name": "breath", "start": fr["f09"]["start"], "end": m["final_ignition"], "energy": 0.18, "layers": ["drone", "air"], "chord": "Bbmaj9", "level_db": -15, "ramp": 0.3},
-            {"name": "final", "start": m["final_ignition"], "end": round(tl["duration"] + 0.4, 3), "energy": 0.3, "layers": ["drone", "air", "pad"], "chord": "Dmaj9", "level_db": -7, "ramp": 0.05, "breath_before": 0.5},
+            {"name": "final", "start": m["final_ignition"], "end": round(tl["duration"] + 0.4, 3), "energy": 0.3, "layers": ["drone", "air", "pad"], "chord": "Dmaj9", "level_db": -8, "ramp": 0.05, "breath_before": 0.5},
         ],
         "motifs": [{"t": m["reveal"] + 0.95, "gain": 0.26},
                    {"t": m["breath_elo"][1], "gain": 0.4, "pluck": True},
-                   {"t": m["final_ignition"] + 1.2, "gain": 0.42}],
+                   {"t": round(m["cta_at"] + 2.25, 3), "gain": 0.42}],
         "toms": [m["reveal"], m["breath_elo"][1]],
     }
 

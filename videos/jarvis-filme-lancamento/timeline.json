@@ -3,7 +3,7 @@
  "beat": 0.6,
  "bar": 2.4,
  "anchor": 5.6,
- "duration": 98.202,
+ "duration": 99.002,
  "frames": [
   {
    "id": "f01-abertura",
@@ -72,8 +72,8 @@
   {
    "id": "f09-final",
    "start": 83.6,
-   "end": 98.202,
-   "duration": 14.602,
+   "end": 99.002,
+   "duration": 15.402,
    "file": "compositions/frames/09-final.html",
    "comp": "f09-final"
   }

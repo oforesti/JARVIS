@@ -137,7 +137,7 @@ def main() -> None:
     e = say("L17", snap(ign + 1.2, mode="up"), "f09", caption=False)
     e = say("L18", snap(e + 0.45, mode="up"), "f09", caption=False)
     marks["cta_at"] = vo[-1]["start"]
-    end = round(e + 2.6, 3)
+    end = round(e + 3.4, 3)  # o motivo final soa depois do convite e se apaga com a imagem
     frames.append({"id": "f09-final", "start": t, "end": end})
 
     for f in frames:
