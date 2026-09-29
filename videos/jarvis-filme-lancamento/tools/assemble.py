@@ -1,6 +1,6 @@
 """Monta o index.html a partir de timeline.json — cenas, voz, legendas, trilha e SFX.
 
-Uso: python tools/assemble.py [--music-cue-only]
+Uso: python tools/assemble.py [--music-cue-only] [--no-carve] [--sem-narracao]
 
 - Escreve `index.html` (raiz fina: hosts das cenas, trilha de legendas, áudio).
 - Injeta `window.JT` (linha do tempo) no <head> para as cenas sincronizarem com a fala.
@@ -172,6 +172,16 @@ def main(argv: list[str]) -> None:
     for k, v in enumerate(tl["vo"]):
         audio.append(f'      <audio id="vo-{v["id"].lower()}" src="{v["file"]}" data-start="{v["start"]}" '
                      f'data-duration="{v["duration"]}" data-track-index="10" data-audio-group="voiceover" data-volume="1"></audio>')
+    # automação de volume (t relativo ao início do som): a cauda da assinatura abre espaço para
+    # "Fale. O JARVIS faz." e volta a soar depois da fala
+    m = tl["marks"]
+    l17 = next(v for v in tl["vo"] if v["id"] == "L17")
+    ign = m["final_ignition"]
+    # (a faixa de volume SUBSTITUI data-volume, não multiplica: valores absolutos, 0,5 = nível do som)
+    auto = {"sfx-final-ignite": [(0.0, 0.5), (round(l17["start"] - ign - 0.3, 3), 0.5),
+                                  (round(l17["start"] - ign + 0.05, 3), 0.15), (round(l17["end"] - ign, 3), 0.15),
+                                  (round(l17["end"] - ign + 0.6, 3), 0.28)]}
+    import html as _html
     # SFX: cada som com a própria duração, em trilhas sem sobreposição (alocação gulosa)
     lanes: list[float] = []
     for name, file, t, vol in sorted(sfx_plan(tl), key=lambda x: x[2]):
@@ -181,8 +191,12 @@ def main(argv: list[str]) -> None:
             lanes.append(0.0)
             lane = len(lanes) - 1
         lanes[lane] = t + dur
+        extra = ""
+        if name in auto:
+            lane_json = json.dumps({"version": 1, "lanes": [{"target": "volume", "points": [{"t": a, "v": b} for a, b in auto[name]]}]})
+            extra = f' data-automation="{_html.escape(lane_json)}"'
         audio.append(f'      <audio id="{name}" src="assets/sfx/{file}.flac" data-start="{t}" data-duration="{dur}" '
-                     f'data-track-index="{30 + lane}" data-audio-group="sfx" data-volume="{vol}"></audio>')
+                     f'data-track-index="{30 + lane}" data-audio-group="sfx" data-volume="{vol}"{extra}></audio>')
     music_path = ROOT / "assets/music/music.flac"
     music = (f'      <audio id="music-bed" src="assets/music/music.flac" data-start="0" data-duration="{tl["duration"]}" '
              f'data-track-index="20" data-audio-group="music" data-volume="0.9"></audio>') if music_path.exists() else ""
@@ -239,6 +253,22 @@ def main(argv: list[str]) -> None:
         print("carve:", (r.stdout.strip().splitlines() or ["?"])[-1] if r.returncode == 0 else "FALHOU\n" + r.stderr[-800:])
     print(f"index.html: {len(tl['frames'])} cenas, {len(tl['vo'])} falas, {len(sfx_plan(tl))} SFX, "
           f"música {'ok' if music else 'ausente'}, duração {tl['duration']}s")
+
+    # variante sem narração (só com --sem-narracao): mesmo filme sem a voz e sem as legendas (que
+    # transcrevem a voz). A trilha mantém o carve, então continua abrindo espaço onde a fala entra.
+    # Renderize e apague o arquivo (o lint exige um único index na raiz):
+    #   npx hyperframes render -c index-sem-narracao.html -o renders/...; rm index-sem-narracao.html
+    if "--sem-narracao" not in argv:
+        return
+    import re
+    silent = (ROOT / "index.html").read_text()
+    silent = re.sub(r'\n      <audio id="vo-[^"]+"[^>]*></audio>', "", silent)
+    silent = re.sub(r'\n      <div id="el-captions".*?></div>', "", silent, flags=re.S)
+    silent = re.sub(r'(<audio id="sfx-final-ignite"[^>]*?) data-automation="[^"]*"', r"\1", silent)  # sem voz, a assinatura soa inteira
+    silent = silent.replace("<title>J.A.R.V.I.S. — filme de apresentação</title>",
+                            "<title>J.A.R.V.I.S. — filme de apresentação (sem narração)</title>")
+    (ROOT / "index-sem-narracao.html").write_text(silent)
+    print("index-sem-narracao.html: sem voz e sem legendas")
 
 
 if __name__ == "__main__":

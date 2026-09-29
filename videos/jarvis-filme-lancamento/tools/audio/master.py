@@ -2,6 +2,7 @@
 
 Uso:
   python master.py <render.mp4> <saida.mp4> [--target -14] [--tp -1.0] [--report-only]
+                   [--gain-db G --no-voice]   (versão sem narração com o mesmo ganho da narrada)
 
 - Decodifica o áudio do render (48 kHz, float).
 - Relatório: loudness integrado, pico real (4×), e o equilíbrio voz × trilha em cada fala
@@ -105,27 +106,35 @@ def report(mix: np.ndarray) -> None:
         print(f"  folga média {np.mean(gaps):.1f} dB (mín {np.min(gaps):.1f}, máx {np.max(gaps):.1f})")
 
 
-def master(mix: np.ndarray, target: float, tp: float) -> np.ndarray:
-    y = mix.copy()
+def master(mix: np.ndarray, target: float, tp: float, fixed_gain: float | None = None) -> tuple[np.ndarray, float]:
+    """Ganho até o alvo (ou ganho fixo, para versões que precisam casar com outra) + teto de pico."""
+    if fixed_gain is not None:
+        return dsp.limit(mix * 10 ** (fixed_gain / 20), threshold=tp - 0.3, release=120, lookahead_ms=6.0), fixed_gain
+    y, total = mix.copy(), 0.0
     for _ in range(3):
         g = target - lufs(y)
+        total += g
         y = dsp.limit(y * 10 ** (g / 20), threshold=tp - 0.3, release=120, lookahead_ms=6.0)
         if abs(lufs(y) - target) < 0.15:
             break
-    return y
+    return y, total
 
 
 def main(argv: list[str]) -> None:
     src, dst = Path(argv[1]), Path(argv[2])
     target = float(argv[argv.index("--target") + 1]) if "--target" in argv else -14.0
     tp = float(argv[argv.index("--tp") + 1]) if "--tp" in argv else -1.0
+    fixed = float(argv[argv.index("--gain-db") + 1]) if "--gain-db" in argv else None
     mix = decode(src)
     print(f"render: {src.name} · {mix.shape[1] / SR:.2f}s")
-    report(mix)
+    if "--no-voice" not in argv:
+        report(mix)
+    else:
+        print(f"  mix: {lufs(mix):6.1f} LUFS integrado · pico real {true_peak_db(mix):+.2f} dBTP")
     if "--report-only" in argv:
         return
-    y = master(mix, target, tp)
-    print(f"master: {lufs(y):.2f} LUFS · pico real {true_peak_db(y):+.2f} dBTP")
+    y, gain = master(mix, target, tp, fixed)
+    print(f"master: ganho {gain:+.2f} dB · {lufs(y):.2f} LUFS · pico real {true_peak_db(y):+.2f} dBTP")
     with tempfile.TemporaryDirectory() as td:
         wav = Path(td) / "m.wav"
         sf.write(str(wav), y.T.astype(np.float32), SR, subtype="FLOAT")
