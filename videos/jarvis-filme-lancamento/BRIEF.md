@@ -7,11 +7,11 @@ message: "Fale. O JARVIS faz: o assistente por voz que age de verdade no seu cel
 destination: site (seção Apresentação) e YouTube
 aspect: 1920x1080
 language: pt-BR
-length: ~85-90s
+length: 98s (a narração define; alvo inicial era ~85-90s)
 angle: lançamento de produto (vender), a partir do conteúdo do site
 narration: yes
 vo_mode: roteiro escrito a partir do site, sem inventar funcionalidades
-voice: neural pt-BR local (Kokoro/Piper) — ElevenLabs/HeyGen/Microsoft bloqueados no ambiente
+voice: Kokoro v1.0 (pm_alex, pt-br) local — ElevenLabs/HeyGen/Microsoft bloqueados no ambiente
 music: trilha original composta por código (tools/audio/music.py)
 style_preset: bespoke (frame.md do produto)
 ---
