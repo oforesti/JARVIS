@@ -53,7 +53,7 @@ def sfx_plan(cues: list[dict]) -> list[tuple[str, str, float, float]]:
         add(f, t, v)
     add("riser-long", 3.6, 0.36); add("glitch-1", 6.68, 0.16)
     add("hit-sub-2", OPEN["ignite"], 0.5); add("sub-drop", OPEN["ignite"], 0.28); add("whoosh-soft-3", OPEN["ignite"] + 0.95, 0.3)
-    add("ui-click-soft", OPEN["note"], 0.14); add("sweep-up", OPEN["match"] - 1.2, 0.16); add("whoosh-deep", OPEN["match"] - 0.85, 0.18)   # "Meu nome é Jarvis" limpo
+    add("ui-click-soft", OPEN["note"], 0.14); add("sweep-up", OPEN["match"] - 2.65, 0.16); add("whoosh-deep", OPEN["match"] - 1.3, 0.14)   # a subida termina no corte; "Meu nome é Jarvis" limpo
     # por cima da demo (discreto: a gravação já tem os sons do próprio app)
     wh = ["whoosh-soft-1", "whoosh-soft-2", "whoosh-soft-3"]
     k = 0
@@ -168,8 +168,8 @@ def music_cue() -> dict:
     f = F
     sec = [
         ("intro", 0, OPEN["ignite"], 0.12, ["drone", "air"], "Dm9", -15, 2.5, None),
-        ("reveal", OPEN["ignite"], F(AUDIO_IN) - 0.3, 0.35, ["pad", "drone"], "Dm9", -7, 0.05, 0.38),   # sai antes da primeira fala
-        ("c1", F(AUDIO_IN) - 0.3, f(94.8), 0.3, ["pad", "ticks"], None, -13, 0.8, None),
+        ("reveal", OPEN["ignite"], F(AUDIO_IN) - 0.6, 0.35, ["pad", "drone"], "Dm9", -7, 0.05, 0.38),   # sai antes da primeira fala
+        ("c1", F(AUDIO_IN) - 0.6, f(94.8), 0.3, ["pad", "ticks"], None, -13, 0.6, None),
         ("c2", f(94.8), f(192.8), 0.4, ["pad", "arp"], None, -13, 0.6, None),
         ("c3", f(192.8), f(306.4), 0.45, ["pad", "arp", "bass"], None, -12, 0.6, None),
         ("c4", f(306.4), f(380.0), 0.4, ["pad", "arp"], "Bbmaj9", -13, 0.6, None),
@@ -180,8 +180,10 @@ def music_cue() -> dict:
         ("c7b", f(558.5), f(589.5), 0.3, ["pad", "ticks"], None, -14, 1.2, None),
         ("sons", f(589.5), f(630.5), 0.1, ["air"], None, -60, 0.8, None),        # os sons sintetizados do app
         ("c8", f(630.5), f(713.3), 0.4, ["pad", "arp"], None, -13, 1.2, None),
-        ("fim", f(713.3), f(738.5), 0.7, ["pad", "arp", "bass", "drums"], None, -10, 1.5, None),
-        ("climax", f(738.5), f(771.0), 0.6, ["pad", "arp", "bass"], None, -11, 0.8, None),
+        ("fim", f(713.3), f(738.5), 0.7, ["pad", "arp", "bass", "drums"], None, -12, 1.5, None),
+        ("climax", f(738.5), f(749.0), 0.6, ["pad", "arp", "bass"], None, -11, 0.8, None),
+        ("origem", f(749.0), f(762.9), 0.25, ["pad", "drone"], None, -15, 1.2, None),     # "escrito por uma pessoa, em casa": só o chão
+        ("fecho", f(762.9), f(771.0), 0.4, ["pad", "arp"], None, -13, 1.0, None),
         ("final", SIGN_AT, TOTAL + 0.4, 0.3, ["drone", "air", "pad"], "Dmaj9", -8, 0.05, 0.5),
     ]
     out = []

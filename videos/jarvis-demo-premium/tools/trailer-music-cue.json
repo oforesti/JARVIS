@@ -20,7 +20,7 @@
   {
    "name": "reveal",
    "start": 5.2,
-   "end": 9.2,
+   "end": 8.9,
    "energy": 0.35,
    "layers": [
     "pad",
@@ -33,7 +33,7 @@
   },
   {
    "name": "a1",
-   "start": 9.2,
+   "start": 8.9,
    "end": 21.3,
    "energy": 0.3,
    "layers": [
@@ -41,7 +41,7 @@
     "ticks"
    ],
    "level_db": -13,
-   "ramp": 0.8
+   "ramp": 0.6
   },
   {
    "name": "a2",
@@ -105,7 +105,7 @@
     "bass",
     "drums"
    ],
-   "level_db": -10,
+   "level_db": -12,
    "ramp": 1.0,
    "kit": "pulse",
    "breath_before": 0.35
@@ -113,16 +113,27 @@
   {
    "name": "origin",
    "start": 88.97,
-   "end": 101.92,
-   "energy": 0.55,
+   "end": 94.07,
+   "energy": 0.25,
    "layers": [
     "pad",
-    "arp",
-    "bass"
+    "drone"
    ],
-   "level_db": -11,
-   "ramp": 0.8,
+   "level_db": -15,
+   "ramp": 1.0,
    "breath_before": 0.5
+  },
+  {
+   "name": "fecho",
+   "start": 94.07,
+   "end": 101.92,
+   "energy": 0.4,
+   "layers": [
+    "pad",
+    "arp"
+   ],
+   "level_db": -13,
+   "ramp": 1.0
   },
   {
    "name": "final",
