@@ -71,17 +71,21 @@ def analyse(fr: np.ndarray):
     gray = (mn > max(55, np.median(mn) + 40)) & (mx - mn < 60)
     rows = np.count_nonzero(gray, axis=1) >= max(3, int(0.004 * (xb - xa)))
     lines = bands(rows, gap=max(1, int(0.35 * s)))
+    # a transcrição do app é centralizada sob o rótulo; o histórico do chat logo abaixo é alinhado à esquerda
+    def centred(la, lb):
+        c = np.flatnonzero(gray[la:lb].any(axis=0))
+        return len(c) > 0 and abs(xa + (c[0] + c[-1]) / 2 - cx) <= 0.25 * w + 10
     block = []
     for la, lb in lines:
         if not block:
-            if la > 4 * s:
+            if la > 4 * s or not centred(la, lb):
                 break
             block.append((la, lb))
-        elif la - block[-1][1] <= 2.2 * s:
+        elif la - block[-1][1] <= 2.2 * s and centred(la, lb) and len(block) < 4:
             block.append((la, lb))
         else:
             break
-    if not block or len(block) > 4:          # a transcrição do app tem no máximo 4 linhas; mais que isso é outra janela
+    if not block:
         return {"label": [int(cx + X0), int(a + Y0), int(s), int(w)], "box": None}
     ta, tb = block[0][0], block[-1][1]
     cols = np.flatnonzero(gray[ta:tb].any(axis=0))
