@@ -3,6 +3,7 @@
 Uso:
   python master.py <render.mp4> <saida.mp4> [--target -14] [--tp -1.0] [--report-only]
                    [--gain-db G --no-voice]   (versão sem narração com o mesmo ganho da narrada)
+                   [--voice-html index.html]  (recut: a voz vem dos clipes "voiceover" da composição)
 
 - Decodifica o áudio do render (48 kHz, float).
 - Relatório: loudness integrado, pico real (4×), e o equilíbrio voz × trilha em cada fala
@@ -59,6 +60,40 @@ def voice_stem(n: int) -> tuple[np.ndarray, dict]:
     return out, tl
 
 
+def voice_from_html(n: int, comp: Path) -> tuple[np.ndarray, dict]:
+    """Voz remontada a partir dos <audio data-audio-group="voiceover"> da composição; falas por atividade."""
+    import html as _h
+    import re
+    out = np.zeros((2, n))
+    base = comp.resolve().parent
+    for m in re.finditer(r"<audio\b[^>]*>", comp.read_text()):
+        tag = m.group(0)
+        if 'data-audio-group="voiceover"' not in tag:
+            continue
+        g = lambda k, d=None: (re.search(k + r'="([^"]*)"', tag) or [None, d])[1]
+        t0, dur, m0, vol = float(g("data-start")), float(g("data-duration")), float(g("data-media-start", 0)), float(g("data-volume", 1))
+        y, sr = sf.read(str(base / _h.unescape(g("src"))), dtype="float64", always_2d=True, start=int(m0 * SR), stop=int((m0 + dur) * SR))
+        assert sr == SR
+        a = int(round(t0 * SR))
+        b = min(n, a + y.shape[0])
+        out[:, a:b] += vol * y.T[:, : b - a]
+    # falas = trechos com energia (janelas de 50 ms a menos de 28 dB do nível típico da voz), pausas < 0,3 s unidas
+    hop = int(0.05 * SR)
+    rms = np.sqrt(np.mean(out[0, : n // hop * hop].reshape(-1, hop) ** 2, axis=1) + 1e-12)
+    db = 20 * np.log10(rms)
+    on = db > np.percentile(db[db > -90], 90) - 28 if np.any(db > -90) else np.zeros_like(db, bool)
+    segs, k = [], 0
+    while k < len(on):
+        if on[k]:
+            j = k
+            while j < len(on) and (on[j] or np.any(on[j:j + 6])):
+                j += 1
+            segs.append({"id": f"f{len(segs) + 1:03d}", "start": k * 0.05, "end": j * 0.05})
+            k = j
+        k += 1
+    return out, {"vo": segs}
+
+
 def align(mix: np.ndarray, ref: np.ndarray, around: float, span: float = 0.25) -> int:
     """Atraso (amostras) do ref dentro do mix, perto de `around` s, por correlação cruzada."""
     a = int((around - span) * SR)
@@ -83,10 +118,10 @@ def lufs(x: np.ndarray) -> float:
         return float("-inf")
 
 
-def report(mix: np.ndarray) -> None:
+def report(mix: np.ndarray, comp: Path | None = None) -> None:
     n = mix.shape[1]
-    vo, tl = voice_stem(n)
-    lag = align(mix, vo, tl["vo"][2]["start"])
+    vo, tl = voice_from_html(n, comp) if comp else voice_stem(n)
+    lag = align(mix, vo, tl["vo"][min(2, len(tl["vo"]) - 1)]["start"])
     if lag:
         vo = np.roll(vo, lag, axis=1)
     bed = mix - vo
@@ -100,10 +135,13 @@ def report(mix: np.ndarray) -> None:
         if b - a < int(0.45 * SR):
             continue
         lv, lb = lufs(vo[:, a:b]), lufs(bed[:, a:b])
-        gaps.append(lv - lb)
-        print(f"    {v['id']:5s} {v['start']:6.2f}s  voz {lv:6.1f}  trilha {lb:6.1f}  folga {lv - lb:5.1f} dB")
+        gaps.append((lv - lb, v["start"]))
+        if len(tl["vo"]) <= 40:
+            print(f"    {v['id']:5s} {v['start']:6.2f}s  voz {lv:6.1f}  trilha {lb:6.1f}  folga {lv - lb:5.1f} dB")
     if gaps:
-        print(f"  folga média {np.mean(gaps):.1f} dB (mín {np.min(gaps):.1f}, máx {np.max(gaps):.1f})")
+        g = np.array([x for x, _ in gaps])
+        print(f"  {len(g)} falas · folga média {g.mean():.1f} dB (mín {g.min():.1f}, máx {g.max():.1f})")
+        print("  mais apertadas: " + ", ".join(f"{t:.1f}s {x:.1f} dB" for x, t in sorted(gaps)[:6]))
 
 
 def master(mix: np.ndarray, target: float, tp: float, fixed_gain: float | None = None) -> tuple[np.ndarray, float]:
@@ -128,7 +166,7 @@ def main(argv: list[str]) -> None:
     mix = decode(src)
     print(f"render: {src.name} · {mix.shape[1] / SR:.2f}s")
     if "--no-voice" not in argv:
-        report(mix)
+        report(mix, Path(argv[argv.index("--voice-html") + 1]) if "--voice-html" in argv else None)
     else:
         print(f"  mix: {lufs(mix):6.1f} LUFS integrado · pico real {true_peak_db(mix):+.2f} dBTP")
     if "--report-only" in argv:

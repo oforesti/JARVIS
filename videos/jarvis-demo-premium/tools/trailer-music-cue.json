@@ -1,0 +1,157 @@
+{
+ "length": 110.67,
+ "bpm": 100.0,
+ "grid_anchor": 5.2,
+ "target_lufs": -18,
+ "sections": [
+  {
+   "name": "intro",
+   "start": 0,
+   "end": 5.2,
+   "energy": 0.12,
+   "layers": [
+    "drone",
+    "air"
+   ],
+   "level_db": -15,
+   "ramp": 2.5,
+   "chord": "Dm9"
+  },
+  {
+   "name": "reveal",
+   "start": 5.2,
+   "end": 10.0,
+   "energy": 0.35,
+   "layers": [
+    "pad",
+    "drone"
+   ],
+   "level_db": -7,
+   "ramp": 0.05,
+   "chord": "Dm9",
+   "breath_before": 0.38
+  },
+  {
+   "name": "a1",
+   "start": 10.0,
+   "end": 21.3,
+   "energy": 0.3,
+   "layers": [
+    "pad",
+    "ticks"
+   ],
+   "level_db": -13,
+   "ramp": 1.5
+  },
+  {
+   "name": "a2",
+   "start": 21.3,
+   "end": 37.58,
+   "energy": 0.4,
+   "layers": [
+    "pad",
+    "arp"
+   ],
+   "level_db": -13,
+   "ramp": 0.6
+  },
+  {
+   "name": "a3",
+   "start": 37.58,
+   "end": 62.04,
+   "energy": 0.5,
+   "layers": [
+    "pad",
+    "arp",
+    "bass"
+   ],
+   "level_db": -12,
+   "ramp": 0.6
+  },
+  {
+   "name": "a4",
+   "start": 62.04,
+   "end": 70.44,
+   "energy": 0.35,
+   "layers": [
+    "pad",
+    "drone"
+   ],
+   "level_db": -13,
+   "ramp": 0.6,
+   "chord": "Bbmaj9",
+   "breath_before": 0.35
+  },
+  {
+   "name": "a5",
+   "start": 70.44,
+   "end": 78.19,
+   "energy": 0.4,
+   "layers": [
+    "pad",
+    "arp"
+   ],
+   "level_db": -13,
+   "ramp": 0.6
+  },
+  {
+   "name": "climax",
+   "start": 78.19,
+   "end": 88.97,
+   "energy": 0.7,
+   "layers": [
+    "pad",
+    "arp",
+    "bass",
+    "drums"
+   ],
+   "level_db": -10,
+   "ramp": 1.0,
+   "kit": "pulse",
+   "breath_before": 0.35
+  },
+  {
+   "name": "origin",
+   "start": 88.97,
+   "end": 101.92,
+   "energy": 0.55,
+   "layers": [
+    "pad",
+    "arp",
+    "bass"
+   ],
+   "level_db": -11,
+   "ramp": 0.8,
+   "breath_before": 0.5
+  },
+  {
+   "name": "final",
+   "start": 101.92,
+   "end": 110.67,
+   "energy": 0.3,
+   "layers": [
+    "drone",
+    "air",
+    "pad"
+   ],
+   "level_db": -8,
+   "ramp": 0.05,
+   "chord": "Dmaj9",
+   "breath_before": 0.5
+  }
+ ],
+ "motifs": [
+  {
+   "t": 6.15,
+   "gain": 0.26
+  },
+  {
+   "t": 104.02,
+   "gain": 0.42
+  }
+ ],
+ "toms": [
+  5.2,
+  84.19
+ ]
+}

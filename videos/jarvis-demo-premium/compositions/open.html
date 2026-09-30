@@ -44,16 +44,19 @@
         (function () {
           const tl = gsap.timeline({ paused: true });
           const J = window.JM;
-          const O = window.OPEN;  // tempos da abertura (tools/build.py)
+          const O = window.OPEN;  // tempos da abertura (tools/build.py; o trailer passa os seus)
+          const F0 = O.frag ?? 3.4, K = O.fragK ?? 1;  // início e ritmo dos fragmentos
+          if (O.chapter) document.getElementById("op-ch").textContent = O.chapter;
+          const hasNote = O.note != null;
+          if (!hasNote) document.getElementById("op-note").style.display = "none";
           // o gancho do original: quem fez este vídeo
           J.focusIn(tl, "#op-hook", O.hook, { dur: 1.1, blur: 16, scale: 1.03 });
           J.focusOut(tl, "#op-hook", O.hookOut, { dur: 0.45, blur: 12 });
           // fragmentos reais da interface: [t, dur, arquivo, w, h, centro x, centro y, redondo]
-          const d0 = 3.4 - 1.10;
           const FR = [[1.10, 0.50, "orb", 330, 330, 560, 470, 1], [1.70, 0.42, "wave", 760, 196, 1310, 330], [2.20, 0.38, "stats", 250, 588, 470, 560],
             [2.64, 0.32, "files", 820, 344, 1250, 690], [3.02, 0.30, "card", 800, 182, 900, 300], [3.36, 0.27, "image", 520, 520, 1380, 520],
             [3.66, 0.22, "qr", 380, 380, 560, 640], [3.90, 0.18, "discut", 420, 96, 1100, 260], [4.10, 0.14, "popup", 860, 140, 960, 780],
-            [4.26, 0.10, "ultron", 280, 96, 700, 330], [4.38, 0.08, "wiki", 760, 360, 1200, 560]].map((f) => [f[0] + d0, ...f.slice(1)]);
+            [4.26, 0.10, "ultron", 280, 96, 700, 330], [4.38, 0.08, "wiki", 760, 360, 1200, 560]].map((f) => [F0 + (f[0] - 1.10) * K, f[1] * K, ...f.slice(2)]);
           const host = document.getElementById("op-frags");
           FR.forEach(([t, d, f, w, h, cx, cy, round]) => {
             const wrap = document.createElement("div");
@@ -71,8 +74,8 @@
             tl.fromTo(img, { scale: 1.06, filter: "brightness(1.7) blur(3px)" }, { scale: 1.0, filter: "brightness(1) blur(0px)", duration: d, ease: "none" }, t);
             tl.set(wrap, { opacity: 0, visibility: "hidden" }, t + d);
           });
-          tl.fromTo("#op-scan", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.7, ease: "expo.out" }, 3.1);
-          tl.fromTo("#op-scan", { opacity: 1 }, { opacity: 0, duration: 0.4, ease: "power2.in", immediateRender: false }, 3.8);
+          tl.fromTo("#op-scan", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.7, ease: "expo.out" }, F0 - 0.3);
+          tl.fromTo("#op-scan", { opacity: 1 }, { opacity: 0, duration: 0.4, ease: "power2.in", immediateRender: false }, F0 + 0.4);
 
           // ignição do núcleo — a revelação
           const T = O.ignite;
@@ -91,7 +94,7 @@
           J.trackIn(tl, document.getElementById("op-wm"), T + 0.95, { fontPx: 92, spread: 0.3, dur: 1.2 });
           J.hudIn(tl, "#op-ch", T + 1.4, { x: 0, dur: 0.6 });
           J.wordsIn(tl, document.getElementById("op-mk"), T + 1.6, { dur: 0.6, y: 12, blur: 8, stagger: 0.08 });
-          J.wordsIn(tl, document.getElementById("op-note"), O.note, { dur: 0.6, y: 10, blur: 6, stagger: 0.03 });
+          if (hasNote) J.wordsIn(tl, document.getElementById("op-note"), O.note, { dur: 0.6, y: 10, blur: 6, stagger: 0.03 });
           J.focusOut(tl, ["#op-wm", "#op-ch", "#op-mk", "#op-note"], O.wmOut, { dur: 0.5, blur: 10 });
           // o núcleo encaixa no orb do app (corte casado) e a gravação aparece por baixo
           orb.to(tl, { x: 960, y: 380, r: 88 }, { x: O.appX, y: O.appY, r: O.appR }, O.wmOut + 0.3, O.match - O.wmOut - 0.4, "power3.inOut");
