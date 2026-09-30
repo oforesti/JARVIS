@@ -10,6 +10,7 @@
         #sg-cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
         #sg-video { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }
         #sg-src, #sg-screen { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+        .tmask { position: absolute; left: 0; top: 0; width: 10px; height: 10px; border-radius: 12px; opacity: 0; }
         #sg-band { position: absolute; left: 0; right: 0; bottom: 0; height: 270px;
           background: linear-gradient(180deg, rgba(4,8,12,0) 0%, rgba(4,8,12,0.45) 12%, rgba(4,8,12,0.85) 24%, rgba(4,8,12,0.97) 36%, #04080c 100%); }
         #sg-vig { position: absolute; inset: 0; background: radial-gradient(1400px 900px at 50% 42%, rgba(4,8,12,0) 60%, rgba(4,8,12,0.38) 100%); }
@@ -117,6 +118,35 @@
             tl.fromTo(e, { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: `blur(${o.blur || 6}px)`, duration: o.dout || 0.4, ease: "power2.in", immediateRender: false }, b - (o.dout || 0.4));
           };
           const cues = D.cues.slice();
+
+          // ------------------------------------------------------------ a transcrição ao vivo do app some sob a nossa legenda
+          // (remendo na cor do fundo local, em coordenadas do original: acompanha as duas câmeras)
+          const tms = [0, 1].map(() => {
+            const d = document.createElement("div");
+            d.className = "tmask";
+            d.setAttribute("data-layout-ignore", "");
+            SRC.insertBefore(d, SRC.firstChild);
+            return d;
+          });
+          const tmOn = [false, false];
+          (window.TMASK || []).forEach((e) => {
+            const t = T(e[0]), k = e[1], m = tms[k];
+            if (e[2] == null) {                       // some (nos cortes do original, na hora)
+              if (tmOn[k]) {
+                if (e[3]) tl.set(m, { opacity: 0 }, t);
+                else tl.fromTo(m, { opacity: 1 }, { opacity: 0, duration: 0.15, ease: "power1.in", immediateRender: false }, t);
+              }
+              tmOn[k] = false;
+              return;
+            }
+            const [, , x0, y0, x1, y1, bg, sp, bl, now] = e;
+            tl.set(m, { x: x0, y: y0, width: x1 - x0, height: y1 - y0, backgroundColor: bg, boxShadow: `0 0 ${bl}px ${sp}px ${bg}` }, t);
+            if (!tmOn[k]) {
+              if (now) tl.set(m, { opacity: 1 }, t);
+              else tl.fromTo(m, { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power1.out", immediateRender: false }, t);
+            }
+            tmOn[k] = true;
+          });
 
           // ------------------------------------------------------------ câmera
           const cam = document.getElementById("sg-cam");

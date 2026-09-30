@@ -96,6 +96,61 @@ def sfx_plan(cues: list[dict]) -> list[tuple[str, str, float, float]]:
     return S
 
 
+def tmask_events() -> list:
+    """Remendo sobre a transcrição ao vivo do app (data/tmask.json, tools/transcript_mask.py).
+
+    Eventos em tempo do original: [t, vaga, x0, y0, x1, y1, cor, spread, blur, instantâneo] mostra/move;
+    [t, vaga, None, instantâneo] some. Entre amostras a caixa é a união das vizinhas (o texto não escapa),
+    exceto nos cortes do próprio original (o rótulo salta): aí a outra vaga assume, com um intervalo de
+    sobreposição, sem cobrir o espaço entre os dois enquadramentos.
+    """
+    p = ROOT / "data/tmask.json"
+    if not p.exists():
+        return []
+    D = json.loads(p.read_text())
+    S, dt = D["samples"], 1.0 / D["fps"]
+    n = len(S)
+    for i in range(1, n):                     # buracos de até 2 amostras: segue a caixa anterior
+        if S[i][1] is None and S[i - 1][1] is not None and any(S[k][1] is not None for k in range(i + 1, min(n, i + 3))):
+            S[i] = [S[i][0], *S[i - 1][1:]]
+    rgb = lambda h: [int(h[k:k + 2], 16) for k in (1, 3, 5)]
+    cut = lambda a, b: abs(a[4] - b[4]) + abs(a[5] - b[5]) > 2.5 * max(a[3], b[3]) or abs(a[3] - b[3]) > 0.35 * max(a[3], b[3])
+    ev, slot, i = [], 0, 0
+    while i < n:
+        if S[i][1] is None:
+            i += 1
+            continue
+        j = i
+        while j + 1 < n and S[j + 1][1] is not None:
+            j += 1
+        if S[j][0] - S[i][0] >= 0.35:         # corridas curtíssimas são ruído
+            segs, a = [], i
+            for k in range(i, j):
+                if cut(S[k], S[k + 1]):
+                    segs.append((a, k))
+                    a = k + 1
+            segs.append((a, j))
+            for m, (a, b) in enumerate(segs):
+                first, last = m == 0, m == len(segs) - 1
+                t_on = S[a][0] - (0.15 if first else dt)
+                t_off = S[b][0] + (0.2 if last else dt)
+                prev = None
+                for k in range(a, b + 1):
+                    A, B = S[k], S[min(k + 1, b)]
+                    box = [min(A[1][0], B[1][0]), min(A[1][1], B[1][1]), max(A[1][2], B[1][2]), max(A[1][3], B[1][3])]
+                    sz = max(A[3], B[3])
+                    if prev is None or any(abs(u - v) > 3 for u, v in zip(box, prev[0])) or \
+                            any(abs(u - v) > 3 for u, v in zip(rgb(A[2]), rgb(prev[1]))):
+                        ev.append([round(t_on if k == a else A[0], 2), slot, *box, A[2], round(0.3 * sz), round(0.7 * sz),
+                                   int(k == a and not first)])
+                        prev = (box, A[2])
+                ev.append([round(t_off, 2), slot, None, int(not last)])
+                slot ^= 1
+        i = j + 1
+    ev.sort(key=lambda e: e[0])
+    return ev
+
+
 def music_cue() -> dict:
     f = F
     sec = [
@@ -175,6 +230,7 @@ def main(argv: list[str]) -> None:
       window.CUES = {js};
       window.OPEN = {json.dumps(OPEN)};
       window.SIGN = {json.dumps(SIGN)};
+      window.TMASK = {json.dumps(tmask_events())};
     </script>
     <style>
       * {{ margin: 0; padding: 0; box-sizing: border-box; }}
