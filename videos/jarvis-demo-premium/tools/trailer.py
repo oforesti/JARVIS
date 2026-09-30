@@ -115,8 +115,8 @@ def sfx_plan(clips: list[dict], total: float) -> list[tuple[str, float, float]]:
                     (5.66, "ui-click-1", .3), (5.96, "tick", .36), (6.20, "pulse-b", .2), (6.40, "tick", .32), (6.56, "ui-click-2", .26)]:
         add(f, F0 + (t - 3.4) * K, v)
     add("riser-long", O["ignite"] - 3.22, 0.34); add("glitch-1", O["ignite"] - 0.12, 0.16)
-    add("hit-sub-2", O["ignite"], 0.8); add("sub-drop", O["ignite"], 0.4); add("whoosh-soft-3", O["ignite"] + 0.95, 0.3)
-    add("ui-click-soft", O["ignite"] + 1.4, 0.14); add("sweep-up", O["match"] - 1.2, 0.26); add("whoosh-deep", O["match"] - 0.4, 0.3)
+    add("hit-sub-2", O["ignite"], 0.5); add("sub-drop", O["ignite"], 0.28); add("whoosh-soft-3", O["ignite"] + 0.95, 0.3)
+    add("ui-click-soft", O["ignite"] + 1.4, 0.14); add("sweep-up", O["match"] - 1.2, 0.16); add("whoosh-deep", O["match"] - 0.85, 0.18)
     # grafismos queimados de cada trecho: os mesmos sons da versão completa, no novo tempo
     for c in clips:
         f_in, f_out = c["v_in"] + OFF, c["v_out"] + OFF
@@ -145,8 +145,8 @@ def music_cue(clips: list[dict], total: float) -> dict:
     S = lambda name, a, b, **k: {"name": name, "start": round(a, 3), "end": round(b, 3), **k}
     return {"length": round(total + 0.35, 3), "bpm": 100.0, "grid_anchor": I, "target_lufs": -18, "sections": [
         S("intro", 0, I, energy=0.12, layers=["drone", "air"], level_db=-15, ramp=2.5, chord="Dm9"),
-        S("reveal", I, M, energy=0.35, layers=["pad", "drone"], level_db=-7, ramp=0.05, chord="Dm9", breath_before=0.38),
-        S("a1", M, act[2], energy=0.3, layers=["pad", "ticks"], level_db=-13, ramp=1.5),
+        S("reveal", I, M - 0.8, energy=0.35, layers=["pad", "drone"], level_db=-7, ramp=0.05, chord="Dm9", breath_before=0.38),
+        S("a1", M - 0.8, act[2], energy=0.3, layers=["pad", "ticks"], level_db=-13, ramp=0.8),
         S("a2", act[2], act[3], energy=0.4, layers=["pad", "arp"], level_db=-13, ramp=0.6),
         S("a3", act[3], act[5], energy=0.5, layers=["pad", "arp", "bass"], level_db=-12, ramp=0.6),
         S("a4", act[5], act[6], energy=0.35, layers=["pad", "drone"], level_db=-13, ramp=0.6, chord="Bbmaj9", breath_before=BREATH[5]),

@@ -20,7 +20,7 @@
   {
    "name": "reveal",
    "start": 6.8,
-   "end": 13.6,
+   "end": 12.2,
    "energy": 0.35,
    "layers": [
     "pad",
@@ -33,7 +33,7 @@
   },
   {
    "name": "c1",
-   "start": 13.6,
+   "start": 12.2,
    "end": 97.85,
    "energy": 0.3,
    "layers": [
@@ -41,7 +41,7 @@
     "ticks"
    ],
    "level_db": -13,
-   "ramp": 1.5
+   "ramp": 0.8
   },
   {
    "name": "c2",

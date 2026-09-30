@@ -52,15 +52,15 @@ def sfx_plan(cues: list[dict]) -> list[tuple[str, str, float, float]]:
                     (5.66, "ui-click-1", .3), (5.96, "tick", .36), (6.20, "pulse-b", .2), (6.40, "tick", .32), (6.56, "ui-click-2", .26)]:
         add(f, t, v)
     add("riser-long", 3.6, 0.36); add("glitch-1", 6.68, 0.16)
-    add("hit-sub-2", OPEN["ignite"], 0.8); add("sub-drop", OPEN["ignite"], 0.4); add("whoosh-soft-3", OPEN["ignite"] + 0.95, 0.3)
-    add("ui-click-soft", OPEN["note"], 0.14); add("sweep-up", OPEN["match"] - 1.2, 0.26); add("whoosh-deep", OPEN["match"] - 0.4, 0.3)
+    add("hit-sub-2", OPEN["ignite"], 0.5); add("sub-drop", OPEN["ignite"], 0.28); add("whoosh-soft-3", OPEN["ignite"] + 0.95, 0.3)
+    add("ui-click-soft", OPEN["note"], 0.14); add("sweep-up", OPEN["match"] - 1.2, 0.16); add("whoosh-deep", OPEN["match"] - 0.85, 0.18)   # "Meu nome é Jarvis" limpo
     # por cima da demo (discreto: a gravação já tem os sons do próprio app)
     wh = ["whoosh-soft-1", "whoosh-soft-2", "whoosh-soft-3"]
     k = 0
     for c in cues:
         kd = c["k"]
         if kd == "chapter":
-            add("whoosh-deep", F(c["t0"]) - 0.3, 0.3); add("hit-soft", F(c["t0"]) + 0.08, 0.3); add("sweep-up", F(c["t0"]) + 0.85, 0.14)
+            add("whoosh-deep", F(c["t0"]) - 0.3, 0.22); add("hit-soft", F(c["t0"]) + 0.08, 0.22); add("sweep-up", F(c["t0"]) + 0.85, 0.14)
         elif kd == "kin":
             add(wh[k % 3], F(c["t"]) - 0.08, 0.16); k += 1
         elif kd in ("res", "hud"):
@@ -168,8 +168,8 @@ def music_cue() -> dict:
     f = F
     sec = [
         ("intro", 0, OPEN["ignite"], 0.12, ["drone", "air"], "Dm9", -15, 2.5, None),
-        ("reveal", OPEN["ignite"], OPEN["match"] + 0.6, 0.35, ["pad", "drone"], "Dm9", -7, 0.05, 0.38),
-        ("c1", OPEN["match"] + 0.6, f(94.8), 0.3, ["pad", "ticks"], None, -13, 1.5, None),
+        ("reveal", OPEN["ignite"], F(AUDIO_IN) - 0.3, 0.35, ["pad", "drone"], "Dm9", -7, 0.05, 0.38),   # sai antes da primeira fala
+        ("c1", F(AUDIO_IN) - 0.3, f(94.8), 0.3, ["pad", "ticks"], None, -13, 0.8, None),
         ("c2", f(94.8), f(192.8), 0.4, ["pad", "arp"], None, -13, 0.6, None),
         ("c3", f(192.8), f(306.4), 0.45, ["pad", "arp", "bass"], None, -12, 0.6, None),
         ("c4", f(306.4), f(380.0), 0.4, ["pad", "arp"], "Bbmaj9", -13, 0.6, None),
