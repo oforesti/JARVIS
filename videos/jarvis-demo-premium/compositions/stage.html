@@ -128,8 +128,9 @@
             SRC.insertBefore(d, SRC.firstChild);
             return d;
           });
-          const tmOn = [false, false];
-          (window.TMASK || []).forEach((e) => {
+          const tmOn = [false, false], tmG = [null, null];
+          const TMK = window.TMASK || { dt: 0.1, ev: [] };
+          TMK.ev.forEach((e) => {
             const t = T(e[0]), k = e[1], m = tms[k];
             if (e[2] == null) {                       // some (nos cortes do original, na hora)
               if (tmOn[k]) {
@@ -139,13 +140,22 @@
               tmOn[k] = false;
               return;
             }
-            const [, , x0, y0, x1, y1, bg, sp, bl, now] = e;
-            tl.set(m, { x: x0, y: y0, width: x1 - x0, height: y1 - y0, backgroundColor: bg, boxShadow: `0 0 ${bl}px ${sp}px ${bg}` }, t);
+            const [, , x0, y0, x1, y1, bg, sp, bl, mode] = e;
+            const g = { x: x0, y: y0, width: x1 - x0, height: y1 - y0 };
+            const look = { backgroundColor: bg, boxShadow: `0 0 ${bl}px ${sp}px ${bg}` };
+            if (mode === 2 && tmG[k]) tl.fromTo(m, { ...tmG[k] }, { ...g, duration: TMK.dt, ease: "none", immediateRender: false }, t);
+            else tl.set(m, { ...g, ...look }, t);
+            tmG[k] = g;
             if (!tmOn[k]) {
-              if (now) tl.set(m, { opacity: 1 }, t);
+              if (mode === 1) tl.set(m, { opacity: 1 }, t);
               else tl.fromTo(m, { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power1.out", immediateRender: false }, t);
             }
             tmOn[k] = true;
+          });
+          // sob as nossas cartelas (e a cartela do original que as antecede) não há o que cobrir
+          cues.filter((c) => c.k === "chapter").forEach((c) => {
+            tl.set(tms, { visibility: "hidden" }, T(c.t0) - 0.5);
+            tl.set(tms, { visibility: "visible" }, T(c.t1) + 0.05);
           });
 
           // ------------------------------------------------------------ câmera

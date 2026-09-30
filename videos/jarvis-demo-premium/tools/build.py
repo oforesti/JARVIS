@@ -114,7 +114,10 @@ def tmask_events() -> list:
         if S[i][1] is None and S[i - 1][1] is not None and any(S[k][1] is not None for k in range(i + 1, min(n, i + 3))):
             S[i] = [S[i][0], *S[i - 1][1:]]
     rgb = lambda h: [int(h[k:k + 2], 16) for k in (1, 3, 5)]
-    cut = lambda a, b: abs(a[4] - b[4]) + abs(a[5] - b[5]) > 2.5 * max(a[3], b[3]) or abs(a[3] - b[3]) > 0.35 * max(a[3], b[3])
+    disp = lambda a, b: abs(a[4] - b[4]) + abs(a[5] - b[5])
+    big = lambda a, b: disp(a, b) > 2.5 * max(a[3], b[3]) or abs(a[3] - b[3]) > 0.35 * max(a[3], b[3])
+    still = lambda a, b: disp(a, b) <= 0.4 * max(a[3], b[3]) and abs(a[3] - b[3]) <= 0.1 * max(a[3], b[3])
+    union = lambda p, q: [min(p[0], q[0]), min(p[1], q[1]), max(p[2], q[2]), max(p[3], q[3])]
     ev, slot, i = [], 0, 0
     while i < n:
         if S[i][1] is None:
@@ -124,27 +127,37 @@ def tmask_events() -> list:
         while j + 1 < n and S[j + 1][1] is not None:
             j += 1
         if S[j][0] - S[i][0] >= 0.35:         # corridas curtíssimas são ruído
+            # corte = salto isolado do rótulo; movimento = passos seguidos (zoom do original); parado = união
+            kind = {}
+            for k in range(i, j):
+                A, B = S[k], S[k + 1]
+                if big(A, B) and (k == i or still(S[k - 1], A)) and (k + 1 == j or still(B, S[k + 2])):
+                    kind[k] = "cut"
+                else:
+                    kind[k] = "still" if still(A, B) else "move"
             segs, a = [], i
             for k in range(i, j):
-                if cut(S[k], S[k + 1]):
+                if kind[k] == "cut":
                     segs.append((a, k))
                     a = k + 1
             segs.append((a, j))
             for m, (a, b) in enumerate(segs):
                 first, last = m == 0, m == len(segs) - 1
-                t_on = S[a][0] - (0.15 if first else dt)
-                t_off = S[b][0] + (0.2 if last else dt)
-                prev = None
-                for k in range(a, b + 1):
-                    A, B = S[k], S[min(k + 1, b)]
-                    box = [min(A[1][0], B[1][0]), min(A[1][1], B[1][1]), max(A[1][2], B[1][2]), max(A[1][3], B[1][3])]
-                    sz = max(A[3], B[3])
-                    if prev is None or any(abs(u - v) > 3 for u, v in zip(box, prev[0])) or \
-                            any(abs(u - v) > 3 for u, v in zip(rgb(A[2]), rgb(prev[1]))):
-                        ev.append([round(t_on if k == a else A[0], 2), slot, *box, A[2], round(0.3 * sz), round(0.7 * sz),
-                                   int(k == a and not first)])
-                        prev = (box, A[2])
-                ev.append([round(t_off, 2), slot, None, int(not last)])
+                sz = lambda k: max(S[k][3], S[min(k + 1, b)][3])
+                box0 = union(S[a][1], S[a + 1][1]) if a < b and kind[a] == "still" else S[a][1]
+                ev.append([round(S[a][0] - (0.15 if first else dt), 2), slot, *box0, S[a][2], round(0.3 * sz(a)), round(0.7 * sz(a)), 1 if not first else 0])
+                cur = box0
+                for k in range(a, b):
+                    A, B = S[k], S[k + 1]
+                    if kind[k] == "move":        # acompanha o zoom do original, sem união
+                        ev.append([round(A[0], 2), slot, *B[1], B[2], round(0.3 * sz(k)), round(0.7 * sz(k)), 2])
+                        cur = B[1]
+                    else:
+                        box = union(A[1], B[1]) if k + 1 <= b else A[1]
+                        if any(abs(u - v) > 3 for u, v in zip(box, cur)):
+                            ev.append([round(A[0], 2), slot, *box, A[2], round(0.3 * sz(k)), round(0.7 * sz(k)), 0])
+                            cur = box
+                ev.append([round(S[b][0] + (0.2 if last else dt), 2), slot, None, 0 if last else 1])
                 slot ^= 1
         i = j + 1
     ev.sort(key=lambda e: e[0])
@@ -230,7 +243,7 @@ def main(argv: list[str]) -> None:
       window.CUES = {js};
       window.OPEN = {json.dumps(OPEN)};
       window.SIGN = {json.dumps(SIGN)};
-      window.TMASK = {json.dumps(tmask_events())};
+      window.TMASK = {{"dt": 0.1, "ev": {json.dumps(tmask_events())}}};
     </script>
     <style>
       * {{ margin: 0; padding: 0; box-sizing: border-box; }}
