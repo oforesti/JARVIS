@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template id="sign-template">
+      <style>
+        @font-face { font-family: "Orbitron"; src: url("assets/fonts/Orbitron-Variable.woff2") format("woff2"); font-weight: 400 900; }
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #sn-dark { position: absolute; inset: 0; background: #04080c; opacity: 0; }
+        #sn-navy { position: absolute; inset: 0; opacity: 0; background: radial-gradient(1200px 800px at 50% 45%, #0a1b2c 0%, #061321 60%, #040d17 100%); }
+        #sn-orb { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+        #sn-wm { position: absolute; left: 0; right: 0; top: 610px; display: flex; justify-content: center; }
+        #sn-wm span { display: block; font-family: "Orbitron"; font-weight: 500; font-size: 76px; color: #e6f7fd; margin: 0 0.1em; text-shadow: 0 0 30px rgba(92,214,245,0.28); }
+      </style>
+      <div id="root" data-composition-id="sign" data-width="1920" data-height="1080">
+        <div id="sn-dark" data-layout-ignore></div>
+        <div id="sn-navy" data-layout-ignore></div>
+        <canvas id="sn-orb" width="1920" height="1080" data-layout-ignore></canvas>
+        <div id="sn-wm"><span>J</span><span>.</span><span>A</span><span>.</span><span>R</span><span>.</span><span>V</span><span>.</span><span>I</span><span>.</span><span>S</span><span>.</span></div>
+      </div>
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          const J = window.JM;
+          const S = window.SIGN; // {ign, end} em tempo local desta composição
+          tl.fromTo("#sn-dark", { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power2.inOut" }, 0);
+          const orb = J.orbRig(document.getElementById("sn-orb"), { x: 960, y: 420, r: 2, alpha: 0, halo: 0, bloom: 0, spec: 0, ring: 0, ringDraw: 0, ringRot: -60, flash: 0 });
+          const I = S.ign;
+          orb.to(tl, { alpha: 0 }, { alpha: 1 }, I, 0.05, "none");
+          orb.to(tl, { r: 2 }, { r: 88 }, I, 1.3, "expo.out");
+          orb.to(tl, { bloom: 0 }, { bloom: 0.9 }, I, 1.4, "expo.out");
+          orb.to(tl, { halo: 0 }, { halo: 0.9 }, I + 0.05, 2.0, "power3.out");
+          orb.to(tl, { spec: 0 }, { spec: 1 }, I, 1.2, "expo.out");
+          orb.to(tl, { flash: 0 }, { flash: 0.6 }, I, 0.1, "none");
+          orb.to(tl, { flash: 0.6 }, { flash: 0 }, I + 0.1, 1.4, "power2.out");
+          orb.to(tl, { ring: 0 }, { ring: 1 }, I + 0.4, 0.3, "none");
+          orb.to(tl, { ringDraw: 0 }, { ringDraw: 1 }, I + 0.4, 1.6, "power2.inOut");
+          orb.to(tl, { ringRot: -60 }, { ringRot: 30 }, I + 0.4, S.end - I - 0.4, "sine.out");
+          J.trackIn(tl, document.getElementById("sn-wm"), I + 0.95, { fontPx: 76, spread: 0.3, dur: 1.2 });
+          tl.fromTo("#sn-navy", { opacity: 0 }, { opacity: 0.6, duration: 3.0, ease: "sine.inOut" }, I + 0.3);
+          const f = S.end - 1.6;
+          J.fadeOut(tl, "#sn-wm", f, { dur: 0.8 });
+          orb.to(tl, { alpha: 1 }, { alpha: 0 }, f + 0.2, 1.0, "power2.in");
+          tl.fromTo("#sn-navy", { opacity: 0.6 }, { opacity: 1, duration: 1.2, ease: "sine.inOut", immediateRender: false }, f + 0.2);
+          tl.eventCallback("onUpdate", orb.draw);
+          window.__timelines["sign"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+renders/
+snapshots/
+.hyperframes/
+node_modules/
+analysis/frames/
+analysis/asr/
+*.tmp
+__pycache__/
+analysis/
+assets/source/
+assets/audio/music.flac

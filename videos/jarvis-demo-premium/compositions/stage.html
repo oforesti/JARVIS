@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template id="stage-template">
+      <style>
+        @font-face { font-family: "Mona Sans"; src: url("assets/fonts/MonaSans-Variable.woff2") format("woff2"); font-weight: 200 900; font-stretch: 75% 125%; }
+        @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #04080c; }
+        #sg-cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+        #sg-video { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }
+        #sg-src, #sg-screen { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+        #sg-band { position: absolute; left: 0; right: 0; bottom: 0; height: 270px;
+          background: linear-gradient(180deg, rgba(4,8,12,0) 0%, rgba(4,8,12,0.45) 12%, rgba(4,8,12,0.85) 24%, rgba(4,8,12,0.97) 36%, #04080c 100%); }
+        #sg-vig { position: absolute; inset: 0; background: radial-gradient(1400px 900px at 50% 42%, rgba(4,8,12,0) 60%, rgba(4,8,12,0.38) 100%); }
+
+        /* frases-chave */
+        .kb { position: absolute; top: 0; bottom: 0; width: 1000px; opacity: 0; }
+        .kb.R { right: 0; background: linear-gradient(270deg, rgba(4,8,12,0.86) 0%, rgba(4,8,12,0.62) 45%, rgba(4,8,12,0) 100%); }
+        .kb.L { left: 0; background: linear-gradient(90deg, rgba(4,8,12,0.86) 0%, rgba(4,8,12,0.62) 45%, rgba(4,8,12,0) 100%); }
+        .kt { position: absolute; width: 700px; }
+        .kt .m { display: block; overflow: hidden; padding-bottom: 0.08em; }
+        .kt .ln { display: block; font-family: "Mona Sans", sans-serif; font-stretch: 125%; font-weight: 600; line-height: 1.08;
+          letter-spacing: -0.01em; color: #e6f7fd; white-space: nowrap; }
+        .kt .k { color: #5cd6f5; } .kt .kr { color: #ec5a61; }
+        .kt .rule { width: 110px; height: 2px; background: #5cd6f5; margin-top: 26px; }
+        .kt.red .rule { background: #ec5a61; }
+        .kp { position: absolute; left: 110px; bottom: 250px; width: 820px; padding: 34px 40px 36px; border-radius: 18px;
+          background: rgba(6,14,20,0.92); border: 1.5px solid rgba(92,214,245,0.28); box-shadow: 0 40px 120px rgba(0,0,0,0.5); opacity: 0; }
+        .kp .kt { position: relative; width: auto; }
+
+        /* cartões (HUD, resultado) */
+        .card { position: absolute; border-radius: 18px; background: rgba(6,14,20,0.9); border: 1.5px solid rgba(92,214,245,0.26);
+          box-shadow: 0 40px 120px rgba(0,0,0,0.55), inset 0 1px 0 rgba(230,247,253,0.07); opacity: 0; }
+        .card .ttl { font-family: "Geist Mono", monospace; font-weight: 600; font-size: 17px; letter-spacing: 0.28em; color: #5cd6f5; }
+        .card .row { display: flex; justify-content: space-between; align-items: baseline; gap: 18px; padding: 11px 0; border-top: 1px solid rgba(24,49,64,0.9); opacity: 0; }
+        .card .row .a { font-family: "Geist Mono", monospace; font-weight: 500; font-size: 15px; letter-spacing: 0.16em; color: #8ea7b2; white-space: nowrap; }
+        .card .row .b { font-family: "Mona Sans", sans-serif; font-weight: 500; font-size: 27px; color: #e6f7fd; text-align: right; white-space: nowrap; }
+        .card .row .b.big { font-size: 40px; font-weight: 600; color: #5cd6f5; font-variant-numeric: tabular-nums; }
+        .card .body { margin-top: 16px; font-family: "Mona Sans", sans-serif; font-weight: 500; font-size: 31px; line-height: 1.32; color: #e6f7fd; }
+        .card .state { margin-top: 18px; font-family: "Geist Mono", monospace; font-weight: 600; font-size: 16px; letter-spacing: 0.3em; color: #5cd6f5; opacity: 0; }
+        .card .state i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #5cd6f5; margin-right: 12px; vertical-align: 1px; }
+
+        /* callouts e caixas (coordenadas do original) */
+        .cn { position: absolute; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: #5cd6f5;
+          box-shadow: 0 0 0 6px rgba(92,214,245,0.2), 0 0 22px rgba(92,214,245,0.8); opacity: 0; }
+        .cl { position: absolute; padding: 12px 18px 13px; border-radius: 12px; background: rgba(6,14,20,0.93); border: 1.5px solid rgba(92,214,245,0.45); opacity: 0; white-space: nowrap; }
+        .cl .a { font-family: "Geist Mono", monospace; font-weight: 600; font-size: 16px; letter-spacing: 0.24em; color: #5cd6f5; }
+        .cl .b { margin-top: 4px; font-family: "Mona Sans", sans-serif; font-weight: 500; font-size: 22px; color: #e6f7fd; }
+        .bx { position: absolute; border: 2px solid rgba(92,214,245,0.85); border-radius: 6px; background: rgba(92,214,245,0.08); opacity: 0; }
+        .bx.big { border-width: 2.5px; background: rgba(4,8,12,0.10); box-shadow: 0 0 0 9999px rgba(4,8,12,0); }
+        .bxl { position: absolute; padding: 8px 14px 7px; border-radius: 8px; background: #5cd6f5; color: #04080c; font-family: "Geist Mono", monospace;
+          font-weight: 700; font-size: 17px; letter-spacing: 0.16em; white-space: nowrap; opacity: 0; }
+        .svgl { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+        .ld { fill: none; stroke: #5cd6f5; stroke-width: 2; stroke-linecap: round; }
+
+        /* lembrete fixo */
+        .chip { position: absolute; right: 56px; top: 44px; display: flex; align-items: center; gap: 12px; padding: 12px 20px 12px 16px; border-radius: 999px;
+          background: rgba(6,14,20,0.9); border: 1.5px solid rgba(92,214,245,0.4); font-family: "Geist Mono", monospace; font-weight: 600; font-size: 16px;
+          letter-spacing: 0.2em; color: #e6f7fd; opacity: 0; }
+        .chip .dot { width: 10px; height: 10px; border-radius: 50%; background: #5cd6f5; }
+        .chip .st { color: #8ea7b2; letter-spacing: 0.16em; }
+
+        /* cartela de capítulo */
+        .ch { position: absolute; inset: 0; background: #04080c; opacity: 0; }
+        .ch .glow { position: absolute; left: 360px; top: 190px; width: 1200px; height: 700px; border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(22,96,124,0.26), rgba(6,19,33,0.4) 60%, rgba(4,8,12,0) 100%); }
+        .ch .in { position: absolute; left: 0; right: 0; top: 356px; text-align: center; }
+        .ch .n { font-family: "Geist Mono", monospace; font-weight: 500; font-size: 22px; letter-spacing: 0.56em; padding-left: 0.56em; color: #8ea7b2; opacity: 0; }
+        .ch .tm { overflow: hidden; margin-top: 22px; padding-bottom: 0.06em; }
+        .ch .t { display: inline-block; position: relative; font-family: "Mona Sans", sans-serif; font-stretch: 125%; font-weight: 600; font-size: 128px;
+          line-height: 1; letter-spacing: 0.06em; padding-left: 0.06em; text-transform: uppercase; color: #e6f7fd; }
+        .ch .sw { position: absolute; inset: 0; opacity: 0; color: transparent; -webkit-background-clip: text; background-clip: text;
+          background-image: linear-gradient(105deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0) 60%); background-size: 260% 100%; }
+        .ch .rule { width: 160px; height: 2px; margin: 34px auto 0; background: #5cd6f5; }
+        .ch .s { margin-top: 30px; font-family: "Mona Sans", sans-serif; font-weight: 300; font-size: 38px; color: #c4dae3; }
+
+        /* diagramas */
+        .dg { position: absolute; opacity: 0; }
+        .dg .lab { font-family: "Geist Mono", monospace; font-weight: 600; font-size: 16px; letter-spacing: 0.26em; color: #8ea7b2; }
+        .dg .hl { font-family: "Mona Sans", sans-serif; font-weight: 600; font-size: 30px; color: #e6f7fd; }
+        .st4 { display: flex; align-items: center; gap: 20px; height: 84px; opacity: 0.32; }
+        .st4 .num { width: 50px; height: 50px; border-radius: 50%; border: 1.5px solid rgba(142,167,178,0.7); display: flex; align-items: center; justify-content: center;
+          font-family: "Geist Mono", monospace; font-weight: 600; font-size: 16px; color: #8ea7b2; flex: none; }
+        .st4 .tx { font-family: "Mona Sans", sans-serif; font-stretch: 112%; font-weight: 600; font-size: 34px; color: #e6f7fd; }
+        .pill { display: inline-block; padding: 10px 18px 9px; border-radius: 999px; border: 1.5px solid rgba(92,214,245,0.5); background: rgba(92,214,245,0.1);
+          font-family: "Mona Sans", sans-serif; font-weight: 500; font-size: 24px; color: #e6f7fd; white-space: nowrap; }
+        .pill.red { border-color: rgba(236,90,97,0.6); background: rgba(236,90,97,0.12); }
+        .pill.amb { border-color: rgba(242,182,92,0.7); background: rgba(242,182,92,0.13); }
+        .vdot { position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: rgba(142,167,178,0.55); }
+        .vlab { position: absolute; font-family: "Mona Sans", sans-serif; font-weight: 500; font-size: 21px; color: #e6f7fd; white-space: nowrap; opacity: 0; }
+      </style>
+      <div id="root" data-composition-id="stage" data-width="1920" data-height="1080">
+        <div id="sg-cam">
+          <video id="sg-video" src="assets/source/original.mp4" muted playsinline data-start="0" data-duration="763.85" data-media-start="9.95" data-track-index="0"></video>
+          <div id="sg-src"></div>
+        </div>
+        <div id="sg-vig" data-layout-ignore></div>
+        <div id="sg-screen"></div>
+        <div id="sg-band" data-layout-ignore></div>
+        <div id="sg-cards"></div>
+      </div>
+      <script>
+        (function () {
+          gsap.registerPlugin(DrawSVGPlugin);
+          const tl = gsap.timeline({ paused: true });
+          const J = window.JM;
+          const D = window.CUES;
+          const T = (s) => s - D.src_in;            // tempo do original → tempo desta composição
+          const END = D.src_out - D.src_in;
+          const SRC = document.getElementById("sg-src"), SCR = document.getElementById("sg-screen"), CARDS = document.getElementById("sg-cards");
+          const el = (tag, cls, parent, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; parent.appendChild(e); return e; };
+          const LEN = new Set(["left", "top", "right", "bottom", "width", "height"]);
+          const px = (e, o) => { for (const k in o) e.style[k] = typeof o[k] === "number" && LEN.has(k) ? o[k] + "px" : String(o[k]); return e; };
+          const fadeIO = (e, a, b, o = {}) => {
+            tl.fromTo(e, { opacity: 0, y: o.y || 0, filter: `blur(${o.blur || 6}px)` }, { opacity: 1, y: 0, filter: "blur(0px)", duration: o.din || 0.5, ease: "power3.out" }, a);
+            tl.fromTo(e, { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: `blur(${o.blur || 6}px)`, duration: o.dout || 0.4, ease: "power2.in", immediateRender: false }, b - (o.dout || 0.4));
+          };
+          const cues = D.cues.slice();
+
+          // ------------------------------------------------------------ câmera
+          const cam = document.getElementById("sg-cam");
+          const clampT = (s, x, y) => {
+            let tx = 960 - x * s, ty = 540 - y * s;
+            tx = Math.min(0, Math.max(1920 - 1920 * s, tx)); ty = Math.min(0, Math.max(1080 - 1080 * s, ty));
+            return { x: tx, y: ty, scale: s };
+          };
+          let prev = { x: 0, y: 0, scale: 1 };
+          gsap.set(cam, prev);
+          cues.filter((c) => c.k === "cam").sort((a, b) => a.t - b.t).forEach((c) => {
+            const nx = clampT(c.s, c.x, c.y);
+            tl.fromTo(cam, { ...prev }, { ...nx, duration: Math.max(0.01, c.d), ease: c.e || "sine.inOut", immediateRender: false }, Math.max(0, T(c.t)));
+            prev = nx;
+          });
+
+          // ------------------------------------------------------------ faixa de legenda (sai quando o produto mostra algo embaixo)
+          const band = document.getElementById("sg-band");
+          cues.filter((c) => c.k === "band").forEach((c) => {
+            tl.fromTo(band, { opacity: 1 }, { opacity: 0, duration: 0.35, ease: "power2.inOut", immediateRender: false }, T(c.t0));
+            tl.fromTo(band, { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power2.inOut", immediateRender: false }, T(c.t1));
+          });
+
+          // ------------------------------------------------------------ frases-chave
+          const kins = cues.filter((c) => c.k === "kin").sort((a, b) => a.t - b.t);
+          kins.forEach((c, i) => {
+            const next = kins.slice(i + 1).find((n) => n.pos === c.pos);
+            const prev = kins.slice(0, i).reverse().find((p) => p.pos === c.pos);
+            const chained = (p, q) => p && q && !p.panel && !q.panel && p.pos !== "LB" && T(q.t) - T(p.t + p.d) < 0.8;
+            const cP = chained(prev, c), cN = chained(c, next);
+            const a = T(c.t) - 0.12;
+            const b = Math.min(T(c.t + c.d), next ? T(next.t) - 0.15 : 1e9);
+            const maxc = Math.max(...c.lines.map((l) => l.length));
+            const fs = Math.min(64, Math.floor(700 / (maxc * 0.6)));
+            const kt = document.createElement("div");
+            kt.className = "kt" + (c.red ? " red" : "");
+            const lines = c.lines.map((l) => {
+              const m = el("span", "m", kt);
+              const words = l.split(" ").map((w) => (c.key && w === c.key ? `<span class="${c.red ? "kr" : "k"}">${w}</span>` : w)).join(" ");
+              return el("span", "ln", m, words);
+            });
+            lines.forEach((ln) => (ln.style.fontSize = fs + "px"));
+            const rule = el("div", "rule", kt);
+            let holder;
+            if (c.panel || c.pos === "LB") {
+              holder = el("div", "kp", SCR);
+              holder.appendChild(kt);
+              fadeIO(holder, a, b, { y: 16, blur: 8 });
+            } else {
+              holder = el("div", "kb " + (c.pos === "L" ? "L" : "R"), SCR);
+              holder.setAttribute("data-layout-ignore", "");
+              // frases encadeadas no mesmo lado: o fundo não pisca, só o texto troca
+              if (cP) tl.set(holder, { opacity: 1 }, a);
+              else tl.fromTo(holder, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, a);
+              if (cN) tl.set(holder, { opacity: 0 }, T(next.t) - 0.12);
+              else tl.fromTo(holder, { opacity: 1 }, { opacity: 0, duration: 0.45, ease: "power2.in", immediateRender: false }, b - 0.45);
+              SCR.appendChild(kt);
+              const h = c.lines.length * fs * 1.08 + 28;
+              px(kt, { top: 420 - h / 2, left: c.pos === "L" ? 150 : 1190 });
+              tl.fromTo(kt, { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.4, ease: "power2.in", immediateRender: false }, b - 0.4);
+            }
+            // fora da janela a frase some de verdade (a máscara esconde o texto, mas o bloco seguiria no layout)
+            gsap.set(kt, { autoAlpha: 0 });
+            tl.set(kt, { autoAlpha: 1 }, a);
+            tl.set(kt, { visibility: "hidden" }, b);
+            J.maskReveal(tl, lines, a + 0.05, { dur: 0.8, stagger: 0.1 });
+            tl.fromTo(rule, { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, a + 0.3);
+            if (c.red) {  // o único glitch do filme: ULTRON
+              const k = kt.querySelector(".kr");
+              if (k) {
+                tl.set(k, { textShadow: "6px 0 0 rgba(236,90,97,0.9), -6px 0 0 rgba(92,214,245,0.7)", x: -6 }, a + 0.35);
+                tl.set(k, { textShadow: "-4px 0 0 rgba(236,90,97,0.9), 4px 0 0 rgba(92,214,245,0.6)", x: 4 }, a + 0.42);
+                tl.set(k, { textShadow: "none", x: 0 }, a + 0.49);
+              }
+            }
+          });
+
+          // ------------------------------------------------------------ cartões HUD e de resultado
+          const cardPos = (pos, w) => pos === "L" ? { left: 150, top: 250 } : pos === "TL" ? { left: 120, top: 120 } : { left: 1920 - 150 - w, top: 250 };
+          cues.filter((c) => c.k === "hud").forEach((c) => {
+            const card = px(el("div", "card", CARDS), { left: c.x, top: c.y, width: c.w, padding: "26px 30px 18px" });
+            el("div", "ttl", card, c.title);
+            const a = T(c.t), b = T(c.t + c.d);
+            fadeIO(card, a, b, { y: 14 });
+            c.items.forEach((it, i) => {
+              const row = el("div", "row", card);
+              if (it[0]) el("span", "a", row, it[0]);
+              const v = el("span", "b" + (c.count && c.count.row === i ? " big" : ""), row, it[1]);
+              if (!it[0]) row.style.justifyContent = "flex-start";
+              J.hudIn(tl, row, T(it[2]) - 0.08, { x: 10, dur: 0.4 });
+              if (c.count && c.count.row === i) J.countUp(tl, v, T(it[2]) - 0.05, 0, c.count.to, { dur: 1.1, ease: "power3.out" });
+            });
+          });
+          cues.filter((c) => c.k === "res").forEach((c) => {
+            const w = 640;
+            const card = px(el("div", "card", CARDS), { ...cardPos(c.pos, w), width: w, padding: "26px 32px 30px" });
+            el("div", "ttl", card, c.label);
+            const body = el("div", "body", card, c.body);
+            const a = T(c.t) - 0.1, b = T(c.t + c.d);
+            fadeIO(card, a, b, { y: 14 });
+            if (c.typing) {
+              const full = c.body; body.textContent = "";
+              const p = { n: 0 };
+              tl.fromTo(p, { n: 0 }, { n: full.length, duration: Math.max(0.6, (b - a) - 1.6), ease: "none", onUpdate: () => { body.textContent = full.slice(0, Math.round(p.n)); } }, a + 0.2);
+            }
+            if (c.state) {
+              const st = el("div", "state", card, `<i></i>${c.state}`);
+              tl.fromTo(st, { opacity: 0 }, { opacity: 1, duration: 0.3 }, b - 1.1);
+              tl.fromTo(st.querySelector("i"), { opacity: 1 }, { opacity: 0.2, duration: 0.25, yoyo: true, repeat: 3, ease: "sine.inOut" }, b - 1.0);
+            }
+          });
+
+          // ------------------------------------------------------------ callouts (sobre a interface, acompanham a câmera)
+          cues.filter((c) => c.k === "call").forEach((c) => {
+            const a = T(c.t), b = T(c.t + c.d);
+            const n = px(el("div", "cn", SRC), { left: c.x, top: c.y });
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("class", "svgl"); svg.setAttribute("viewBox", "0 0 1920 1080"); svg.setAttribute("data-layout-ignore", "");
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("class", "ld"); path.setAttribute("d", `M ${c.x} ${c.y} L ${c.lx} ${c.ly}`);
+            svg.appendChild(path); SRC.appendChild(svg);
+            const lab = px(el("div", "cl", SRC, `<div class="a">${c.label}</div>${c.sub ? `<div class="b">${c.sub}</div>` : ""}`),
+              { left: c.lx + (c.lx >= c.x ? 10 : -10), top: c.ly - 10 });
+            if (c.lx < c.x) lab.style.transform = "translateX(-100%)";
+            tl.fromTo(n, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, a);
+            tl.fromTo(path, { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.4, ease: "power2.out" }, a + 0.1);
+            tl.fromTo(lab, { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, a + 0.38);
+            tl.fromTo([n, lab, svg], { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power2.in", immediateRender: false }, b - 0.3);
+          });
+
+          // ------------------------------------------------------------ caixas: elementos clicáveis e regiões descritas
+          const R = J.rng(2217);
+          cues.filter((c) => c.k === "boxes").forEach((c) => {
+            const a = T(c.t), b = T(c.t + c.d);
+            if (c.grid === "wiki-home") {
+              const rects = [[180, 100, 225, 60], [412, 112, 560, 40], [972, 112, 100, 40], [1555, 120, 330, 24], [40, 224, 230, 24], [1195, 224, 310, 24],
+                [890, 330, 310, 26], [1100, 380, 260, 22], [1000, 430, 560, 24]];
+              const cats = ["Arte", "Biologia", "Ciência", "Filosofia", "Física", "Geografia", "História", "Matemática", "Química"];
+              cats.forEach((_, i) => rects.push([88 + i * 158, 536, 120, 22]));
+              for (let i = 0; i < 12; i++) rects.push([1745, 300 + i * 46, 130, 24]);
+              for (let i = 0; i < 9; i++) rects.push([90 + (i % 3) * 170, 730 + Math.floor(i / 3) * 44, 140 + (i * 37) % 60, 20]);
+              for (let i = 0; i < 9; i++) rects.push([930 + (i % 3) * 190, 730 + Math.floor(i / 3) * 44, 150 + (i * 29) % 50, 20]);
+              const scan = px(el("div", "", SRC), { position: "absolute", left: 0, top: 0, width: "1920px", height: "3px", background: "#5cd6f5", boxShadow: "0 0 24px #5cd6f5", opacity: 0 });
+              tl.fromTo(scan, { opacity: 1, y: 90 }, { y: 900, duration: 1.4, ease: "power1.inOut", immediateRender: false }, a);
+              tl.set(scan, { opacity: 0 }, a + 1.4);
+              rects.forEach((r, i) => {
+                const bx = px(el("div", "bx", SRC), { left: r[0] - 4, top: r[1] - 4, width: r[2] + 8, height: r[3] + 8 });
+                const at = a + 0.15 + ((r[1] - 90) / 810) * 1.25 + R() * 0.08;
+                tl.fromTo(bx, { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power3.out" }, at);
+                tl.fromTo(bx, { opacity: 1 }, { opacity: 0, duration: 0.35, ease: "power2.in", immediateRender: false }, b - 0.35 - (i % 5) * 0.03);
+              });
+              const tag = px(el("div", "cl", SCR, `<div class="a">TUDO O QUE É CLICÁVEL</div><div class="b">levantado antes do primeiro clique</div>`), { left: 1180, top: 640 });
+              fadeIO(tag, a + 1.0, b, { y: 10 });
+            } else if (c.grid === "wiki-article") {
+              const regs = { "CABEÇALHO DE BUSCA": [20, 88, 1880, 78], "MENU LATERAL · SUMÁRIO": [40, 318, 300, 520], "TEXTO PRINCIPAL": [345, 205, 735, 640], "BARRA LATERAL DIREITA": [1085, 205, 810, 640] };
+              c.regions.forEach(([name, t], i) => {
+                const r = regs[name];
+                const bx = px(el("div", "bx big", SRC), { left: r[0], top: r[1], width: r[2], height: r[3] });
+                const lb = px(el("div", "bxl", SRC, name), { left: r[0] + 12, top: r[1] + 12 });
+                tl.fromTo(bx, { opacity: 0, scale: 1.04 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, T(t) - 0.08);
+                tl.fromTo(lb, { opacity: 0, x: -8 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, T(t) + 0.05);
+                tl.fromTo([bx, lb], { opacity: 1 }, { opacity: 0, duration: 0.4, ease: "power2.in", immediateRender: false }, b - 0.4);
+              });
+            }
+          });
+
+          // ------------------------------------------------------------ lembrete fixo
+          cues.filter((c) => c.k === "chip").forEach((c) => {
+            const chip = el("div", "chip", SCR, `<span class="dot"></span><span class="tx">${c.text}</span><span class="st">· PENDENTE</span>`);
+            const a = T(c.t0), f = T(c.t1);
+            tl.fromTo(chip, { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, a);
+            tl.fromTo(chip.querySelector(".dot"), { opacity: 1 }, { opacity: 0.35, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: Math.max(1, Math.floor((f - a) / 1.2) - 1) }, a + 0.6);
+            tl.fromTo(chip, { borderColor: "rgba(92,214,245,0.4)", scale: 1 }, { borderColor: "rgba(242,182,92,0.95)", scale: 1.12, duration: 0.3, ease: "back.out(2)", immediateRender: false }, f);
+            tl.fromTo(chip.querySelector(".dot"), { backgroundColor: "#5cd6f5" }, { backgroundColor: "#f2b65c", duration: 0.2, immediateRender: false }, f);
+            tl.set(chip.querySelector(".st"), { textContent: "· " + c.alarm, color: "#f2b65c" }, f);
+            tl.fromTo(chip, { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power2.in", immediateRender: false }, f + 3.2);
+          });
+
+          // ------------------------------------------------------------ diagramas
+          const panel = (x, y, w, h) => px(el("div", "card dg", SCR), { left: x, top: y, width: w, height: h, padding: "28px 32px" });
+          cues.filter((c) => c.k === "dia").forEach((c) => {
+            const a = T(c.t), b = T(c.t + c.d);
+            if (c.kind === "beats4") {
+              const p = panel(1190, 230, 610, 440);
+              el("div", "lab", p, "TODO CAPÍTULO, 4 BATIDAS");
+              fadeIO(p, a, b, { y: 14 });
+              c.steps.forEach(([n, tx, t], i) => {
+                const r = el("div", "st4", p, `<span class="num">${n}</span><span class="tx">${tx}</span>`);
+                r.style.marginTop = i === 0 ? "18px" : "0";
+                const num = r.querySelector(".num");
+                tl.fromTo(r, { opacity: 0.32 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, T(t) - 0.05);
+                tl.fromTo(num, { backgroundColor: "rgba(92,214,245,0)", color: "#8ea7b2", borderColor: "rgba(142,167,178,0.7)" },
+                  { backgroundColor: "rgba(92,214,245,1)", color: "#04080c", borderColor: "rgba(92,214,245,1)", duration: 0.3, ease: "power2.out" }, T(t) - 0.05);
+              });
+            } else if (c.kind === "vector") {
+              const p = panel(1080, 150, 740, 640);
+              el("div", "lab", p, "BANCO LOCAL · INDEXADO DE DUAS MANEIRAS");
+              fadeIO(p, a, b, { y: 14 });
+              const colA = px(el("div", "", p), { position: "absolute", left: "32px", top: "86px", width: "250px" });
+              el("div", "lab", colA, "POR TERMO");
+              const q1 = px(el("div", "pill", colA, "vídeo publicado"), { marginTop: "22px" });
+              const q2 = px(el("div", "pill", colA, "autodemonstração<br>na internet"), { marginTop: "16px", whiteSpace: "normal", lineHeight: "1.2" });
+              const no = px(el("div", "hl", colA, "0 palavras<br>em comum"), { marginTop: "22px", color: "#8ea7b2", fontSize: "24px" });
+              const colB = px(el("div", "", p), { position: "absolute", left: "318px", top: "86px", width: "390px", height: "500px" });
+              el("div", "lab", colB, "POR SIGNIFICADO");
+              const sp = px(el("div", "", colB), { position: "absolute", left: 0, top: "44px", width: "390px", height: "440px", border: "1px solid rgba(24,49,64,0.9)", borderRadius: "12px",
+                backgroundImage: "linear-gradient(rgba(111,133,145,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(111,133,145,0.08) 1px, transparent 1px)", backgroundSize: "39px 44px" });
+              const Rv = J.rng(144);
+              const dots = [];
+              for (let i = 0; i < 26; i++) { const d = px(el("div", "vdot", sp), { left: 20 + Rv() * 350, top: 20 + Rv() * 400 }); dots.push(d); }
+              const A = px(el("div", "vdot", sp), { left: 150, top: 150, width: "18px", height: "18px", margin: "-9px 0 0 -9px", background: "#5cd6f5" });
+              const B = px(el("div", "vdot", sp), { left: 240, top: 300, width: "18px", height: "18px", margin: "-9px 0 0 -9px", background: "#5cd6f5" });
+              const la = px(el("div", "vlab", sp, "vídeo publicado"), { left: 60, top: 108 });
+              const lb = px(el("div", "vlab", sp, "autodemonstração na internet"), { left: 60, top: 330 });
+              tl.fromTo([q1, q2], { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.4, stagger: 0.15, ease: "power3.out" }, T(c.t_term));
+              tl.fromTo(no, { opacity: 0 }, { opacity: 1, duration: 0.4 }, T(c.t_term) + 0.8);
+              tl.fromTo(dots, { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.3, stagger: 0.02, ease: "back.out(2)" }, T(c.t_vec));
+              tl.fromTo([A, B], { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, T(c.t_vec) + 0.6);
+              tl.fromTo([la, lb], { opacity: 0 }, { opacity: 1, duration: 0.4 }, T(c.t_vec) + 0.8);
+              // "É por isso que…": os dois pontos se aproximam (mesmo significado)
+              tl.fromTo(B, { x: 0, y: 0 }, { x: -52, y: -104, duration: 0.9, ease: "power3.inOut" }, T(c.t_link));
+              tl.fromTo(lb, { y: 0 }, { y: -108, duration: 0.9, ease: "power3.inOut" }, T(c.t_link));
+              tl.fromTo([A, B], { boxShadow: "0 0 0 rgba(92,214,245,0)" }, { boxShadow: "0 0 26px rgba(92,214,245,0.9)", duration: 0.4, immediateRender: false }, T(c.t_link) + 0.9);
+            } else if (c.kind === "debate") {
+              const mk = (x, name, red) => {
+                const p = panel(x, 300, 420, 250);
+                el("div", "lab", p, name === "JARVIS" ? "PERSONALIDADE PADRÃO" : "O CONTRAPONTO");
+                px(el("div", "hl", p, name), { marginTop: "12px", fontSize: "44px", letterSpacing: "0.2em", color: red ? "#ffd9db" : "#e6f7fd" });
+                const bars = px(el("div", "", p), { position: "absolute", left: "32px", bottom: "34px", width: "356px", height: "54px" });
+                const bs = [];
+                for (let i = 0; i < 26; i++) bs.push(px(el("div", "", bars), { position: "absolute", left: i * 14, bottom: 0, width: "7px", height: "54px", borderRadius: "4px",
+                  background: red ? "#ec5a61" : "#5cd6f5", transformOrigin: "50% 100%" }));
+                if (red) p.style.borderColor = "rgba(236,90,97,0.5)";
+                fadeIO(p, a, b, { y: 14 });
+                return bs;
+              };
+              const bj = mk(130, "JARVIS", false), bu = mk(1370, "ULTRON", true);
+              // turnos alternados (o debate acontece em sequência, cada um lendo o outro)
+              const turns = Math.floor((T(c.t_same) - T(c.t_idea) - 2) / 2.6);
+              for (let k = 0; k < turns; k++) {
+                const bs = k % 2 === 0 ? bj : bu, at = T(c.t_idea) + 2 + k * 2.6;
+                bs.forEach((bar, i) => tl.fromTo(bar, { scaleY: 0.1 }, { scaleY: 0.25 + 0.75 * Math.abs(Math.sin(i * 1.3 + k)), duration: 0.22, yoyo: true, repeat: 9, ease: "sine.inOut" }, at + (i % 4) * 0.03));
+              }
+            } else if (c.kind === "synth") {
+              const p = panel(1190, 200, 620, 500);
+              el("div", "lab", p, "CADA SOM, SINTETIZADO NA HORA");
+              fadeIO(p, a, b, { y: 14 });
+              const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+              svg.setAttribute("viewBox", "0 0 556 200"); px(svg, { position: "absolute", left: "32px", top: "80px", width: "556px", height: "200px", overflow: "visible" });
+              const env = document.createElementNS("http://www.w3.org/2000/svg", "path");
+              env.setAttribute("d", "M 10 190 L 70 20 L 150 80 L 380 80 L 540 190"); env.setAttribute("class", "ld"); env.setAttribute("stroke-width", "3");
+              svg.appendChild(env);
+              for (let i = 0; i < 18; i++) {
+                const h = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                h.setAttribute("x", 20 + i * 30); h.setAttribute("width", 12); h.setAttribute("y", 190 - 150 / (i + 1.6)); h.setAttribute("height", 150 / (i + 1.6));
+                h.setAttribute("fill", "rgba(92,214,245,0.28)"); h.setAttribute("class", "hb"); svg.appendChild(h);
+              }
+              p.appendChild(svg);
+              px(el("div", "lab", p, "ENVELOPE · HARMÔNICOS"), { position: "absolute", left: "32px", top: "296px" });
+              tl.fromTo(env, { drawSVG: "0%" }, { drawSVG: "100%", duration: 1.0, ease: "power2.inOut" }, T(c.t_env) - 0.2);
+              tl.fromTo(svg.querySelectorAll(".hb"), { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.4, stagger: 0.03, ease: "power3.out" }, T(c.t_env) + 0.2);
+              const up = px(el("div", "pill", p, "↑ subindo · começou, deu certo"), { position: "absolute", left: "32px", top: "352px" });
+              const dn = px(el("div", "pill", p, "↓ descendo · acabou, falhou"), { position: "absolute", left: "32px", top: "418px" });
+              tl.fromTo(up, { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, T(c.t_up));
+              tl.fromTo(dn, { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, T(c.t_down));
+            } else if (c.kind === "lock") {
+              const p = panel(1190, 150, 620, 640);
+              el("div", "lab", p, "AÇÃO SENSÍVEL");
+              fadeIO(p, a, b, { y: 14 });
+              const steps = [["Mandar mensagem", 0], ["Fica pendente", T(c.t_pend)], ["Só sai se você confirmar em voz alta", T(c.t_voice)]];
+              steps.forEach(([tx, t], i) => {
+                const r = px(el("div", "st4", p, `<span class="num">${i + 1}</span><span class="tx" style="font-size:28px">${tx}</span>`), { marginTop: i ? "0" : "14px", height: "72px" });
+                tl.fromTo(r, { opacity: 0.3 }, { opacity: 1, duration: 0.3 }, (t || a) + 0.05);
+              });
+              const code = px(el("div", "pill", p, "não é personalidade · é código"), { marginTop: "18px" });
+              tl.fromTo(code, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, T(c.t_code));
+              const row = px(el("div", "", p), { display: "flex", gap: "12px", marginTop: "26px" });
+              [["Comprar", c.t_buy], ["Transferir", c.t_move], ["Apagar", c.t_del]].forEach(([tx, t]) => {
+                const chip = el("div", "pill amb", row, "⊘ " + tx);
+                tl.fromTo(chip, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, T(t) - 0.05);
+              });
+              const ref = px(el("div", "hl", p, "Recusa antes de eu ter chance de obedecer."), { marginTop: "26px", fontSize: "26px", color: "#f2b65c" });
+              tl.fromTo(ref, { opacity: 0 }, { opacity: 1, duration: 0.4 }, T(c.t_refuse));
+            } else if (c.kind === "local") {
+              const p = panel(1150, 190, 660, 560);
+              el("div", "lab", p, "UMA MÁQUINA SÓ");
+              fadeIO(p, a, b, { y: 14 });
+              const box = px(el("div", "", p), { position: "absolute", left: "32px", top: "80px", width: "380px", height: "300px", border: "2px solid rgba(92,214,245,0.7)", borderRadius: "16px" });
+              px(el("div", "lab", box, "ESTE COMPUTADOR"), { position: "absolute", left: "20px", top: "18px" });
+              ["Memória", "Arquivos", "Conversas", "Documentos"].forEach((tx, i) => px(el("div", "pill", box, tx), { position: "absolute", left: 20 + (i % 2) * 175 + "px", top: 70 + Math.floor(i / 2) * 70 + "px", fontSize: "21px" }));
+              const stay = px(el("div", "hl", p, "Os dados ficam aqui."), { position: "absolute", left: "32px", top: "404px", fontSize: "30px" });
+              tl.fromTo(stay, { opacity: 0 }, { opacity: 1, duration: 0.4 }, T(c.t_data));
+              tl.fromTo(box, { boxShadow: "0 0 0 rgba(92,214,245,0)" }, { boxShadow: "0 0 40px rgba(92,214,245,0.35)", duration: 0.5 }, T(c.t_data));
+              const line = px(el("div", "", p), { position: "absolute", left: "412px", top: "228px", width: "200px", height: "2px", background: "#5cd6f5", transformOrigin: "0 50%" });
+              const out = px(el("div", "lab", p, "SÓ O TEXTO<br>NECESSÁRIO<br>PARA PENSAR"), { position: "absolute", left: "440px", top: "250px", color: "#5cd6f5", lineHeight: "1.6" });
+              tl.fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power2.out" }, T(c.t_text));
+              tl.fromTo(out, { opacity: 0 }, { opacity: 1, duration: 0.4 }, T(c.t_text) + 0.4);
+            } else if (c.kind === "converge") {
+              // inventário em duas colunas nas laterais vazias do app; no fim tudo volta para o núcleo
+              const cx = 950, cy = 243;  // centro do orb do app nesta tomada
+              const head = px(el("div", "card", SCR), { left: 100, top: 150, width: "480px", padding: "22px 28px" });
+              head.innerHTML = `<div class="ttl">NO FIM DAS CONTAS</div><div class="row" style="opacity:1;border-top:0"><span class="b big" id="cv-n">0</span><span class="a">FERRAMENTAS</span></div>`;
+              fadeIO(head, T(c.t_count) - 0.2, b, { y: 12 });
+              J.countUp(tl, head.querySelector("#cv-n"), T(c.t_count), 0, 245, { dur: 1.2, ease: "power3.out" });
+              const n = c.chips.length, nR = Math.ceil(n / 2);
+              c.chips.forEach(([lab, t], i) => {
+                const right = i < nR, row = right ? i : i - nR;
+                const y = (right ? 170 : 370) + row * 76;      // centro vertical
+                const chip = px(el("div", "pill", SCR, lab), { position: "absolute", left: right ? 1290 : 580, top: y - 26, opacity: 0 });
+                if (!right) gsap.set(chip, { xPercent: -100 });  // coluna esquerda alinhada à direita, junto ao centro
+                const w = chip.offsetWidth || lab.length * 13 + 40;
+                const x0 = right ? 1290 : 580 - w;
+                tl.fromTo(chip, { opacity: 0, x: right ? -36 : 36, filter: "blur(6px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, T(t) - 0.05);
+                const k = i * 0.03;
+                tl.fromTo(chip, { x: 0, y: 0 }, { x: cx - (x0 + w / 2), y: cy - y, duration: 0.75, ease: "power3.in", immediateRender: false }, b - 1.15 + k);
+                tl.fromTo(chip, { opacity: 1, scale: 1 }, { opacity: 0, scale: 0.35, duration: 0.3, ease: "power2.in", immediateRender: false }, b - 0.7 + k);
+              });
+              const flash = px(el("div", "", SCR), { position: "absolute", left: cx - 200, top: cy - 200, width: "400px", height: "400px", borderRadius: "50%",
+                background: "radial-gradient(closest-side, rgba(168,236,251,0.75), rgba(92,214,245,0.2) 50%, rgba(92,214,245,0) 100%)", opacity: 0 });
+              flash.setAttribute("data-layout-ignore", "");
+              tl.fromTo(flash, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1.1, duration: 0.25, ease: "power2.out", immediateRender: false }, b - 0.35);
+              tl.fromTo(flash, { opacity: 1 }, { opacity: 0, duration: 0.9, ease: "power2.out", immediateRender: false }, b - 0.1);
+            }
+          });
+
+          // ------------------------------------------------------------ cartelas de capítulo (cobrem a cartela original, mesmo texto)
+          cues.filter((c) => c.k === "chapter").forEach((c) => {
+            const a = T(c.t0), b = T(c.t1);
+            const ch = el("div", "ch", CARDS);
+            el("div", "glow", ch).setAttribute("data-layout-ignore", "");
+            const inn = el("div", "in", ch);
+            const n = el("div", "n", inn, `CAPÍTULO ${c.n}`);
+            const tm = el("div", "tm", inn);
+            const t = el("span", "t", tm, c.title);
+            const sw = el("span", "sw", t, c.title);
+            sw.setAttribute("data-layout-ignore", "");
+            const rule = el("div", "rule", inn);
+            const s = el("div", "s", inn, c.sub);
+            tl.fromTo(ch, { opacity: 0 }, { opacity: 1, duration: 0.28, ease: "power2.out" }, a - 0.22);
+            J.hudIn(tl, n, a + 0.05, { x: 0, dur: 0.5 });
+            J.maskReveal(tl, t, a + 0.1, { dur: 0.9 });
+            J.drawLine(tl, rule, a + 0.45, { dur: 0.8, origin: "center center" });
+            J.wordsIn(tl, s, a + 0.6, { dur: 0.6, y: 12, blur: 8, stagger: 0.05 });
+            tl.fromTo(sw, { opacity: 1, backgroundPosition: "130% 0%" }, { backgroundPosition: "-30% 0%", duration: 1.1, ease: "power2.inOut", immediateRender: false }, a + 0.9);
+            tl.set(sw, { opacity: 0 }, a + 2.0);
+            tl.fromTo(inn, { opacity: 1, scale: 1, filter: "blur(0px)" }, { opacity: 0, scale: 0.97, filter: "blur(10px)", duration: 0.4, ease: "power2.in", immediateRender: false }, b - 0.42);
+            tl.fromTo(ch, { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power2.inOut", immediateRender: false }, b - 0.05);
+          });
+
+          tl.to({}, { duration: END }, 0);
+          window.__timelines["stage"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

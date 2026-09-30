@@ -1,0 +1,224 @@
+{
+ "length": 782.85,
+ "bpm": 100.0,
+ "grid_anchor": 6.8,
+ "target_lufs": -18,
+ "sections": [
+  {
+   "name": "intro",
+   "start": 0,
+   "end": 6.8,
+   "energy": 0.12,
+   "layers": [
+    "drone",
+    "air"
+   ],
+   "level_db": -15,
+   "ramp": 2.5,
+   "chord": "Dm9"
+  },
+  {
+   "name": "reveal",
+   "start": 6.8,
+   "end": 13.6,
+   "energy": 0.35,
+   "layers": [
+    "pad",
+    "drone"
+   ],
+   "level_db": -7,
+   "ramp": 0.05,
+   "chord": "Dm9",
+   "breath_before": 0.38
+  },
+  {
+   "name": "c1",
+   "start": 13.6,
+   "end": 97.85,
+   "energy": 0.3,
+   "layers": [
+    "pad",
+    "ticks"
+   ],
+   "level_db": -13,
+   "ramp": 1.5
+  },
+  {
+   "name": "c2",
+   "start": 97.85,
+   "end": 195.85,
+   "energy": 0.4,
+   "layers": [
+    "pad",
+    "arp"
+   ],
+   "level_db": -13,
+   "ramp": 0.6
+  },
+  {
+   "name": "c3",
+   "start": 195.85,
+   "end": 309.45,
+   "energy": 0.45,
+   "layers": [
+    "pad",
+    "arp",
+    "bass"
+   ],
+   "level_db": -12,
+   "ramp": 0.6
+  },
+  {
+   "name": "c4",
+   "start": 309.45,
+   "end": 383.05,
+   "energy": 0.4,
+   "layers": [
+    "pad",
+    "arp"
+   ],
+   "level_db": -13,
+   "ramp": 0.6,
+   "chord": "Bbmaj9"
+  },
+  {
+   "name": "c5",
+   "start": 383.05,
+   "end": 451.45,
+   "energy": 0.5,
+   "layers": [
+    "pad",
+    "arp",
+    "bass"
+   ],
+   "level_db": -12,
+   "ramp": 0.6
+  },
+  {
+   "name": "c6",
+   "start": 451.45,
+   "end": 535.05,
+   "energy": 0.35,
+   "layers": [
+    "pad",
+    "drone"
+   ],
+   "level_db": -13,
+   "ramp": 0.6,
+   "chord": "Bbmaj9"
+  },
+  {
+   "name": "c7a",
+   "start": 535.05,
+   "end": 544.85,
+   "energy": 0.3,
+   "layers": [
+    "pad"
+   ],
+   "level_db": -14,
+   "ramp": 0.6
+  },
+  {
+   "name": "jazz",
+   "start": 544.85,
+   "end": 561.55,
+   "energy": 0.1,
+   "layers": [
+    "air"
+   ],
+   "level_db": -60,
+   "ramp": 0.8
+  },
+  {
+   "name": "c7b",
+   "start": 561.55,
+   "end": 592.55,
+   "energy": 0.3,
+   "layers": [
+    "pad",
+    "ticks"
+   ],
+   "level_db": -14,
+   "ramp": 1.2
+  },
+  {
+   "name": "sons",
+   "start": 592.55,
+   "end": 633.55,
+   "energy": 0.1,
+   "layers": [
+    "air"
+   ],
+   "level_db": -60,
+   "ramp": 0.8
+  },
+  {
+   "name": "c8",
+   "start": 633.55,
+   "end": 716.35,
+   "energy": 0.4,
+   "layers": [
+    "pad",
+    "arp"
+   ],
+   "level_db": -13,
+   "ramp": 1.2
+  },
+  {
+   "name": "fim",
+   "start": 716.35,
+   "end": 741.55,
+   "energy": 0.7,
+   "layers": [
+    "pad",
+    "arp",
+    "bass",
+    "drums"
+   ],
+   "level_db": -10,
+   "ramp": 1.5,
+   "kit": "pulse"
+  },
+  {
+   "name": "climax",
+   "start": 741.55,
+   "end": 774.05,
+   "energy": 0.6,
+   "layers": [
+    "pad",
+    "arp",
+    "bass"
+   ],
+   "level_db": -11,
+   "ramp": 0.8
+  },
+  {
+   "name": "final",
+   "start": 774.05,
+   "end": 782.85,
+   "energy": 0.3,
+   "layers": [
+    "drone",
+    "air",
+    "pad"
+   ],
+   "level_db": -8,
+   "ramp": 0.05,
+   "chord": "Dmaj9",
+   "breath_before": 0.5
+  }
+ ],
+ "motifs": [
+  {
+   "t": 7.75,
+   "gain": 0.26
+  },
+  {
+   "t": 776.15,
+   "gain": 0.42
+  }
+ ],
+ "toms": [
+  6.8
+ ]
+}

@@ -1,0 +1,901 @@
+{
+ "src_in": 9.95,
+ "src_out": 773.8,
+ "cues": [
+  {
+   "k": "cam",
+   "t": 10.4,
+   "d": 24.0,
+   "s": 1.07,
+   "x": 930,
+   "y": 430,
+   "e": "sine.inOut"
+  },
+  {
+   "k": "kin",
+   "t": 16.48,
+   "d": 4.6,
+   "pos": "R",
+   "lines": [
+    "Eu moro dentro",
+    "deste computador."
+   ],
+   "key": "computador."
+  },
+  {
+   "k": "kin",
+   "t": 23.28,
+   "d": 3.4,
+   "pos": "L",
+   "lines": [
+    "Ninguém vai",
+    "digitar nada."
+   ],
+   "key": "nada."
+  },
+  {
+   "k": "kin",
+   "t": 30.48,
+   "d": 3.6,
+   "pos": "R",
+   "lines": [
+    "Se falhar, você",
+    "vai ver falhar."
+   ],
+   "key": "falhar."
+  },
+  {
+   "k": "cam",
+   "t": 35.6,
+   "d": 0.01,
+   "s": 1.0,
+   "x": 960,
+   "y": 540,
+   "e": "none"
+  },
+  {
+   "k": "cam",
+   "t": 36.0,
+   "d": 34.0,
+   "s": 1.1,
+   "x": 760,
+   "y": 470,
+   "e": "sine.inOut"
+  },
+  {
+   "k": "hud",
+   "t": 40.42,
+   "d": 33.97,
+   "x": 1235,
+   "y": 150,
+   "w": 470,
+   "title": "ESTADO INTERNO",
+   "items": [
+    [
+     "NO AR",
+     "há 1 minuto",
+     41.2
+    ],
+    [
+     "FERRAMENTAS",
+     "245",
+     42.56
+    ],
+    [
+     "CÉREBROS",
+     "Groq · Google",
+     45.12
+    ],
+    [
+     "MODELO",
+     "openai/gpt-oss-20b",
+     49.36
+    ],
+    [
+     "BUSCA",
+     "DuckDuckGo",
+     53.84
+    ],
+    [
+     "VOZ",
+     "Edge",
+     56.64
+    ],
+    [
+     "INTEGRAÇÕES",
+     "Spotify · Agenda Google",
+     58.93
+    ],
+    [
+     "NÃO CONFIGURADAS",
+     "e-mail · casa inteligente",
+     63.09
+    ],
+    [
+     "MEMÓRIA",
+     "29 fatos · 4 pessoas · 0 docs",
+     66.85
+    ]
+   ],
+   "count": {
+    "row": 1,
+    "to": 245
+   }
+  },
+  {
+   "k": "dia",
+   "kind": "beats4",
+   "t": 77.33,
+   "d": 11.159999999999991,
+   "steps": [
+    [
+     "01",
+     "Anuncio",
+     78.05
+    ],
+    [
+     "02",
+     "Faço",
+     79.33
+    ],
+    [
+     "03",
+     "Explico",
+     80.13
+    ],
+    [
+     "04",
+     "Faço de novo, mais fundo",
+     82.37
+    ]
+   ]
+  },
+  {
+   "k": "kin",
+   "t": 92.37,
+   "d": 2.6,
+   "pos": "R",
+   "lines": [
+    "Lembrar",
+    "de você."
+   ],
+   "key": "você."
+  },
+  {
+   "k": "chapter",
+   "t0": 94.8,
+   "t1": 98.8,
+   "n": 2,
+   "title": "Memória",
+   "sub": "Ele lembra — e lembra do jeito certo"
+  },
+  {
+   "k": "cam",
+   "t": 99.0,
+   "d": 40.0,
+   "s": 1.06,
+   "x": 930,
+   "y": 420,
+   "e": "sine.inOut"
+  },
+  {
+   "k": "kin",
+   "t": 102.45,
+   "d": 2.8,
+   "pos": "R",
+   "lines": [
+    "Eu guardo."
+   ],
+   "key": "guardo."
+  },
+  {
+   "k": "res",
+   "t": 111.17,
+   "d": 4.2,
+   "pos": "R",
+   "label": "MEMÓRIA · FATO GUARDADO",
+   "body": "Categoria: geral"
+  },
+  {
+   "k": "res",
+   "t": 119.9,
+   "d": 3.4,
+   "pos": "L",
+   "label": "BUSCA NA MEMÓRIA",
+   "body": "“vídeo que vai ser publicado”"
+  },
+  {
+   "k": "res",
+   "t": 123.66,
+   "d": 7.4,
+   "pos": "R",
+   "label": "ENCONTRADO",
+   "body": "[geral] A autodemonstração do Jarvis foi gravada em 21/09/2026 para ser publicada na internet."
+  },
+  {
+   "k": "dia",
+   "kind": "vector",
+   "t": 136.02,
+   "d": 24.07999999999999,
+   "t_db": 137.66,
+   "t_term": 143.58,
+   "t_vec": 146.62,
+   "t_link": 152.22
+  },
+  {
+   "k": "kin",
+   "t": 165.98,
+   "d": 3.2,
+   "pos": "R",
+   "lines": [
+    "Falar sem ninguém",
+    "me chamar."
+   ],
+   "key": "chamar."
+  },
+  {
+   "k": "res",
+   "t": 176.01,
+   "d": 4.6,
+   "pos": "L",
+   "label": "COMPROMISSO CRIADO",
+   "body": "Lembrete · hoje às 22:58"
+  },
+  {
+   "k": "chip",
+   "t0": 179.81,
+   "t1": 349.6,
+   "text": "LEMBRETE · 22:58",
+   "alarm": "É AGORA"
+  },
+  {
+   "k": "kin",
+   "t": 188.57,
+   "d": 3.4,
+   "pos": "L",
+   "lines": [
+    "Não vai ser",
+    "edição."
+   ],
+   "key": "edição."
+  },
+  {
+   "k": "chapter",
+   "t0": 192.8,
+   "t1": 197.2,
+   "n": 3,
+   "title": "Navegador",
+   "sub": "Ele não lê a internet: ele usa a internet"
+  },
+  {
+   "k": "kin",
+   "t": 200.57,
+   "d": 3.4,
+   "pos": "R",
+   "lines": [
+    "Usar uma página",
+    "é que é difícil."
+   ],
+   "key": "difícil."
+  },
+  {
+   "k": "call",
+   "t": 217.4,
+   "d": 1.5,
+   "x": 420,
+   "y": 48,
+   "lx": 640,
+   "ly": 230,
+   "label": "CHROMIUM REAL",
+   "sub": "controlado pelo JARVIS"
+  },
+  {
+   "k": "boxes",
+   "t": 218.89,
+   "d": 6.0,
+   "grid": "wiki-home"
+  },
+  {
+   "k": "cam",
+   "t": 226.32999999999998,
+   "d": 0.9,
+   "s": 1.35,
+   "x": 740,
+   "y": 250,
+   "e": "power3.inOut"
+  },
+  {
+   "k": "call",
+   "t": 226.73,
+   "d": 3.0,
+   "x": 690,
+   "y": 132,
+   "lx": 620,
+   "ly": 300,
+   "label": "DIGITANDO",
+   "sub": "campo de busca"
+  },
+  {
+   "k": "call",
+   "t": 230.92,
+   "d": 2.6,
+   "x": 1022,
+   "y": 132,
+   "lx": 1150,
+   "ly": 300,
+   "label": "CLIQUE",
+   "sub": "Procurar"
+  },
+  {
+   "k": "cam",
+   "t": 235.04000000000002,
+   "d": 1.0,
+   "s": 1.0,
+   "x": 960,
+   "y": 540,
+   "e": "power3.inOut"
+  },
+  {
+   "k": "cam",
+   "t": 241.0,
+   "d": 40.0,
+   "s": 1.16,
+   "x": 760,
+   "y": 520,
+   "e": "sine.inOut"
+  },
+  {
+   "k": "kin",
+   "t": 254.44,
+   "d": 3.6,
+   "pos": "LB",
+   "panel": true,
+   "lines": [
+    "Eu não pedi dados.",
+    "Eu usei o site."
+   ],
+   "key": "site."
+  },
+  {
+   "k": "kin",
+   "t": 263.48,
+   "d": 3.6,
+   "pos": "LB",
+   "panel": true,
+   "lines": [
+    "O sistema da empresa,",
+    "o portal da faculdade…"
+   ],
+   "key": null
+  },
+  {
+   "k": "kin",
+   "t": 270.6,
+   "d": 3.4,
+   "pos": "LB",
+   "panel": true,
+   "lines": [
+    "Mas todos têm botão.",
+    "E botão eu clico."
+   ],
+   "key": "clico."
+  },
+  {
+   "k": "kin",
+   "t": 272.2,
+   "d": 3.6,
+   "pos": "LB",
+   "panel": true,
+   "lines": [
+    "Ler texto",
+    "não é enxergar."
+   ],
+   "key": "enxergar."
+  },
+  {
+   "k": "kin",
+   "t": 282.36,
+   "d": 2.8,
+   "pos": "LB",
+   "panel": true,
+   "lines": [
+    "Um modelo",
+    "de visão."
+   ],
+   "key": "visão."
+  },
+  {
+   "k": "cam",
+   "t": 285.0,
+   "d": 1.2,
+   "s": 1.0,
+   "x": 960,
+   "y": 540,
+   "e": "power3.inOut"
+  },
+  {
+   "k": "boxes",
+   "t": 285.93,
+   "d": 14.91999999999997,
+   "grid": "wiki-article",
+   "regions": [
+    [
+     "CABEÇALHO DE BUSCA",
+     290.09
+    ],
+    [
+     "MENU LATERAL · SUMÁRIO",
+     291.93
+    ],
+    [
+     "TEXTO PRINCIPAL",
+     294.65
+    ],
+    [
+     "BARRA LATERAL DIREITA",
+     296.49
+    ]
+   ]
+  },
+  {
+   "k": "kin",
+   "t": 301.21,
+   "d": 4.4,
+   "pos": "R",
+   "lines": [
+    "O que está escrito",
+    "× o que está na tela."
+   ],
+   "key": "tela."
+  },
+  {
+   "k": "chapter",
+   "t0": 306.4,
+   "t1": 310.0,
+   "n": 4,
+   "title": "Criação",
+   "sub": "Imagem feita na hora, não buscada"
+  },
+  {
+   "k": "kin",
+   "t": 311.21,
+   "d": 3.6,
+   "pos": "R",
+   "lines": [
+    "Útil, até agora.",
+    "Agora, interessante."
+   ],
+   "key": "interessante."
+  },
+  {
+   "k": "res",
+   "t": 322.89,
+   "d": 7.8800000000000185,
+   "pos": "R",
+   "label": "PROMPT · DITO EM VOZ ALTA",
+   "body": "Uma figura sozinha, de costas, diante de uma interface azul enorme, chuva na janela atrás.",
+   "typing": true,
+   "state": "GERANDO"
+  },
+  {
+   "k": "cam",
+   "t": 333.2,
+   "d": 14.0,
+   "s": 1.1,
+   "x": 960,
+   "y": 500,
+   "e": "sine.inOut"
+  },
+  {
+   "k": "kin",
+   "t": 334.25,
+   "d": 3.6,
+   "pos": "L",
+   "lines": [
+    "Essa imagem não",
+    "estava em lugar nenhum."
+   ],
+   "key": "nenhum."
+  },
+  {
+   "k": "cam",
+   "t": 348.6,
+   "d": 0.8,
+   "s": 1.0,
+   "x": 960,
+   "y": 540,
+   "e": "power2.inOut"
+  },
+  {
+   "k": "band",
+   "t0": 349.2,
+   "t1": 363.2
+  },
+  {
+   "k": "kin",
+   "t": 350.86,
+   "d": 3.6,
+   "pos": "L",
+   "lines": [
+    "Criar ≠ encontrar."
+   ],
+   "key": "encontrar."
+  },
+  {
+   "k": "chapter",
+   "t0": 380.0,
+   "t1": 383.8,
+   "n": 5,
+   "title": "Arquivos",
+   "sub": "Bagunça entra, ordem sai"
+  },
+  {
+   "k": "cam",
+   "t": 392.4,
+   "d": 0.9,
+   "s": 1.22,
+   "x": 1180,
+   "y": 460,
+   "e": "power3.inOut"
+  },
+  {
+   "k": "res",
+   "t": 392.8,
+   "d": 4.0,
+   "pos": "TL",
+   "label": "PASTA DE TESTE",
+   "body": "10 arquivos · 7 tipos"
+  },
+  {
+   "k": "res",
+   "t": 402.85,
+   "d": 3.6,
+   "pos": "R",
+   "label": "ORGANIZADO",
+   "body": "10 arquivos, por tipo"
+  },
+  {
+   "k": "cam",
+   "t": 403.8,
+   "d": 0.8,
+   "s": 1.0,
+   "x": 960,
+   "y": 540,
+   "e": "power2.inOut"
+  },
+  {
+   "k": "kin",
+   "t": 413.41,
+   "d": 4.2,
+   "pos": "L",
+   "lines": [
+    "Por padrão,",
+    "eu só simulo."
+   ],
+   "key": "simulo."
+  },
+  {
+   "k": "kin",
+   "t": 438.69,
+   "d": 2.4,
+   "pos": "R",
+   "lines": [
+    "Um PDF.",
+    "Agora."
+   ],
+   "key": "Agora."
+  },
+  {
+   "k": "hud",
+   "t": 441.01,
+   "d": 4.0,
+   "x": 1235,
+   "y": 560,
+   "w": 470,
+   "title": "DO MESMO LUGAR",
+   "items": [
+    [
+     "",
+     "Word",
+     441.01
+    ],
+    [
+     "",
+     "PowerPoint",
+     441.65
+    ],
+    [
+     "",
+     "Excel",
+     442.45
+    ]
+   ]
+  },
+  {
+   "k": "chapter",
+   "t0": 448.4,
+   "t1": 452.2,
+   "n": 6,
+   "title": "O Conselho",
+   "sub": "Ele discute — com ele mesmo"
+  },
+  {
+   "k": "kin",
+   "t": 455.25,
+   "d": 3.0,
+   "pos": "R",
+   "lines": [
+    "Eu concordo",
+    "demais."
+   ],
+   "key": "demais."
+  },
+  {
+   "k": "kin",
+   "t": 464.1,
+   "d": 3.8,
+   "pos": "L",
+   "lines": [
+    "Ele se chama",
+    "ULTRON."
+   ],
+   "key": "ULTRON.",
+   "red": true
+  },
+  {
+   "k": "kin",
+   "t": 467.14,
+   "d": 3.0,
+   "pos": "R",
+   "lines": [
+    "Função:",
+    "achar o furo."
+   ],
+   "key": "furo.",
+   "red": true
+  },
+  {
+   "k": "dia",
+   "kind": "debate",
+   "t": 471.02000000000004,
+   "d": 23.87999999999996,
+   "t_idea": 471.22,
+   "t_same": 494.7
+  },
+  {
+   "k": "res",
+   "t": 494.7,
+   "d": 10.160000000000025,
+   "pos": "R",
+   "label": "VEREDITO · JARVIS + ULTRON",
+   "body": "Eu não faria: abandonar a renda fixa antes de ter um único usuário pagante elimina a única fonte de sustento garantida."
+  },
+  {
+   "k": "kin",
+   "t": 505.7,
+   "d": 3.8,
+   "pos": "L",
+   "lines": [
+    "O mesmo motor.",
+    "Personalidades opostas."
+   ],
+   "key": "opostas."
+  },
+  {
+   "k": "kin",
+   "t": 520.17,
+   "d": 3.8,
+   "pos": "R",
+   "lines": [
+    "Alguém que ataque",
+    "antes da realidade."
+   ],
+   "key": "realidade."
+  },
+  {
+   "k": "chapter",
+   "t0": 532.0,
+   "t1": 535.8,
+   "n": 7,
+   "title": "Som",
+   "sub": "Música que toca e sons que não existiam"
+  },
+  {
+   "k": "res",
+   "t": 546.73,
+   "d": 5.0,
+   "pos": "R",
+   "label": "TOCANDO",
+   "body": "Rádio 101 Smooth Jazz"
+  },
+  {
+   "k": "hud",
+   "t": 572.89,
+   "d": 5.0,
+   "x": 1235,
+   "y": 520,
+   "w": 470,
+   "title": "COM O STREAMING LIGADO",
+   "items": [
+    [
+     "",
+     "Pular · fila · volume",
+     572.89
+    ],
+    [
+     "",
+     "Curtir",
+     575.13
+    ],
+    [
+     "",
+     "Computador → celular",
+     576.01
+    ]
+   ]
+  },
+  {
+   "k": "dia",
+   "kind": "synth",
+   "t": 587.36,
+   "d": 38.59999999999998,
+   "t_env": 589.82,
+   "t_up": 596.06,
+   "t_down": 599.34,
+   "t_play": 593.74
+  },
+  {
+   "k": "kin",
+   "t": 626.06,
+   "d": 3.4,
+   "pos": "R",
+   "lines": [
+    "Afinar um som é mudar",
+    "um número no código."
+   ],
+   "key": "código."
+  },
+  {
+   "k": "chapter",
+   "t0": 629.8,
+   "t1": 633.6,
+   "n": 8,
+   "title": "Comunicação",
+   "sub": "O que eu faço fora desta tela"
+  },
+  {
+   "k": "kin",
+   "t": 647.97,
+   "d": 4.0,
+   "pos": "R",
+   "lines": [
+    "Conversa de quem confia",
+    "em mim não vira conteúdo."
+   ],
+   "key": "conteúdo."
+  },
+  {
+   "k": "res",
+   "t": 671.53,
+   "d": 5.6,
+   "pos": "L",
+   "label": "E-MAIL · REDIGIDO PELO JARVIS",
+   "body": "Para: Ricardo · Assunto: a reunião mudou para quinta"
+  },
+  {
+   "k": "dia",
+   "kind": "lock",
+   "t": 681.59,
+   "d": 28.69000000000001,
+   "t_pend": 684.85,
+   "t_voice": 340.57,
+   "t_code": 696.77,
+   "t_buy": 703.3,
+   "t_move": 704.02,
+   "t_del": 704.74,
+   "t_refuse": 705.78
+  },
+  {
+   "k": "chapter",
+   "t0": 710.4,
+   "t1": 713.3,
+   "n": 9,
+   "title": "Fim",
+   "sub": "Obrigado por assistir"
+  },
+  {
+   "k": "dia",
+   "kind": "converge",
+   "t": 717.08,
+   "d": 21.639999999999986,
+   "t_count": 717.62,
+   "chips": [
+    [
+     "Memória",
+     723.14
+    ],
+    [
+     "Internet de agora",
+     724.9
+    ],
+    [
+     "O computador inteiro",
+     726.1
+    ],
+    [
+     "Arquivos",
+     727.38
+    ],
+    [
+     "Documentos",
+     728.1
+    ],
+    [
+     "Navegador",
+     728.98
+    ],
+    [
+     "Olhos para a tela",
+     730.98
+    ],
+    [
+     "Imagem",
+     732.18
+    ],
+    [
+     "Som",
+     732.82
+    ],
+    [
+     "Mensagem",
+     733.3
+    ],
+    [
+     "Travas",
+     734.34
+    ]
+   ]
+  },
+  {
+   "k": "dia",
+   "kind": "local",
+   "t": 738.4599999999999,
+   "d": 10.759999999999991,
+   "t_data": 742.82,
+   "t_text": 744.82
+  },
+  {
+   "k": "kin",
+   "t": 749.22,
+   "d": 2.4,
+   "pos": "R",
+   "lines": [
+    "Não fui feito",
+    "por uma empresa."
+   ],
+   "key": "empresa."
+  },
+  {
+   "k": "kin",
+   "t": 751.46,
+   "d": 3.2,
+   "pos": "R",
+   "lines": [
+    "Fui escrito por uma",
+    "pessoa, em casa."
+   ],
+   "key": "casa,"
+  },
+  {
+   "k": "kin",
+   "t": 754.1,
+   "d": 2.6,
+   "pos": "R",
+   "lines": [
+    "Uma função",
+    "de cada vez."
+   ],
+   "key": "vez,"
+  }
+ ]
+}

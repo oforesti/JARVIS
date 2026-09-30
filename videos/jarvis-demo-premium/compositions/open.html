@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template id="open-template">
+      <style>
+        @font-face { font-family: "Mona Sans"; src: url("assets/fonts/MonaSans-Variable.woff2") format("woff2"); font-weight: 200 900; font-stretch: 75% 125%; }
+        @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; }
+        @font-face { font-family: "Orbitron"; src: url("assets/fonts/Orbitron-Variable.woff2") format("woff2"); font-weight: 400 900; }
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #op-black { position: absolute; inset: 0; background: #04080c; }
+        #op-frags { position: absolute; inset: 0; }
+        .fw { position: absolute; opacity: 0; }
+        .fw .fr { position: absolute; inset: 0; overflow: hidden; border-radius: 6px; }
+        .fw .fr img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+        .fw .fr.round { border-radius: 50%; -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); }
+        .fw i { position: absolute; width: 18px; height: 18px; border-color: rgba(142,167,178,0.7); border-style: solid; border-width: 0; }
+        .fw i.tl { left: -10px; top: -10px; border-left-width: 1.5px; border-top-width: 1.5px; }
+        .fw i.tr { right: -10px; top: -10px; border-right-width: 1.5px; border-top-width: 1.5px; }
+        .fw i.bl { left: -10px; bottom: -10px; border-left-width: 1.5px; border-bottom-width: 1.5px; }
+        .fw i.br { right: -10px; bottom: -10px; border-right-width: 1.5px; border-bottom-width: 1.5px; }
+        #op-scan { position: absolute; left: 0; right: 0; top: 539px; height: 2px; background: linear-gradient(90deg, rgba(92,214,245,0), rgba(92,214,245,0.8), rgba(92,214,245,0)); opacity: 0; }
+        #op-orb { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+        #op-wm { position: absolute; left: 0; right: 0; top: 600px; display: flex; justify-content: center; }
+        #op-wm span { display: block; font-family: "Orbitron"; font-weight: 500; font-size: 92px; color: #e6f7fd; margin: 0 0.1em; text-shadow: 0 0 30px rgba(92,214,245,0.3); }
+        #op-ch { position: absolute; left: 0; right: 0; top: 552px; text-align: center; font-family: "Geist Mono", monospace; font-weight: 500; font-size: 20px; letter-spacing: 0.56em; padding-left: 0.56em; color: #8ea7b2; opacity: 0; }
+        #op-mk { position: absolute; left: 0; right: 0; top: 728px; text-align: center; font-family: "Mona Sans", sans-serif; font-weight: 300; font-size: 36px; color: #c4dae3; }
+        #op-hook { position: absolute; left: 0; right: 0; top: 488px; text-align: center; font-family: "Mona Sans", sans-serif; font-weight: 300; font-size: 54px; color: #e6f7fd; letter-spacing: -0.01em; }
+        #op-hook b { font-weight: 600; }
+        #op-note { position: absolute; left: 0; right: 0; top: 932px; text-align: center; font-family: "Mona Sans", sans-serif; font-weight: 400; font-size: 26px; color: #8ea7b2; }
+      </style>
+      <div id="root" data-composition-id="open" data-width="1920" data-height="1080">
+        <div id="op-black" data-layout-ignore></div>
+        <div id="op-frags"></div>
+        <div id="op-scan" data-layout-ignore></div>
+        <canvas id="op-orb" width="1920" height="1080" data-layout-ignore></canvas>
+        <div id="op-ch">CAPÍTULO 1</div>
+        <div id="op-wm"><span>J</span><span>.</span><span>A</span><span>.</span><span>R</span><span>.</span><span>V</span><span>.</span><span>I</span><span>.</span><span>S</span><span>.</span></div>
+        <div id="op-mk">Mark VII — autodemonstração</div>
+        <div id="op-hook">Este vídeo foi produzido exclusivamente e inteiramente pelo <b>JARVIS</b>.</div>
+        <div id="op-note">Os cortes foram feitos essencialmente para preservar a fluidez da apresentação.</div>
+      </div>
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          const J = window.JM;
+          const O = window.OPEN;  // tempos da abertura (tools/build.py)
+          // o gancho do original: quem fez este vídeo
+          J.focusIn(tl, "#op-hook", O.hook, { dur: 1.1, blur: 16, scale: 1.03 });
+          J.focusOut(tl, "#op-hook", O.hookOut, { dur: 0.45, blur: 12 });
+          // fragmentos reais da interface: [t, dur, arquivo, w, h, centro x, centro y, redondo]
+          const d0 = 3.4 - 1.10;
+          const FR = [[1.10, 0.50, "orb", 330, 330, 560, 470, 1], [1.70, 0.42, "wave", 760, 196, 1310, 330], [2.20, 0.38, "stats", 250, 588, 470, 560],
+            [2.64, 0.32, "files", 820, 344, 1250, 690], [3.02, 0.30, "card", 800, 182, 900, 300], [3.36, 0.27, "image", 520, 520, 1380, 520],
+            [3.66, 0.22, "qr", 380, 380, 560, 640], [3.90, 0.18, "discut", 420, 96, 1100, 260], [4.10, 0.14, "popup", 860, 140, 960, 780],
+            [4.26, 0.10, "ultron", 280, 96, 700, 330], [4.38, 0.08, "wiki", 760, 360, 1200, 560]].map((f) => [f[0] + d0, ...f.slice(1)]);
+          const host = document.getElementById("op-frags");
+          FR.forEach(([t, d, f, w, h, cx, cy, round]) => {
+            const wrap = document.createElement("div");
+            wrap.className = "fw";
+            Object.assign(wrap.style, { left: cx - w / 2 + "px", top: cy - h / 2 + "px", width: w + "px", height: h + "px" });
+            const box = document.createElement("div");
+            box.className = "fr" + (round ? " round" : "");
+            const img = document.createElement("img");
+            img.src = `assets/frag/${f}.jpg`; img.alt = "";
+            box.appendChild(img); wrap.appendChild(box);
+            if (!round) ["tl", "tr", "bl", "br"].forEach((k) => { const b = document.createElement("i"); b.className = k; wrap.appendChild(b); });
+            host.appendChild(wrap);
+            tl.set(wrap, { opacity: 1 }, t);
+            tl.fromTo(box, { clipPath: "inset(0% 50% 0% 50%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: Math.min(0.14, d * 0.5), ease: "power3.out" }, t);
+            tl.fromTo(img, { scale: 1.06, filter: "brightness(1.7) blur(3px)" }, { scale: 1.0, filter: "brightness(1) blur(0px)", duration: d, ease: "none" }, t);
+            tl.set(wrap, { opacity: 0, visibility: "hidden" }, t + d);
+          });
+          tl.fromTo("#op-scan", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.7, ease: "expo.out" }, 3.1);
+          tl.fromTo("#op-scan", { opacity: 1 }, { opacity: 0, duration: 0.4, ease: "power2.in", immediateRender: false }, 3.8);
+
+          // ignição do núcleo — a revelação
+          const T = O.ignite;
+          const orb = J.orbRig(document.getElementById("op-orb"), { x: 960, y: 470, r: 2, alpha: 0, halo: 0, bloom: 0, spec: 0, ring: 0, ringDraw: 0, ringRot: -50, flash: 0 });
+          orb.to(tl, { alpha: 0 }, { alpha: 1 }, T, 0.05, "none");
+          orb.to(tl, { r: 2 }, { r: 110 }, T, 1.0, "expo.out");
+          orb.to(tl, { bloom: 0 }, { bloom: 1 }, T, 1.2, "expo.out");
+          orb.to(tl, { halo: 0 }, { halo: 1 }, T + 0.05, 1.8, "power3.out");
+          orb.to(tl, { spec: 0 }, { spec: 1 }, T, 1.0, "expo.out");
+          orb.to(tl, { flash: 0 }, { flash: 1 }, T, 0.08, "none");
+          orb.to(tl, { flash: 1 }, { flash: 0 }, T + 0.08, 1.1, "power2.out");
+          orb.to(tl, { ring: 0 }, { ring: 1 }, T + 0.35, 0.3, "none");
+          orb.to(tl, { ringDraw: 0 }, { ringDraw: 1 }, T + 0.35, 1.3, "power2.inOut");
+          orb.to(tl, { ringRot: -50 }, { ringRot: 40 }, T + 0.35, O.match - T, "sine.out");
+          orb.to(tl, { y: 470, r: 110 }, { y: 380, r: 88 }, T + 1.1, 1.3, "power4.inOut");
+          J.trackIn(tl, document.getElementById("op-wm"), T + 0.95, { fontPx: 92, spread: 0.3, dur: 1.2 });
+          J.hudIn(tl, "#op-ch", T + 1.4, { x: 0, dur: 0.6 });
+          J.wordsIn(tl, document.getElementById("op-mk"), T + 1.6, { dur: 0.6, y: 12, blur: 8, stagger: 0.08 });
+          J.wordsIn(tl, document.getElementById("op-note"), O.note, { dur: 0.6, y: 10, blur: 6, stagger: 0.03 });
+          J.focusOut(tl, ["#op-wm", "#op-ch", "#op-mk", "#op-note"], O.wmOut, { dur: 0.5, blur: 10 });
+          // o núcleo encaixa no orb do app (corte casado) e a gravação aparece por baixo
+          orb.to(tl, { x: 960, y: 380, r: 88 }, { x: O.appX, y: O.appY, r: O.appR }, O.wmOut + 0.3, O.match - O.wmOut - 0.4, "power3.inOut");
+          orb.to(tl, { ring: 1 }, { ring: 0 }, O.match - 0.6, 0.4, "power2.in");
+          tl.fromTo("#op-black", { opacity: 1 }, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, O.match);
+          orb.to(tl, { alpha: 1 }, { alpha: 0 }, O.match + 0.15, 0.6, "power2.inOut");
+          tl.eventCallback("onUpdate", orb.draw);
+          window.__timelines["open"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
