@@ -10,6 +10,7 @@ para `assets/source/` e extrair `original-audio.flac` com ffmpeg se o contêiner
 npm i                                   # @hyperframes/core (carve precisa)
 python3 tools/transcript_fix.py         # analysis/transcript.json → data/transcript.json (correções + trechos ocultos)
 python3 tools/cues.py                   # deixas visuais → data/cues.json (tempo do original)
+<venv-audio>/bin/python tools/transcript_mask.py   # onde está a transcrição ao vivo do app → data/tmask.json (~4 min)
 python3 tools/build.py --no-carve       # index.html + tools/music-cue.json (sem trilha ainda)
 cd tools/audio && <venv-audio>/bin/python music_long.py ../music-cue.json ../../assets/audio/music.flac && cd ../..
 python3 tools/build.py                  # de novo, agora com a trilha e o carve (ducking sob a voz)
@@ -22,6 +23,18 @@ python3 tools/audio/master.py renders/jarvis-demo-completo.mp4 renders/jarvis-de
 - Mapa de tempo: filme = original + 3,05 s (`STAGE_AT 13.0 − SRC_IN 9.95`). Deixas em `cues.py` usam o tempo do original.
 - `compositions/stage.html` é o motor: câmera, frases (kin), HUDs, cartões, callouts, diagramas e cartelas a partir de `window.CUES`.
 - A faixa inferior (`#sg-band`) cobre a transcrição ao vivo do próprio app e a marca d'água do Windows; ela sai só no lembrete (349,2–363,2 s do original), quando a legenda sobe.
+
+## Remendo sobre a transcrição ao vivo do app
+
+O app escreve sob o rótulo "FALANDO" o que o JARVIS diz; nos enquadramentos fechados isso duplicava a legenda.
+`transcript_mask.py` acha, a 10 qps, o rótulo ciano (faixa fina logo abaixo das barras da onda) e as linhas
+cinzas **centralizadas** sob ele (o chat embaixo é alinhado à esquerda), com a cor do fundo local.
+`build.py:tmask_events()` vira eventos: rótulo parado → união das caixas vizinhas; passos seguidos (zoom do
+original) → interpolação; salto isolado (corte do original) → troca entre duas vagas. O palco desenha o remendo
+em coordenadas do original (segue as duas câmeras) e o esconde sob as cartelas.
+
+- `hyperframes snapshot` mostra o vídeo mais escuro e com seek impreciso: para cor/tempo do remendo, renderize um
+  teste curto (projeto mínimo com o vídeo + os eventos) — no render real o remendo é invisível.
 
 ## Trailer (~110 s)
 
@@ -46,3 +59,8 @@ python3 tools/audio/master.py trailer/renders/jarvis-trailer.mp4 renders/jarvis-
 - Automação de volume substitui `data-volume` (valores absolutos). Carve precisa de `@hyperframes/core`.
 - Só um `index.html` com `data-composition-id` na raiz do projeto: o trailer mora em `trailer/`.
 - Nunca `pkill -f` com um padrão que apareça no próprio comando.
+- Mudou só o áudio? O render grava o mix em `<pasta do -o>/work-*/audio.m4a` na fase `audio_process`, antes da
+  captura (`capture_streaming`); dá para aproveitar e parar o render. Render com `&` morre com o shell: use
+  `run_in_background`.
+- Mix: riser termina no corte; nada de pad alto ou whoosh sob a primeira fala; o limitador do master quase não
+  deve agir (impactos contidos). `master.py --voice-html index.html` mede a folga voz × trilha fala a fala.
